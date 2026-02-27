@@ -22,11 +22,13 @@ This project follows strictly modular patterns to ensure easy extensibility with
 
 ### Core Components
 - **`src/components/Sidebar.tsx`**: A responsive, glassmorphic layout sidebar that parses `sidebar.config.ts`.
+- **`src/components/Breadcrumb.tsx`**: Clean, accessible breadcrumb component used for deeply nested page navigation.
 - **`src/app/layout.tsx`**: The root layout, equipped with Inter typography and hydration mismatch suppression. 
 
 ### Modules
 - **`src/app/page.tsx`**: Landing page overview showcasing interactive CSS cards.
-- **`src/app/prerequisites/page.tsx`**: Module 1 – Details LLMs, Prompt Engineering, and RAG.
+- **`src/app/prerequisites/page.tsx`**: Module 1 – Displays an intricate, mapping-based index of foundational AI engineering and CS concepts, categorized by priority ("Mandatory", "Good to Know", "Optional").
+- **`src/app/prerequisites/[topicId]/page.tsx`**: Dynamic route generating detailed views for every individual prerequisite topic on-the-fly, displaying its parent metadata and difficulty badges.
 - **`src/app/building-ai-agents/page.tsx`**: Module 2 – Explains the ReAct architecture, Tool abstractions, and JSON schema parsing.
 
 ## 🎨 Theme & Typography
