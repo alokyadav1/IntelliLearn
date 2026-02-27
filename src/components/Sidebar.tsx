@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { sidebarConfig } from "@/config/sidebar.config";
 
-export default function Sidebar() {
+export default function Sidebar({ children }: { children?: React.ReactNode }) {
     const pathname = usePathname();
 
     return (
@@ -31,6 +31,11 @@ export default function Sidebar() {
                 })}
             </nav>
             <div className="px-6 mt-auto">
+                {children && (
+                    <div className="mb-6">
+                        {children}
+                    </div>
+                )}
                 <div className="p-4 rounded-xl bg-slate-100/50 border border-slate-200/50">
                     <p className="text-xs text-slate-500 font-medium tracking-wide">{sidebarConfig.edition}</p>
                     <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">{sidebarConfig.version}</p>
