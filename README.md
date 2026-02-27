@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Agents Mastery Portal
 
-## Getting Started
+A scientific, comprehensive guide to conceptualizing, designing, and building state-of-the-art autonomous AI agents. Built with Next.js and styled with Tailwind CSS v4.
 
-First, run the development server:
+## 🚀 Getting Started
+
+First, install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Architecture
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project follows strictly modular patterns to ensure easy extensibility without requiring changes to core component files.
 
-## Learn More
+### Configuration Hooks
+- **`src/config/sidebar.config.ts`**: The central configuration hook for the application Sidebar. All navigation links, application versioning, and titles are defined here, completely removing hardcoded static values from components.
 
-To learn more about Next.js, take a look at the following resources:
+### Core Components
+- **`src/components/Sidebar.tsx`**: A responsive, glassmorphic layout sidebar that parses `sidebar.config.ts`.
+- **`src/app/layout.tsx`**: The root layout, equipped with Inter typography and hydration mismatch suppression. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Modules
+- **`src/app/page.tsx`**: Landing page overview showcasing interactive CSS cards.
+- **`src/app/prerequisites/page.tsx`**: Module 1 – Details LLMs, Prompt Engineering, and RAG.
+- **`src/app/building-ai-agents/page.tsx`**: Module 2 – Explains the ReAct architecture, Tool abstractions, and JSON schema parsing.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Theme & Typography
 
-## Deploy on Vercel
+- **Font**: Inter (Google Fonts)
+- **Primary Color**: Indigo (`#4f46e5`)
+- **Secondary Color**: Rose (`#f43f5e`)
+- **Backgrounds**: Slate 50 (`#f8fafc`) with UI components employing deep Slate 900 (`#0f172a`).
+- **Styling Method**: Tailwind v4 with a custom `@theme` block defined in `src/app/globals.css`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+_Created as an educational and structural layout for autonomous agent training._
