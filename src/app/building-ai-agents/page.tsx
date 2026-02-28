@@ -29,8 +29,8 @@ export default function BuildingAIAgents() {
                                 🧠
                             </div>
                             <div>
-                                <strong className="block text-indigo-50 font-bold text-sm label-small tracking-wider mb-1 mt-1">LLM BRAIN</strong>
-                                <span className="text-indigo-100 text-sm">The reasoning and decision core.</span>
+                                <strong className="block text-indigo-700 font-bold text-sm label-small tracking-wider mb-1 mt-1">LLM BRAIN</strong>
+                                <span className="text-indigo-500 text-sm">The reasoning and decision core.</span>
                             </div>
                         </li>
                         <li className="flex items-start">
@@ -38,8 +38,8 @@ export default function BuildingAIAgents() {
                                 🛠️
                             </div>
                             <div>
-                                <strong className="block text-indigo-50 font-bold text-sm label-small tracking-wider mb-1 mt-1">TOOL ABSTRACTIONS</strong>
-                                <span className="text-indigo-100 text-sm">Functions the agent can trigger.</span>
+                                <strong className="block text-indigo-700 font-bold text-sm label-small tracking-wider mb-1 mt-1">TOOL ABSTRACTIONS</strong>
+                                <span className="text-indigo-500 text-sm">Functions the agent can trigger.</span>
                             </div>
                         </li>
                         <li className="flex items-start">
@@ -47,8 +47,8 @@ export default function BuildingAIAgents() {
                                 💾
                             </div>
                             <div>
-                                <strong className="block text-indigo-50 font-bold text-sm label-small tracking-wider mb-1 mt-1">STATE & MEMORY</strong>
-                                <span className="text-indigo-100 text-sm">Short-term and persistent indexing.</span>
+                                <strong className="block text-indigo-700 font-bold text-sm label-small tracking-wider mb-1 mt-1">STATE & MEMORY</strong>
+                                <span className="text-indigo-500 text-sm">Short-term and persistent indexing.</span>
                             </div>
                         </li>
                     </ul>
