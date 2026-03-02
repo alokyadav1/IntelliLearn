@@ -1,28 +1,29 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import AuthButton from "@/components/AuthButton";
+import Header from "@/components/Header";
+import { PLATFORM_NAME } from "@/config/platform.config";
+import { auth } from "@/auth";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
 export const metadata: Metadata = {
-  title: "AI Agents Mastery | Learning Portal",
-  description: "Comprehensive guide to building autonomous AI agents.",
+  title: `${PLATFORM_NAME} | Engineering Courses`,
+  description: "Master modern engineering — AI Agents, DevOps, Cloud, and more.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${inter.className} antialiased selection:bg-indigo-100 selection:text-indigo-900 flex min-h-screen bg-slate-50`}>
-        <Sidebar>
-          <AuthButton />
-        </Sidebar>
-        <main className="flex-1 relative overflow-y-auto w-full">
+      <body suppressHydrationWarning className={`${inter.className} antialiased selection:bg-indigo-100 selection:text-indigo-900 min-h-screen bg-slate-50 flex flex-col`}>
+        <Header session={session} />
+        <main className="flex-1 relative w-full">
           {children}
         </main>
       </body>

@@ -1,14 +1,11 @@
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
-import { getTopicById, prerequisiteModules } from "@/config/prerequisites.config";
+import { getTopicById, prerequisiteModules } from "@/courses/ai-agents/config/prerequisites.config";
 
 interface PageProps {
-    params: Promise<{
-        topicId: string;
-    }>;
+    params: Promise<{ topicId: string }>;
 }
 
-// Generate static params so the dynamic routes can be built statically
 export function generateStaticParams() {
     const allParams: { topicId: string }[] = [];
     prerequisiteModules.forEach((mod) => {
@@ -19,19 +16,17 @@ export function generateStaticParams() {
     return allParams;
 }
 
-const categoryIcons = {
+const categoryIcons: Record<string, string> = {
     "Mandatory": "🟥",
     "Good to Know": "🟨",
-    "Optional": "🟩"
+    "Optional": "🟩",
 };
 
 export default async function TopicPage({ params }: PageProps) {
     const { topicId } = await params;
     const match = getTopicById(topicId);
 
-    if (!match) {
-        notFound();
-    }
+    if (!match) notFound();
 
     const { module, topic } = match;
 
@@ -39,7 +34,8 @@ export default async function TopicPage({ params }: PageProps) {
         <div className="max-w-4xl mx-auto px-8 py-16 animate-entry">
             <Breadcrumb
                 items={[
-                    { name: "Prerequisites", href: "/prerequisites" },
+                    { name: "AI Agents", href: "/courses/ai-agents" },
+                    { name: "Prerequisites", href: "/courses/ai-agents/prerequisites" },
                     { name: module.title.split(" — ")[1] || module.title },
                     { name: topic.title },
                 ]}
@@ -66,7 +62,7 @@ export default async function TopicPage({ params }: PageProps) {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                     </svg>
                 </div>
-                <h2 className="text-xl font-bold text-slate-900 mb-2">Content Placeholder</h2>
+                <h2 className="text-xl font-bold text-slate-900 mb-2">Content Coming Soon</h2>
                 <p className="text-slate-500 max-w-lg">
                     The curriculum data for <strong>{topic.title}</strong> is currently being assembled. Check back soon for comprehensive materials on this subject.
                 </p>

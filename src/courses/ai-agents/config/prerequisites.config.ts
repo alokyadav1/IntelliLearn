@@ -1,18 +1,14 @@
-export type TopicCategory = "Mandatory" | "Good to Know" | "Optional";
+// ─────────────────────────────────────────────────────────────────────────────
+// AI Agents — Prerequisites Config
+// Modules and topics required before building autonomous AI agents.
+// Migrated from: src/config/prerequisites.config.ts
+// ─────────────────────────────────────────────────────────────────────────────
 
-export interface PrerequisiteTopic {
-  id: string;
-  title: string;
-  category: TopicCategory;
-}
+import type { TopicCategory, CourseTopic, CourseModule } from "@/types/platform.types";
 
-export interface PrerequisiteModule {
-  id: string;
-  title: string;
-  topics: PrerequisiteTopic[];
-}
+export type { TopicCategory };
 
-export const prerequisiteModules: PrerequisiteModule[] = [
+export const prerequisiteModules: CourseModule[] = [
   {
     id: "section-a",
     title: "SECTION A — AI & LLM Foundations",
@@ -30,7 +26,7 @@ export const prerequisiteModules: PrerequisiteModule[] = [
       { id: "embeddings", title: "Embeddings", category: "Mandatory" },
       { id: "vector-similarity-search", title: "Vector Similarity Search", category: "Mandatory" },
       { id: "retrieval-augmented-generation", title: "Retrieval-Augmented Generation (RAG)", category: "Mandatory" },
-      
+
       { id: "what-is-ai", title: "What is Artificial Intelligence (AI)", category: "Good to Know" },
       { id: "ml-vs-dl", title: "Machine Learning vs Deep Learning", category: "Good to Know" },
       { id: "neural-networks-basics", title: "Neural Networks Basics", category: "Good to Know" },
@@ -59,7 +55,7 @@ export const prerequisiteModules: PrerequisiteModule[] = [
       { id: "state-machines", title: "State Machines", category: "Good to Know" },
       { id: "idempotency", title: "Idempotency", category: "Good to Know" },
       { id: "microservices-architecture", title: "Microservices Architecture Basics", category: "Good to Know" },
-      
+
       { id: "cli-tool-development", title: "CLI Tool Development Basics", category: "Optional" },
     ],
   },
@@ -150,15 +146,10 @@ export const prerequisiteModules: PrerequisiteModule[] = [
   },
 ];
 
-export function getTopicById(id: string): { module: PrerequisiteModule; topic: PrerequisiteTopic } | null {
-  const result = (() => {
-    for (const mod of prerequisiteModules) {
-      const topic = mod.topics.find((t) => t.id === id);
-      if (topic) {
-        return { module: mod, topic };
-      }
-    }
-    return null;
-  })();
-  return result;
+export function getTopicById(id: string): { module: CourseModule; topic: CourseTopic } | null {
+  for (const mod of prerequisiteModules) {
+    const topic = mod.topics.find((t) => t.id === id);
+    if (topic) return { module: mod, topic };
+  }
+  return null;
 }
