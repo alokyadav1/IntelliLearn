@@ -1,17 +1,13 @@
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
-import { prerequisiteModules, TopicCategory } from "@/config/prerequisites.config";
-import ProgressBar from "@/components/ProgressBar";
-import { getUserProgress } from "@/app/actions/progress";
-import ResetAllProgressDialog from "@/components/ResetAllProgressDialog";
-import { auth } from "@/auth";
+import { prerequisiteModules, TopicCategory } from "@/courses/ai-agents/config/prerequisites.config";
 
 const categories: TopicCategory[] = ["Mandatory", "Good to Know", "Optional"];
 
-const categoryIcons = {
+const categoryIcons: Record<TopicCategory, string> = {
     "Mandatory": "🟥",
     "Good to Know": "🟨",
-    "Optional": "🟩"
+    "Optional": "🟩",
 };
 
 export default async function Prerequisites() {
@@ -27,7 +23,8 @@ export default async function Prerequisites() {
         <div className="max-w-6xl mx-auto px-8 py-16 animate-entry">
             <Breadcrumb
                 items={[
-                    { name: "Prerequisites", href: "/prerequisites" },
+                    { name: "AI Agents", href: "/courses/ai-agents" },
+                    { name: "Prerequisites", href: "/courses/ai-agents/prerequisites" },
                 ]}
             />
 
@@ -59,16 +56,15 @@ export default async function Prerequisites() {
                             <div className="bg-white border border-rose-100 text-rose-600 h-10 w-10 min-w-10 rounded-xl flex items-center justify-center mr-4 text-sm font-bold shadow-sm">
                                 {module.title.split(" ")[1]}
                             </div>
-                            <h2 className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
+                            <h2 className="text-xl font-bold tracking-tight text-slate-900">
                                 {module.title.split(" — ")[1] || module.title}
                             </h2>
                         </div>
 
                         <div className="p-8 pb-4">
                             {categories.map((category) => {
-                                const categoryTopics = module.topics.filter(t => t.category === category);
+                                const categoryTopics = module.topics.filter((t) => t.category === category);
                                 if (categoryTopics.length === 0) return null;
-
                                 return (
                                     <div key={category} className="mb-8 last:mb-0">
                                         <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 flex items-center">
@@ -79,7 +75,7 @@ export default async function Prerequisites() {
                                             {categoryTopics.map((topic, index) => (
                                                 <Link
                                                     key={topic.id}
-                                                    href={`/prerequisites/${topic.id}`}
+                                                    href={`/courses/ai-agents/prerequisites/${topic.id}`}
                                                     className="group flex flex-row items-start p-4 -mx-4 rounded-xl hover:bg-slate-50 transition-colors"
                                                 >
                                                     <span className="text-slate-400 font-mono text-sm mt-0.5 mr-3 w-5 text-right shrink-0">
