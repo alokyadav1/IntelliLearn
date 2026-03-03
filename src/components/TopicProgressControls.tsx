@@ -5,12 +5,14 @@ import { markTopicCompleted, resetTopicProgress } from "@/app/actions/progress";
 import { useRouter } from "next/navigation";
 
 interface TopicProgressControlsProps {
+  courseId: string;
   topicId: string;
   isCompleted: boolean;
   isAuthenticated: boolean;
 }
 
 export default function TopicProgressControls({
+  courseId,
   topicId,
   isCompleted,
   isAuthenticated,
@@ -22,14 +24,14 @@ export default function TopicProgressControls({
 
   const handleMarkCompleted = () => {
     startTransition(async () => {
-      await markTopicCompleted(topicId);
+      await markTopicCompleted(courseId, topicId);
       router.refresh();
     });
   };
 
   const handleReset = () => {
     startTransition(async () => {
-      await resetTopicProgress(topicId);
+      await resetTopicProgress(courseId, topicId);
       router.refresh();
     });
   };
