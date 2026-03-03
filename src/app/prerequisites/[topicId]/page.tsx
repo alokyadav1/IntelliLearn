@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import { getTopicById, prerequisiteModules } from "@/config/prerequisites.config";
+import TopicProgressControls from "@/components/TopicProgressControls";
+import { getUserProgress } from "@/app/actions/progress";
+import { auth } from "@/auth";
 
 interface PageProps {
     params: Promise<{
@@ -35,6 +38,10 @@ export default async function TopicPage({ params }: PageProps) {
 
     const { module, topic } = match;
 
+    const session = await auth();
+    const progress = await getUserProgress();
+    const isCompleted = progress.completedTopics.includes(topic.id);
+
     return (
         <div className="max-w-4xl mx-auto px-8 py-16 animate-entry">
             <Breadcrumb
@@ -60,17 +67,24 @@ export default async function TopicPage({ params }: PageProps) {
                 </h1>
             </header>
 
-            <section className="card p-12 bg-white flex flex-col items-center justify-center text-center border-dashed">
-                <div className="bg-slate-50 w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100">
+            <section className="card p-12 flex flex-col items-center justify-center text-center border-dashed mb-10 bg-slate-50/50 relative overflow-hidden">
+                 <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60"></div>
+                <div className="bg-white w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100 relative z-10">
                     <svg className="w-8 h-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                     </svg>
                 </div>
-                <h2 className="text-xl font-bold text-slate-900 mb-2">Content Placeholder</h2>
-                <p className="text-slate-500 max-w-lg">
+                <h2 className="text-xl font-bold text-slate-900 mb-2 relative z-10">Content Placeholder</h2>
+                <p className="text-slate-500 max-w-lg relative z-10">
                     The curriculum data for <strong>{topic.title}</strong> is currently being assembled. Check back soon for comprehensive materials on this subject.
                 </p>
             </section>
+            
+            <TopicProgressControls
+                topicId={topic.id}
+                isCompleted={isCompleted}
+                isAuthenticated={!!session?.user}
+            />
         </div>
     );
 }
