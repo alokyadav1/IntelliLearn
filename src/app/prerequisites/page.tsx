@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import { prerequisiteModules, TopicCategory } from "@/config/prerequisites.config";
+import ProgressBar from "@/components/ProgressBar";
+import { getUserProgress } from "@/app/actions/progress";
+import ResetAllProgressDialog from "@/components/ResetAllProgressDialog";
+import { auth } from "@/auth";
 
 const categories: TopicCategory[] = ["Mandatory", "Good to Know", "Optional"];
 
@@ -10,7 +14,15 @@ const categoryIcons = {
     "Optional": "🟩"
 };
 
-export default function Prerequisites() {
+export default async function Prerequisites() {
+    const session = await auth();
+    const progress = await getUserProgress();
+    const completedTopics = progress.completedTopics;
+
+    // Calculate totals
+    const totalTopics = prerequisiteModules.reduce((acc, mod) => acc + mod.topics.length, 0);
+    const completedCount = completedTopics.length;
+
     return (
         <div className="max-w-6xl mx-auto px-8 py-16 animate-entry">
             <Breadcrumb
@@ -19,12 +31,25 @@ export default function Prerequisites() {
                 ]}
             />
 
-            <header className="mb-16">
-                <div className="label-small text-rose-500 mb-4 tracking-widest">MODULE 01</div>
-                <h1 className="text-5xl heading-pro text-slate-900 mb-6 tracking-tight">Prerequisites</h1>
-                <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
-                    Foundational concepts to master before assembling your first autonomous AI structure over an LLM base. Select a topic to explore.
-                </p>
+            <header className="mb-10">
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                    <div>
+                        <div className="label-small text-rose-500 mb-4 tracking-widest">MODULE 01</div>
+                        <h1 className="text-5xl heading-pro text-slate-900 mb-6 tracking-tight">Prerequisites</h1>
+                        <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
+                            Foundational concepts to master before assembling your first autonomous AI structure over an LLM base. Select a topic to explore.
+                        </p>
+                    </div>
+                    {session?.user && (
+                        <div className="self-start">
+                            <ResetAllProgressDialog />
+                        </div>
+                    )}
+                </div>
+                
+                {session?.user && (
+                    <ProgressBar completedCount={completedCount} totalCount={totalTopics} />
+                )}
             </header>
 
             <div className="space-y-12">

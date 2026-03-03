@@ -16,7 +16,7 @@ export default async function Home() {
         </p>
       </header>
 
-      {!session ? (
+      {!(session && "user" in session) ? (
         <div className="bg-white border-2 border-indigo-100/50 rounded-2xl p-10 mb-16 shadow-xl shadow-indigo-900/5 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60"></div>
           <div className="relative">
