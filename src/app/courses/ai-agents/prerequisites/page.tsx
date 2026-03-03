@@ -1,6 +1,12 @@
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import { prerequisiteModules, TopicCategory } from "@/courses/ai-agents/config/prerequisites.config";
+import { auth } from "@/auth";
+import { getUserProgress } from "@/app/actions/progress";
+import ProgressBar from "@/components/ProgressBar";
+import ResetAllProgressDialog from "@/components/ResetAllProgressDialog";
+
+const COURSE_ID = "ai-agents";
 
 const categories: TopicCategory[] = ["Mandatory", "Good to Know", "Optional"];
 
@@ -12,10 +18,9 @@ const categoryIcons: Record<TopicCategory, string> = {
 
 export default async function Prerequisites() {
     const session = await auth();
-    const progress = await getUserProgress();
+    const progress = await getUserProgress(COURSE_ID);
     const completedTopics = progress.completedTopics;
 
-    // Calculate totals
     const totalTopics = prerequisiteModules.reduce((acc, mod) => acc + mod.topics.length, 0);
     const completedCount = completedTopics.length;
 
@@ -39,11 +44,11 @@ export default async function Prerequisites() {
                     </div>
                     {session?.user && (
                         <div className="self-start">
-                            <ResetAllProgressDialog />
+                            <ResetAllProgressDialog courseId={COURSE_ID} />
                         </div>
                     )}
                 </div>
-                
+
                 {session?.user && (
                     <ProgressBar completedCount={completedCount} totalCount={totalTopics} />
                 )}
@@ -83,6 +88,9 @@ export default async function Prerequisites() {
                                                     </span>
                                                     <div className="flex flex-col">
                                                         <span className="text-[15px] font-semibold text-slate-700 group-hover:text-indigo-600 transition-colors tracking-tight line-clamp-1">
+                                                            {completedTopics.includes(topic.id) && (
+                                                                <span className="inline-block w-2 h-2 rounded-full bg-green-400 mr-2 mb-0.5" />
+                                                            )}
                                                             {topic.title}
                                                         </span>
                                                         <span className="text-xs text-slate-400 mt-1 uppercase tracking-wider group-hover:text-indigo-400 transition-colors flex items-center">

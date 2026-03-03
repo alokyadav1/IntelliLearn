@@ -14,10 +14,15 @@ async function getUserId(): Promise<string | null> {
     if (!session || !session.user || !session.user.email) {
         return null;
     }
-    return session.user.email; // Using email as the unique identifier for simplicity
+    return session.user.email;
 }
 
-export async function getUserProgress(): Promise<UserProgress> {
+/**
+ * Fetch completed topics for a specific course.
+ * Firestore path: user_progress/{email}
+ * Structure: { courses: { [courseId]: { completedTopics: string[] } } }
+ */
+export async function getUserProgress(courseId: string): Promise<UserProgress> {
     const userId = await getUserId();
     if (!userId) {
         return { completedTopics: [] };
@@ -28,41 +33,38 @@ export async function getUserProgress(): Promise<UserProgress> {
         const docSnap = await docRef.get();
 
         if (docSnap.exists) {
-            const data = docSnap.data() as UserProgress;
+            const data = docSnap.data();
+            const courseData = data?.courses?.[courseId];
             return {
-                completedTopics: data.completedTopics || [],
+                completedTopics: courseData?.completedTopics ?? [],
             };
-        } else {
-            return { completedTopics: [] };
         }
+        return { completedTopics: [] };
     } catch (error: any) {
-        // If the database has not been provisioned on Firebase yet, it throws a grpc NOT_FOUND (5).
-        // To prevent Next.js from displaying a full-screen runtime error for this console message,
-        // we use console.warn instead of console.error.
         console.warn("Firestore user progress access error:", error?.message || error);
         return { completedTopics: [] };
     }
 }
 
-export async function markTopicCompleted(topicId: string): Promise<void> {
+export async function markTopicCompleted(courseId: string, topicId: string): Promise<void> {
     const userId = await getUserId();
-    if (!userId) {
-        throw new Error("Unauthorized");
-    }
+    if (!userId) throw new Error("Unauthorized");
 
     try {
         const docRef = db.collection("user_progress").doc(userId);
         await docRef.set(
             {
-                completedTopics: FieldValue.arrayUnion(topicId),
+                courses: {
+                    [courseId]: {
+                        completedTopics: FieldValue.arrayUnion(topicId),
+                    },
+                },
             },
             { merge: true }
         );
-        revalidatePath("/prerequisites");
-        revalidatePath(`/prerequisites/${topicId}`);
+        revalidatePath(`/courses/${courseId}`);
     } catch (error: any) {
         console.error(`Error marking topic ${topicId} as completed:`, error?.message || error);
-        // If the database has not been provisioned on Firebase yet, it throws a grpc NOT_FOUND (5).
         if (error?.code === 5) {
             console.warn("Firestore database not created yet. Skipping progress update.");
             return;
@@ -71,22 +73,23 @@ export async function markTopicCompleted(topicId: string): Promise<void> {
     }
 }
 
-export async function resetTopicProgress(topicId: string): Promise<void> {
+export async function resetTopicProgress(courseId: string, topicId: string): Promise<void> {
     const userId = await getUserId();
-    if (!userId) {
-        throw new Error("Unauthorized");
-    }
+    if (!userId) throw new Error("Unauthorized");
 
     try {
         const docRef = db.collection("user_progress").doc(userId);
         await docRef.set(
             {
-                completedTopics: FieldValue.arrayRemove(topicId),
+                courses: {
+                    [courseId]: {
+                        completedTopics: FieldValue.arrayRemove(topicId),
+                    },
+                },
             },
             { merge: true }
         );
-        revalidatePath("/prerequisites");
-        revalidatePath(`/prerequisites/${topicId}`);
+        revalidatePath(`/courses/${courseId}`);
     } catch (error: any) {
         console.error(`Error resetting progress for topic ${topicId}:`, error?.message || error);
         if (error?.code === 5) {
@@ -97,16 +100,23 @@ export async function resetTopicProgress(topicId: string): Promise<void> {
     }
 }
 
-export async function resetAllProgress(): Promise<void> {
+export async function resetAllProgress(courseId: string): Promise<void> {
     const userId = await getUserId();
-    if (!userId) {
-        throw new Error("Unauthorized");
-    }
+    if (!userId) throw new Error("Unauthorized");
 
     try {
         const docRef = db.collection("user_progress").doc(userId);
-        await docRef.set({ completedTopics: [] }, { merge: true });
-        revalidatePath("/prerequisites");
+        await docRef.set(
+            {
+                courses: {
+                    [courseId]: {
+                        completedTopics: [],
+                    },
+                },
+            },
+            { merge: true }
+        );
+        revalidatePath(`/courses/${courseId}`);
     } catch (error: any) {
         console.error("Error resetting all progress:", error?.message || error);
         if (error?.code === 5) {
