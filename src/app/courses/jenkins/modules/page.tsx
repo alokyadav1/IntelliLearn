@@ -2,10 +2,7 @@ import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import { jenkinsModules } from "@/courses/jenkins/config/modules.config";
 import type { TopicCategory } from "@/types/platform.types";
-import { auth } from "@/auth";
 import { getUserProgress } from "@/app/actions/progress";
-import ProgressBar from "@/components/ProgressBar";
-import ResetAllProgressDialog from "@/components/ResetAllProgressDialog";
 
 const COURSE_ID = "jenkins";
 
@@ -18,12 +15,8 @@ const categoryIcons: Record<TopicCategory, string> = {
 };
 
 export default async function JenkinsCoreConceptsPage() {
-    const session = await auth();
     const progress = await getUserProgress(COURSE_ID);
     const completedTopics = progress.completedTopics;
-
-    const totalTopics = jenkinsModules.reduce((acc, mod) => acc + mod.topics.length, 0);
-    const completedCount = completedTopics.length;
 
     return (
         <div className="max-w-6xl mx-auto px-8 py-16 animate-entry">
@@ -35,24 +28,11 @@ export default async function JenkinsCoreConceptsPage() {
             />
 
             <header className="mb-10">
-                <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-                    <div>
-                        <div className="label-small text-orange-500 mb-4 tracking-widest">CORE CONCEPTS</div>
-                        <h1 className="text-5xl heading-pro text-slate-900 mb-6 tracking-tight">Jenkins Curriculum</h1>
-                        <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
-                            From fundamentals to enterprise patterns — every Jenkins concept categorised by importance. Master the topics that matter most for production CI/CD.
-                        </p>
-                    </div>
-                    {session?.user && (
-                        <div className="self-start">
-                            <ResetAllProgressDialog courseId={COURSE_ID} />
-                        </div>
-                    )}
-                </div>
-
-                {session?.user && (
-                    <ProgressBar completedCount={completedCount} totalCount={totalTopics} />
-                )}
+                <div className="label-small text-orange-500 mb-4 tracking-widest">CORE CONCEPTS</div>
+                <h1 className="text-5xl heading-pro text-slate-900 mb-6 tracking-tight">Jenkins Curriculum</h1>
+                <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
+                    From fundamentals to enterprise patterns — every Jenkins concept categorised by importance. Master the topics that matter most for production CI/CD.
+                </p>
             </header>
 
             <div className="space-y-12">
@@ -82,20 +62,35 @@ export default async function JenkinsCoreConceptsPage() {
                                                 <Link
                                                     key={topic.id}
                                                     href={`/courses/jenkins/modules/${topic.id}`}
-                                                    className="group flex flex-row items-start p-4 -mx-4 rounded-xl hover:bg-slate-50 transition-colors"
+                                                    className={`group flex flex-row items-start p-4 -mx-4 rounded-xl transition-colors ${completedTopics.includes(topic.id)
+                                                            ? "bg-green-50 hover:bg-green-100"
+                                                            : "hover:bg-slate-50"
+                                                        }`}
                                                 >
-                                                    <span className="text-slate-400 font-mono text-sm mt-0.5 mr-3 w-5 text-right shrink-0">
-                                                        {index + 1}.
-                                                    </span>
+                                                    {completedTopics.includes(topic.id) ? (
+                                                        <span className="mt-0.5 mr-3 shrink-0 w-5 flex items-center justify-center">
+                                                            <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                            </svg>
+                                                        </span>
+                                                    ) : (
+                                                        <span className="text-slate-400 font-mono text-sm mt-0.5 mr-3 w-5 text-right shrink-0">
+                                                            {index + 1}.
+                                                        </span>
+                                                    )}
                                                     <div className="flex flex-col">
-                                                        <span className="text-[15px] font-semibold text-slate-700 group-hover:text-orange-600 transition-colors tracking-tight line-clamp-1">
-                                                            {completedTopics.includes(topic.id) && (
-                                                                <span className="inline-block w-2 h-2 rounded-full bg-green-400 mr-2 mb-0.5" />
-                                                            )}
+                                                        <span className={`text-[15px] font-semibold tracking-tight line-clamp-1 transition-colors ${completedTopics.includes(topic.id)
+                                                                ? "text-green-700 group-hover:text-green-800"
+                                                                : "text-slate-700 group-hover:text-orange-600"
+                                                            }`}>
                                                             {topic.title}
                                                         </span>
-                                                        <span className="text-xs text-slate-400 mt-1 uppercase tracking-wider group-hover:text-orange-400 transition-colors flex items-center">
-                                                            Read Topic <span className="ml-1 leading-none">&rarr;</span>
+                                                        <span className={`text-xs mt-1 uppercase tracking-wider flex items-center transition-colors ${completedTopics.includes(topic.id)
+                                                                ? "text-green-500 group-hover:text-green-600"
+                                                                : "text-slate-400 group-hover:text-orange-400"
+                                                            }`}>
+                                                            {completedTopics.includes(topic.id) ? "Completed" : "Read Topic"}
+                                                            <span className="ml-1 leading-none">&rarr;</span>
                                                         </span>
                                                     </div>
                                                 </Link>

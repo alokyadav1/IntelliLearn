@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { getCourseBySlug, courses } from "@/config/platform.config";
 import { notFound } from "next/navigation";
+import { auth } from "@/auth";
+import { getUserProgress } from "@/app/actions/progress";
+import ProgressBar from "@/components/ProgressBar";
+import ResetAllProgressDialog from "@/components/ResetAllProgressDialog";
+import { totalCourseTopics as aiAgentsTotalTopics } from "@/courses/ai-agents/config/course.config";
+import { jenkinsModules } from "@/courses/jenkins/config/modules.config";
 
 interface CoursePageProps {
     params: Promise<{ courseSlug: string }>;
@@ -32,6 +38,12 @@ const borderAccent: Record<string, string> = {
     emerald: "border-l-emerald-500",
 };
 
+/** Map course slugs to their total topic count */
+const courseTotalTopics: Record<string, number> = {
+    "ai-agents": aiAgentsTotalTopics,
+    "jenkins": jenkinsModules.reduce((acc, mod) => acc + mod.topics.length, 0),
+};
+
 export async function generateStaticParams() {
     return courses.filter((c) => c.published).map((c) => ({ courseSlug: c.slug }));
 }
@@ -42,6 +54,18 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
     if (!course) notFound();
 
     const ac = course.accentColor;
+
+    // ── Progress (only for courses that have a topic config) ────────────────
+    const session = await auth();
+    const totalTopics = courseTotalTopics[courseSlug] ?? 0;
+    let completedCount = 0;
+
+    if (session?.user && totalTopics > 0) {
+        const progress = await getUserProgress(courseSlug);
+        completedCount = progress.completedTopics.length;
+    }
+
+    const hasProgress = totalTopics > 0;
 
     return (
         <div className="max-w-5xl mx-auto px-8 py-16 animate-entry">
@@ -65,6 +89,20 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
                     </Link>
                 </div>
             </div>
+
+            {/* ── Course-level Progress ─────────────────────────────── */}
+            {hasProgress && session?.user && (
+                <section className="card p-8 mb-10">
+                    <div className="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 className="text-lg font-bold text-slate-900 tracking-tight">Your Progress</h2>
+                            <p className="text-sm text-slate-500 mt-0.5">Across all modules in this course</p>
+                        </div>
+                        <ResetAllProgressDialog courseId={courseSlug} />
+                    </div>
+                    <ProgressBar completedCount={completedCount} totalCount={totalTopics} />
+                </section>
+            )}
 
             {/* ── Course Modules ────────────────────────────────────── */}
             <section>
