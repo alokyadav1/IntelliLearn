@@ -5,6 +5,8 @@ import { getUserProgress } from "@/app/actions/progress";
 import TopicProgressControls from "@/components/TopicProgressControls";
 import { auth } from "@/auth";
 
+import contentRegistry from "@/courses/jenkins/content";
+
 const COURSE_ID = "jenkins";
 
 interface PageProps {
@@ -39,6 +41,8 @@ export default async function JenkinsTopicPage({ params }: PageProps) {
     const progress = await getUserProgress(COURSE_ID);
     const isCompleted = progress.completedTopics.includes(topic.id);
 
+    const Content = contentRegistry[topicId as keyof typeof contentRegistry];
+
     return (
         <div className="max-w-4xl mx-auto px-8 py-16 animate-entry">
             <Breadcrumb
@@ -65,18 +69,24 @@ export default async function JenkinsTopicPage({ params }: PageProps) {
                 </h1>
             </header>
 
-            <section className="card p-12 flex flex-col items-center justify-center text-center border-dashed mb-10 bg-slate-50/50 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-orange-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60"></div>
-                <div className="bg-white w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100 relative z-10">
-                    <svg className="w-8 h-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
-                    </svg>
+            {Content ? (
+                <div className="mb-16">
+                    <Content />
                 </div>
-                <h2 className="text-xl font-bold text-slate-900 mb-2">Content Coming Soon</h2>
-                <p className="text-slate-500 max-w-lg">
-                    The curriculum data for <strong>{topic.title}</strong> is currently being assembled. Check back soon for comprehensive materials on this subject.
-                </p>
-            </section>
+            ) : (
+                <section className="card p-12 flex flex-col items-center justify-center text-center border-dashed mb-10 bg-slate-50/50 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-orange-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60"></div>
+                    <div className="bg-white w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100 relative z-10">
+                        <svg className="w-8 h-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+                        </svg>
+                    </div>
+                    <h2 className="text-xl font-bold text-slate-900 mb-2">Content Coming Soon</h2>
+                    <p className="text-slate-500 max-w-lg">
+                        The curriculum data for <strong>{topic.title}</strong> is currently being assembled. Check back soon for comprehensive materials on this subject.
+                    </p>
+                </section>
+            )}
 
             <TopicProgressControls
                 courseId={COURSE_ID}

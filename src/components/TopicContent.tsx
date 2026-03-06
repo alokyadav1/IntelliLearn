@@ -24,25 +24,25 @@ export function SectionTitle({ number, children }: { number?: string | number; c
     );
 }
 
-export function SubTitle({ children }: { children: React.ReactNode }) {
-    return <h3 className="text-lg font-bold text-slate-800 mt-6 mb-3">{children}</h3>;
+export function SubTitle({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+    return <h3 className={`text-lg font-bold text-slate-800 mt-6 mb-3 ${className}`}>{children}</h3>;
 }
 
 // ── Body text ────────────────────────────────────────────────────────────────
 
 export function P({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-    return <p className={`text-slate-600 leading-relaxed mb-4 text-[15px] \${className}`}>{children}</p>;
+    return <p className={`text-slate-600 leading-relaxed mb-4 text-[15px] ${className}`}>{children}</p>;
 }
 
-export function Bold({ children }: { children: React.ReactNode }) {
-    return <strong className="font-semibold text-slate-800">{children}</strong>;
+export function Bold({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+    return <strong className={`font-semibold text-slate-800 ${className}`}>{children}</strong>;
 }
 
 // ── Lists ────────────────────────────────────────────────────────────────────
 
-export function BulletList({ items }: { items: React.ReactNode[] }) {
+export function BulletList({ items, className = "" }: { items: React.ReactNode[]; className?: string }) {
     return (
-        <ul className="space-y-2 mb-5">
+        <ul className={`space-y-2 mb-5 ${className}`}>
             {items.map((item, i) => (
                 <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-600">
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
@@ -53,9 +53,9 @@ export function BulletList({ items }: { items: React.ReactNode[] }) {
     );
 }
 
-export function NumberedList({ items }: { items: React.ReactNode[] }) {
+export function NumberedList({ items, className = "" }: { items: React.ReactNode[]; className?: string }) {
     return (
-        <ol className="space-y-2 mb-5">
+        <ol className={`space-y-2 mb-5 ${className}`}>
             {items.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-[15px] text-slate-600">
                     <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">
@@ -103,10 +103,10 @@ const calloutStyles: Record<CalloutVariant, { border: string; bg: string; icon: 
     },
 };
 
-export function Callout({ variant = "info", title, children }: { variant?: CalloutVariant; title?: string; children: React.ReactNode }) {
+export function Callout({ variant = "info", title, children, className = "" }: { variant?: CalloutVariant; title?: string; children: React.ReactNode; className?: string }) {
     const s = calloutStyles[variant];
     return (
-        <div className={`border ${s.border} ${s.bg} rounded-xl px-5 py-4 mb-5`}>
+        <div className={`border ${s.border} ${s.bg} rounded-xl px-5 py-4 mb-5 ${className}`}>
             <p className={`text-xs font-bold uppercase tracking-widest mb-1.5 flex items-center gap-1.5 ${s.labelColor}`}>
                 <span>{s.icon}</span>
                 {title ?? s.label}
@@ -118,23 +118,24 @@ export function Callout({ variant = "info", title, children }: { variant?: Callo
 
 // ── Code / inline ────────────────────────────────────────────────────────────
 
-export function InlineCode({ children }: { children: React.ReactNode }) {
+export function InlineCode({ children, className = "" }: { children: React.ReactNode; className?: string }) {
     return (
-        <code className="bg-slate-100 text-indigo-700 text-[13px] font-mono px-1.5 py-0.5 rounded-md border border-slate-200">
+        <code className={`bg-slate-100 text-indigo-700 text-[13px] font-mono px-1.5 py-0.5 rounded-md border border-slate-200 ${className}`}>
             {children}
         </code>
     );
 }
 
-export function CodeBlock({ label, children }: { label?: string; children: React.ReactNode }) {
+export function CodeBlock({ label, children, language, code, className = "" }: { label?: string; children?: React.ReactNode; language?: string; code?: string; className?: string }) {
+    const displayLabel = label || language;
     return (
-        <div className="mb-5 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-            {label && (
+        <div className={`mb-5 rounded-xl overflow-hidden border border-slate-200 shadow-sm ${className}`}>
+            {displayLabel && (
                 <div className="bg-slate-800 px-4 py-2 flex items-center gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{label}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{displayLabel}</span>
                 </div>
             )}
-            <pre className="code-block m-0 rounded-none text-[13px] leading-relaxed overflow-x-auto p-5">{children}</pre>
+            <pre className="code-block m-0 rounded-none text-[13px] leading-relaxed overflow-x-auto p-5">{children || code}</pre>
         </div>
     );
 }
@@ -341,15 +342,15 @@ export function ImageBlock({ src, alt, caption }: { src: string; alt: string; ca
 
 // ── Divider ──────────────────────────────────────────────────────────────────
 
-export function Divider() {
-    return <div className="border-t border-slate-100 my-10" />;
+export function Divider({ className = "" }: { className?: string }) {
+    return <div className={`border-t border-slate-100 my-10 ${className}`} />;
 }
 
 // ── Summary card ─────────────────────────────────────────────────────────────
 
-export function SummaryCard({ title = "✅ Key Takeaways", items }: { title?: string; items: React.ReactNode[] }) {
+export function SummaryCard({ title = "✅ Key Takeaways", items, className = "" }: { title?: string; items: React.ReactNode[]; className?: string }) {
     return (
-        <div className="rounded-2xl bg-gradient-to-br from-indigo-50 to-slate-50 border border-indigo-100 p-6 mt-10">
+        <div className={`rounded-2xl bg-gradient-to-br from-indigo-50 to-slate-50 border border-indigo-100 p-6 mt-10 ${className}`}>
             <p className="text-sm font-bold text-indigo-700 uppercase tracking-widest mb-4">{title}</p>
             <ul className="space-y-2.5">
                 {items.map((item, i) => (
