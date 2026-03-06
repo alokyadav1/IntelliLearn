@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getJenkinsTopic } from "@/courses/jenkins/config/modules.config";
+import { getAwsTopic } from "@/courses/aws/config/modules.config";
 import { getUserProgress } from "@/app/actions/progress";
 import ModuleTopicSidebar from "@/components/ModuleTopicSidebar";
 
@@ -8,11 +8,11 @@ interface TopicLayoutProps {
     params: Promise<{ topicId: string }>;
 }
 
-const COURSE_ID = "jenkins";
+const COURSE_ID = "aws";
 
-export default async function JenkinsTopicLayout({ children, params }: TopicLayoutProps) {
+export default async function AwsTopicLayout({ children, params }: TopicLayoutProps) {
     const { topicId } = await params;
-    const match = getJenkinsTopic(topicId);
+    const match = getAwsTopic(topicId);
 
     if (!match) notFound();
 
@@ -25,10 +25,10 @@ export default async function JenkinsTopicLayout({ children, params }: TopicLayo
         id: t.id,
         title: t.title,
         category: t.category,
-        href: `/courses/jenkins/modules/${t.id}`,
+        href: `/courses/aws/modules/${t.id}`,
     }));
 
-    const moduleLabel = module.title.split(" — ")[1] || module.title;
+    const moduleLabel = module.title.split(". ")[1] || module.title;
 
     return (
         <div className="flex h-[calc(100vh-64px)] overflow-hidden">
@@ -36,8 +36,8 @@ export default async function JenkinsTopicLayout({ children, params }: TopicLayo
                 moduleTitle={moduleLabel}
                 topics={topics}
                 completedTopics={completedTopics}
-                accentColor="orange"
-                backHref="/courses/jenkins"
+                accentColor="sky"
+                backHref="/courses/aws"
                 backLabel="Course Overview"
             />
             <main className="flex-1 overflow-y-auto scroll-smooth">

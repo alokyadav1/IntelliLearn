@@ -14,7 +14,7 @@ interface ModuleTopicSidebarProps {
     moduleTitle: string;
     topics: Topic[];
     completedTopics: string[];
-    accentColor: "indigo" | "orange";
+    accentColor: "indigo" | "orange" | "sky";
     backHref: string;
     backLabel: string;
 }
@@ -33,6 +33,10 @@ const accentClasses: Record<string, { active: string; dot: string }> = {
     orange: {
         active: "bg-orange-50 text-orange-700 border-orange-400",
         dot: "bg-orange-500",
+    },
+    sky: {
+        active: "bg-sky-50 text-sky-700 border-sky-400",
+        dot: "bg-sky-500",
     },
 };
 
@@ -77,10 +81,10 @@ export default function ModuleTopicSidebar({
                             key={topic.id}
                             href={topic.href}
                             className={`group flex items-start gap-3 px-3 py-2.5 rounded-lg mb-1 transition-all text-sm border ${isActive
-                                    ? `${accent.active} border-l-2 shadow-sm`
-                                    : isCompleted
-                                        ? "bg-green-50/70 text-green-700 border-transparent hover:bg-green-100/80"
-                                        : "text-slate-600 border-transparent hover:bg-white hover:text-slate-900 hover:shadow-sm"
+                                ? `${accent.active} border-l-2 shadow-sm`
+                                : isCompleted
+                                    ? "bg-green-50/70 text-green-700 border-transparent hover:bg-green-100/80"
+                                    : "text-slate-600 border-transparent hover:bg-white hover:text-slate-900 hover:shadow-sm"
                                 }`}
                         >
                             {/* Index or checkmark */}
@@ -99,10 +103,10 @@ export default function ModuleTopicSidebar({
                             {/* Title + category */}
                             <div className="flex-1 min-w-0">
                                 <span className={`block text-[13px] font-semibold leading-snug truncate ${isActive
-                                        ? ""
-                                        : isCompleted
-                                            ? "text-green-700"
-                                            : "text-slate-700 group-hover:text-slate-900"
+                                    ? ""
+                                    : isCompleted
+                                        ? "text-green-700"
+                                        : "text-slate-700 group-hover:text-slate-900"
                                     }`}>
                                     {topic.title}
                                 </span>
@@ -110,10 +114,10 @@ export default function ModuleTopicSidebar({
                                     <span className={`inline-block w-1.5 h-1.5 rounded-full shrink-0 ${isCompleted ? "bg-green-400" : categoryDot[topic.category] ?? "bg-slate-300"
                                         }`} />
                                     <span className={`text-[10px] uppercase tracking-wider font-medium ${isCompleted
-                                            ? "text-green-500"
-                                            : isActive
-                                                ? "opacity-70"
-                                                : "text-slate-400"
+                                        ? "text-green-500"
+                                        : isActive
+                                            ? "opacity-70"
+                                            : "text-slate-400"
                                         }`}>
                                         {isCompleted ? "Completed" : topic.category}
                                     </span>
