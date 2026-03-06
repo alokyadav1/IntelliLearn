@@ -1,0 +1,366 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// TopicContent — Shared UI primitives for rendering topic article content.
+// Import these in every topic content component for consistent styling.
+// ─────────────────────────────────────────────────────────────────────────────
+
+import React from "react";
+
+// ── Section / headings ──────────────────────────────────────────────────────
+
+export function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+    return <section className={`mb-12 ${className}`}>{children}</section>;
+}
+
+export function SectionTitle({ number, children }: { number?: string | number; children: React.ReactNode }) {
+    return (
+        <div className="flex items-start gap-3 mb-5">
+            {number !== undefined && (
+                <span className="shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-indigo-600 text-white text-sm font-bold flex items-center justify-center shadow-sm">
+                    {number}
+                </span>
+            )}
+            <h2 className="text-2xl font-bold text-slate-900 tracking-tight leading-snug">{children}</h2>
+        </div>
+    );
+}
+
+export function SubTitle({ children }: { children: React.ReactNode }) {
+    return <h3 className="text-lg font-bold text-slate-800 mt-6 mb-3">{children}</h3>;
+}
+
+// ── Body text ────────────────────────────────────────────────────────────────
+
+export function P({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+    return <p className={`text-slate-600 leading-relaxed mb-4 text-[15px] \${className}`}>{children}</p>;
+}
+
+export function Bold({ children }: { children: React.ReactNode }) {
+    return <strong className="font-semibold text-slate-800">{children}</strong>;
+}
+
+// ── Lists ────────────────────────────────────────────────────────────────────
+
+export function BulletList({ items }: { items: React.ReactNode[] }) {
+    return (
+        <ul className="space-y-2 mb-5">
+            {items.map((item, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-600">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
+                    <span className="leading-relaxed">{item}</span>
+                </li>
+            ))}
+        </ul>
+    );
+}
+
+export function NumberedList({ items }: { items: React.ReactNode[] }) {
+    return (
+        <ol className="space-y-2 mb-5">
+            {items.map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-[15px] text-slate-600">
+                    <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">
+                        {i + 1}
+                    </span>
+                    <span className="leading-relaxed">{item}</span>
+                </li>
+            ))}
+        </ol>
+    );
+}
+
+// ── Callout boxes ────────────────────────────────────────────────────────────
+
+type CalloutVariant = "info" | "tip" | "warning" | "definition";
+
+const calloutStyles: Record<CalloutVariant, { border: string; bg: string; icon: string; label: string; labelColor: string }> = {
+    info: {
+        border: "border-indigo-200",
+        bg: "bg-indigo-50/60",
+        icon: "💡",
+        label: "Key Insight",
+        labelColor: "text-indigo-600",
+    },
+    tip: {
+        border: "border-emerald-200",
+        bg: "bg-emerald-50/60",
+        icon: "✅",
+        label: "Tip",
+        labelColor: "text-emerald-600",
+    },
+    warning: {
+        border: "border-amber-200",
+        bg: "bg-amber-50/60",
+        icon: "⚠️",
+        label: "Note",
+        labelColor: "text-amber-600",
+    },
+    definition: {
+        border: "border-slate-200",
+        bg: "bg-slate-50/80",
+        icon: "📖",
+        label: "Definition",
+        labelColor: "text-slate-600",
+    },
+};
+
+export function Callout({ variant = "info", title, children }: { variant?: CalloutVariant; title?: string; children: React.ReactNode }) {
+    const s = calloutStyles[variant];
+    return (
+        <div className={`border ${s.border} ${s.bg} rounded-xl px-5 py-4 mb-5`}>
+            <p className={`text-xs font-bold uppercase tracking-widest mb-1.5 flex items-center gap-1.5 ${s.labelColor}`}>
+                <span>{s.icon}</span>
+                {title ?? s.label}
+            </p>
+            <div className="text-[15px] text-slate-700 leading-relaxed">{children}</div>
+        </div>
+    );
+}
+
+// ── Code / inline ────────────────────────────────────────────────────────────
+
+export function InlineCode({ children }: { children: React.ReactNode }) {
+    return (
+        <code className="bg-slate-100 text-indigo-700 text-[13px] font-mono px-1.5 py-0.5 rounded-md border border-slate-200">
+            {children}
+        </code>
+    );
+}
+
+export function CodeBlock({ label, children }: { label?: string; children: React.ReactNode }) {
+    return (
+        <div className="mb-5 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+            {label && (
+                <div className="bg-slate-800 px-4 py-2 flex items-center gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{label}</span>
+                </div>
+            )}
+            <pre className="code-block m-0 rounded-none text-[13px] leading-relaxed overflow-x-auto p-5">{children}</pre>
+        </div>
+    );
+}
+
+// ── IO block (Input → Output) ─────────────────────────────────────────────────
+
+export function IOBlock({ input, output, inputLabel = "Input", outputLabel = "Output" }: {
+    input: React.ReactNode;
+    output: React.ReactNode;
+    inputLabel?: string;
+    outputLabel?: string;
+}) {
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
+            <div className="rounded-xl border border-slate-200 overflow-hidden">
+                <div className="bg-slate-100 px-4 py-2 border-b border-slate-200">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{inputLabel}</span>
+                </div>
+                <div className="p-4 text-[14px] text-slate-700 font-mono bg-white leading-relaxed">{input}</div>
+            </div>
+            <div className="rounded-xl border border-indigo-100 overflow-hidden">
+                <div className="bg-indigo-50 px-4 py-2 border-b border-indigo-100">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-500">{outputLabel}</span>
+                </div>
+                <div className="p-4 text-[14px] text-slate-700 font-mono bg-white leading-relaxed">{output}</div>
+            </div>
+        </div>
+    );
+}
+
+// ── Data table ───────────────────────────────────────────────────────────────
+
+export function DataTable({ headers, rows }: { headers: string[]; rows: (string | React.ReactNode)[][] }) {
+    return (
+        <div className="mb-5 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+            <table className="w-full text-sm">
+                <thead>
+                    <tr className="bg-slate-50 border-b border-slate-200">
+                        {headers.map((h, i) => (
+                            <th key={i} className="px-5 py-3 text-left text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                                {h}
+                            </th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows.map((row, ri) => (
+                        <tr key={ri} className="border-b border-slate-100 last:border-0 hover:bg-slate-50/60 transition-colors">
+                            {row.map((cell, ci) => (
+                                <td key={ci} className="px-5 py-3.5 text-[14px] text-slate-700 font-medium">
+                                    {cell}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
+// ── Step list ────────────────────────────────────────────────────────────────
+
+export function StepList({ steps }: { steps: { title: string; description?: React.ReactNode }[] }) {
+    return (
+        <div className="space-y-4 mb-5">
+            {steps.map((step, i) => (
+                <div key={i} className="flex gap-4">
+                    <div className="shrink-0 flex flex-col items-center">
+                        <div className="w-8 h-8 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center shadow-sm">
+                            {i + 1}
+                        </div>
+                        {i < steps.length - 1 && <div className="w-px flex-1 bg-indigo-100 mt-1" />}
+                    </div>
+                    <div className="pb-4 min-w-0">
+                        <p className="font-bold text-slate-800 mb-1">{step.title}</p>
+                        {step.description && (
+                            <div className="text-[14px] text-slate-600 leading-relaxed">{step.description}</div>
+                        )}
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+// ── Visual Exhibits ─────────────────────────────────────────────────────────
+
+export function Diagram({ label, children, className = "" }: { label?: string; children: React.ReactNode; className?: string }) {
+    return (
+        <div className={`mb-8 rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden ${className}`}>
+            {label && (
+                <div className="px-6 py-3.5 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{label}</span>
+                </div>
+            )}
+            <div className="p-6">{children}</div>
+        </div>
+    );
+}
+
+export function TerminalOutput({ label = "Terminal", children }: { label?: string; children: React.ReactNode }) {
+    return (
+        <div className="mb-6 rounded-xl overflow-hidden bg-[#1e1e1e] border border-slate-700 shadow-xl">
+            <div className="bg-[#2d2d2d] px-4 py-2 flex items-center gap-2 border-b border-white/5">
+                <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">{label}</span>
+            </div>
+            <pre className="p-5 font-mono text-[13px] text-zinc-300 leading-relaxed overflow-x-auto whitespace-pre-wrap">
+                {children}
+            </pre>
+        </div>
+    );
+}
+
+export function StatBreakdown({ items, total, limit }: {
+    items: { label: string; value: number | string; color?: string }[];
+    total?: number;
+    limit?: number;
+}) {
+    const percent = total && limit ? Math.min(100, (total / limit) * 100).toFixed(1) : null;
+    return (
+        <div className="space-y-6">
+            <div className="space-y-2.5">
+                {items.map((item, i) => (
+                    <div key={i} className="flex items-center justify-between group">
+                        <div className="flex items-center gap-3">
+                            <div className={`w-1.5 h-6 rounded-full transition-all group-hover:scale-y-110 ${item.color || 'bg-slate-200'}`} />
+                            <span className="text-sm font-medium text-slate-700">{item.label}</span>
+                        </div>
+                        <span className="text-sm font-mono text-slate-500 font-semibold">{item.value.toLocaleString()}</span>
+                    </div>
+                ))}
+            </div>
+
+            {total !== undefined && limit !== undefined && (
+                <div className="pt-6 border-t border-slate-100">
+                    <div className="flex items-center justify-between mb-2.5">
+                        <span className="text-sm font-bold text-slate-800 uppercase tracking-tight">Total Resource Usage</span>
+                        <div className="flex items-baseline gap-1.5">
+                            <span className="text-lg font-bold text-indigo-600">{total.toLocaleString()}</span>
+                            <span className="text-xs text-slate-400 font-medium">/ {limit.toLocaleString()}</span>
+                        </div>
+                    </div>
+                    <div className="relative w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                        <div
+                            className="absolute inset-y-0 left-0 bg-indigo-500 rounded-full transition-all duration-700 ease-out"
+                            style={{ width: `${percent}%` }}
+                        />
+                    </div>
+                    <p className="mt-3 text-[11px] text-slate-400 font-medium flex items-center justify-between">
+                        <span className="flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                            {(limit - total).toLocaleString()} tokens remaining
+                        </span>
+                        <span>{percent}% utilized</span>
+                    </p>
+                </div>
+            )}
+        </div>
+    );
+}
+
+export function LayerStack({ items }: { items: { label: string; desc?: string; color?: string; tokens?: string | number }[] }) {
+    return (
+        <div className="space-y-2.5 mb-6 max-w-sm mx-auto">
+            {items.map((item, i) => (
+                <div
+                    key={i}
+                    className={`relative p-4 rounded-xl border-2 transition-all hover:-translate-y-0.5 hover:shadow-sm ${item.color || 'border-slate-100 bg-white'}`}
+                >
+                    <div className="flex items-start justify-between gap-4">
+                        <div className="min-w-0">
+                            <span className="text-[9px] font-bold uppercase tracking-widest opacity-40 block mb-0.5">Layer {items.length - i}</span>
+                            <p className="font-bold text-slate-800 text-[14px] leading-tight">{item.label}</p>
+                            {item.desc && <p className="text-[11px] mt-1 text-slate-500 font-medium leading-relaxed">{item.desc}</p>}
+                        </div>
+                        {item.tokens && (
+                            <div className="bg-white/60 px-2 py-1 rounded-md border border-black/5 text-[10px] font-mono font-bold text-slate-600 shrink-0">
+                                {item.tokens}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+export function ImageBlock({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+    return (
+        <div className="mb-8 overflow-hidden">
+            <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm transition-all hover:shadow-md hover:border-indigo-100">
+                <img src={src} alt={alt} className="w-full h-auto block" />
+            </div>
+            {caption && <p className="mt-3 text-center text-[13px] text-slate-400 font-medium italic tracking-tight">{caption}</p>}
+        </div>
+    );
+}
+
+// ── Divider ──────────────────────────────────────────────────────────────────
+
+export function Divider() {
+    return <div className="border-t border-slate-100 my-10" />;
+}
+
+// ── Summary card ─────────────────────────────────────────────────────────────
+
+export function SummaryCard({ title = "✅ Key Takeaways", items }: { title?: string; items: React.ReactNode[] }) {
+    return (
+        <div className="rounded-2xl bg-gradient-to-br from-indigo-50 to-slate-50 border border-indigo-100 p-6 mt-10">
+            <p className="text-sm font-bold text-indigo-700 uppercase tracking-widest mb-4">{title}</p>
+            <ul className="space-y-2.5">
+                {items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-700">
+                        <svg className="w-4 h-4 text-indigo-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{item}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
