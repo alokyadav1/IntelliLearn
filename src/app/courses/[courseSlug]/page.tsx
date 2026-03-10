@@ -7,6 +7,7 @@ import ProgressBar from "@/components/ProgressBar";
 import ResetAllProgressDialog from "@/components/ResetAllProgressDialog";
 import { totalCourseTopics as aiAgentsTotalTopics } from "@/courses/ai-agents/config/course.config";
 import { jenkinsModules } from "@/courses/jenkins/config/modules.config";
+import { awsModules } from "@/courses/aws/config/modules.config";
 
 interface CoursePageProps {
     params: Promise<{ courseSlug: string }>;
@@ -42,6 +43,7 @@ const borderAccent: Record<string, string> = {
 const courseTotalTopics: Record<string, number> = {
     "ai-agents": aiAgentsTotalTopics,
     "jenkins": jenkinsModules.reduce((acc, mod) => acc + mod.topics.length, 0),
+    "aws": awsModules.reduce((acc, mod) => acc + mod.topics.length, 0),
 };
 
 export async function generateStaticParams() {

@@ -5,6 +5,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { CourseMeta, CourseCategory } from "@/types/platform.types";
+import { jenkinsModules } from "@/courses/jenkins/config/modules.config";
+import { awsModules } from "@/courses/aws/config/modules.config";
 
 export const PLATFORM_NAME = "Dev Learning Portal";
 export const PLATFORM_TAGLINE = "Master Modern Engineering";
@@ -38,7 +40,27 @@ export const courses: CourseMeta[] = [
     published: true,
     navLinks: [
       { name: "Course Overview", href: "/courses/jenkins" },
-      { name: "Core Concepts", href: "/courses/jenkins/modules" },
+      ...jenkinsModules.map(m => ({
+        name: m.title,
+        href: `/courses/jenkins/modules/${m.topics[0].id}`
+      }))
+    ],
+  },
+  {
+    slug: "aws",
+    title: "AWS Cloud Expert",
+    tagline: "Cloud Engineering",
+    description:
+      "A comprehensive roadmap matching the AWS DevOps curriculum covering Core Services, Networking, Storage, Scaling, Containers, and Serverless architectures.",
+    category: "DevOps & CI/CD",
+    accentColor: "sky",
+    published: true,
+    navLinks: [
+      { name: "Course Overview", href: "/courses/aws" },
+      ...awsModules.map(m => ({
+        name: m.title.split(". ")[1] || m.title,
+        href: `/courses/aws/modules/${m.topics[0]?.id}`
+      }))
     ],
   },
 ];
