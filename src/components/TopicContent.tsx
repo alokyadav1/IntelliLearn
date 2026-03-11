@@ -365,3 +365,32 @@ export function SummaryCard({ title = "✅ Key Takeaways", items, className = ""
         </div>
     );
 }
+
+// ── Accordion ─────────────────────────────────────────────────────────────
+
+export function Accordion({ items, className = "" }: { items: { question: string; answer: React.ReactNode }[]; className?: string }) {
+    return (
+        <div className={`space-y-3 mb-8 ${className}`}>
+            {items.map((item, i) => (
+                <details key={i} className="group border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm open:border-indigo-200 open:shadow-md transition-all duration-300">
+                    <summary className="flex items-center justify-between p-4 cursor-pointer list-none hover:bg-slate-50 transition-colors">
+                        <span className="text-[15px] font-bold text-slate-800 pr-4">{item.question}</span>
+                        <svg 
+                            className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform duration-300" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <div className="px-4 pb-4 border-t border-slate-50 bg-slate-50/20">
+                        <div className="text-[15px] text-slate-600 leading-relaxed pt-4">
+                            {item.answer}
+                        </div>
+                    </div>
+                </details>
+            ))}
+        </div>
+    );
+}
