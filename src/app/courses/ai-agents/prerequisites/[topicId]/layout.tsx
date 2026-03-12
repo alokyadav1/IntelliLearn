@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getTopicById } from "@/courses/ai-agents/config/prerequisites.config";
 import { getUserProgress } from "@/app/actions/progress";
 import ModuleTopicSidebar from "@/components/ModuleTopicSidebar";
+import MobileSidebarWrapper from "@/components/MobileSidebarWrapper";
 
 interface TopicLayoutProps {
     children: React.ReactNode;
@@ -30,16 +31,25 @@ export default async function AIAgentsPrerequisitesTopicLayout({ children, param
 
     const moduleLabel = module.title.split(" — ")[1] || module.title;
 
+    const sidebar = (
+        <ModuleTopicSidebar
+            moduleTitle={moduleLabel}
+            topics={topics}
+            completedTopics={completedTopics}
+            accentColor="indigo"
+            backHref="/courses/ai-agents/prerequisites"
+            backLabel="All Modules"
+        />
+    );
+
     return (
         <div className="flex h-[calc(100vh-64px)] overflow-hidden">
-            <ModuleTopicSidebar
-                moduleTitle={moduleLabel}
-                topics={topics}
-                completedTopics={completedTopics}
-                accentColor="indigo"
-                backHref="/courses/ai-agents/prerequisites"
-                backLabel="All Modules"
-            />
+            <div className="hidden lg:flex shrink-0">
+                {sidebar}
+            </div>
+            <MobileSidebarWrapper triggerLabel="Topics">
+                {sidebar}
+            </MobileSidebarWrapper>
             <main className="flex-1 overflow-y-auto scroll-smooth">
                 {children}
             </main>

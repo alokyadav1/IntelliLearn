@@ -18,7 +18,7 @@ export default async function AwsCoreConceptsPage() {
     const progress = await getUserProgress(COURSE_ID);
     const completedTopics = progress.completedTopics;
     return (
-        <div className="max-w-6xl mx-auto px-8 py-16 animate-entry">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 animate-entry">
             <Breadcrumb
                 items={[
                     { name: "AWS", href: "/courses/aws" },
@@ -28,7 +28,7 @@ export default async function AwsCoreConceptsPage() {
 
             <header className="mb-16">
                 <div className="label-small text-sky-500 mb-4 tracking-widest">CORE CONCEPTS</div>
-                <h1 className="text-5xl heading-pro text-slate-900 mb-6 tracking-tight">AWS Curriculum</h1>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl heading-pro text-slate-900 mb-6 tracking-tight">AWS Curriculum</h1>
                 <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
                     From fundamentals to cloud patterns — every AWS concept categorised by importance. Master the topics that matter most for production Cloud Architecture.
                 </p>
@@ -56,7 +56,7 @@ export default async function AwsCoreConceptsPage() {
                                             <span className="mr-2 text-base">{categoryIcons[category]}</span>
                                             {category}
                                         </h3>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
                                             {categoryTopics.map((topic, index) => (
                                                 <Link
                                                     key={topic.id}

@@ -8,6 +8,7 @@ import WellArchitectedFramework from "./well-architected";
 import IamOverview from "./iam-overview";
 import IdentityBasedPolicies from "./iam-policies-identity";
 import ResourceBasedPolicies from "./iam-policies-resource";
+import IamUsersGroups from "./iam-users-groups";
 
 const contentRegistry: Record<string, React.ComponentType> = {
   "what-is-cloud-computing": WhatIsCloudComputing,
@@ -20,6 +21,7 @@ const contentRegistry: Record<string, React.ComponentType> = {
   "iam-overview": IamOverview,
   "iam-policies-identity": IdentityBasedPolicies,
   "iam-policies-resource": ResourceBasedPolicies,
+  "iam-users-groups": IamUsersGroups,
 };
 
 export default contentRegistry;
