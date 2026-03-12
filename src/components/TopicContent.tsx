@@ -170,8 +170,8 @@ export function IOBlock({ input, output, inputLabel = "Input", outputLabel = "Ou
 
 export function DataTable({ headers, rows }: { headers: string[]; rows: (string | React.ReactNode)[][] }) {
     return (
-        <div className="mb-5 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-            <table className="w-full text-sm">
+        <div className="mb-5 rounded-xl overflow-x-auto border border-slate-200 shadow-sm">
+            <table className="w-full text-sm min-w-[600px]">
                 <thead>
                     <tr className="bg-slate-50 border-b border-slate-200">
                         {headers.map((h, i) => (
