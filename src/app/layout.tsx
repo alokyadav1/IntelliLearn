@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import { PLATFORM_NAME } from "@/config/platform.config";
 import { auth } from "@/auth";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
@@ -26,6 +27,7 @@ export default async function RootLayout({
         <main className="flex-1 relative w-full">
           {children}
         </main>
+        <SpeedInsights />
       </body>
     </html>
   );
