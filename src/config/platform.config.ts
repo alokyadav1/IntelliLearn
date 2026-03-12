@@ -8,7 +8,7 @@ import type { CourseMeta, CourseCategory } from "@/types/platform.types";
 import { jenkinsModules } from "@/courses/jenkins/config/modules.config";
 import { awsModules } from "@/courses/aws/config/modules.config";
 
-export const PLATFORM_NAME = "Dev Learning Portal";
+export const PLATFORM_NAME = "IntelliLearn";
 export const PLATFORM_TAGLINE = "Master Modern Engineering";
 export const PLATFORM_EDITION = "PRO EDITION";
 export const PLATFORM_VERSION = "v2.0.0";

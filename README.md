@@ -1,4 +1,4 @@
-# AI Agents Mastery Portal
+# IntelliLearn Mastery Portal
 
 A scientific, comprehensive guide to conceptualizing, designing, and building state-of-the-art autonomous AI agents. Built with Next.js and styled with Tailwind CSS v4.
 
