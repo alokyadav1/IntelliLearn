@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
-import { getJenkinsTopic, jenkinsModules } from "@/courses/jenkins/config/modules.config";
+import { getAwsTopic, awsModules } from "@/courses/aws/config/modules.config";
 import { getUserProgress } from "@/app/actions/progress";
 import TopicProgressControls from "@/components/TopicProgressControls";
 import { auth } from "@/auth";
 
-import contentRegistry from "@/courses/jenkins/content";
+import contentRegistry from "@/courses/aws/content";
 
-const COURSE_ID = "jenkins";
+const COURSE_ID = "aws";
 
 interface PageProps {
     params: Promise<{ topicId: string }>;
@@ -15,7 +15,7 @@ interface PageProps {
 
 export function generateStaticParams() {
     const allParams: { topicId: string }[] = [];
-    jenkinsModules.forEach((mod) => {
+    awsModules.forEach((mod) => {
         mod.topics.forEach((topic) => {
             allParams.push({ topicId: topic.id });
         });
@@ -29,9 +29,9 @@ const categoryIcons: Record<string, string> = {
     "Optional": "🟩",
 };
 
-export default async function JenkinsTopicPage({ params }: PageProps) {
+export default async function AwsTopicPage({ params }: PageProps) {
     const { topicId } = await params;
-    const match = getJenkinsTopic(topicId);
+    const match = getAwsTopic(topicId);
 
     if (!match) notFound();
 
@@ -47,15 +47,15 @@ export default async function JenkinsTopicPage({ params }: PageProps) {
         <div className="max-w-4xl mx-auto px-8 py-16 animate-entry">
             <Breadcrumb
                 items={[
-                    { name: "Jenkins", href: "/courses/jenkins" },
-                    { name: module.title.split(" — ")[1] || module.title },
+                    { name: "AWS", href: "/courses/aws" },
+                    { name: module.title.split(". ")[1] || module.title },
                     { name: topic.title },
                 ]}
             />
 
             <header className="mb-12">
                 <div className="flex items-center space-x-3 mb-6">
-                    <div className="flex items-center space-x-2 text-sm text-orange-700 tracking-tight font-medium bg-orange-50 px-3 py-1 rounded w-fit border border-orange-100">
+                    <div className="flex items-center space-x-2 text-sm text-sky-700 tracking-tight font-medium bg-sky-50 px-3 py-1 rounded w-fit border border-sky-100">
                         <span>{module.title}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-slate-700 tracking-tight font-medium bg-white px-3 py-1 rounded w-fit border border-slate-200 shadow-sm">
@@ -73,11 +73,10 @@ export default async function JenkinsTopicPage({ params }: PageProps) {
                     <Content />
                 </div>
             ) : (
-                <section className="card p-12 flex flex-col items-center justify-center text-center border-dashed mb-10 bg-slate-50/50 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-orange-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60"></div>
-                    <div className="bg-white w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100 relative z-10">
+                <section className="card p-12 bg-white flex flex-col items-center justify-center text-center border-dashed">
+                    <div className="bg-slate-50 w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100">
                         <svg className="w-8 h-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                         </svg>
                     </div>
                     <h2 className="text-xl font-bold text-slate-900 mb-2">Content Coming Soon</h2>
@@ -96,3 +95,4 @@ export default async function JenkinsTopicPage({ params }: PageProps) {
         </div>
     );
 }
+

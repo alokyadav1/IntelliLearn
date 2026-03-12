@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
-import { jenkinsModules } from "@/courses/jenkins/config/modules.config";
+import { awsModules } from "@/courses/aws/config/modules.config";
 import type { TopicCategory } from "@/types/platform.types";
 import { getUserProgress } from "@/app/actions/progress";
 
-const COURSE_ID = "jenkins";
+const COURSE_ID = "aws";
 
 const categories: TopicCategory[] = ["Mandatory", "Good to Know", "Optional"];
 
@@ -14,36 +14,35 @@ const categoryIcons: Record<TopicCategory, string> = {
     "Optional": "🟩",
 };
 
-export default async function JenkinsCoreConceptsPage() {
+export default async function AwsCoreConceptsPage() {
     const progress = await getUserProgress(COURSE_ID);
     const completedTopics = progress.completedTopics;
-
     return (
         <div className="max-w-6xl mx-auto px-8 py-16 animate-entry">
             <Breadcrumb
                 items={[
-                    { name: "Jenkins", href: "/courses/jenkins" },
-                    { name: "Core Concepts", href: "/courses/jenkins/modules" },
+                    { name: "AWS", href: "/courses/aws" },
+                    { name: "Core Concepts", href: "/courses/aws/modules" },
                 ]}
             />
 
-            <header className="mb-10">
-                <div className="label-small text-orange-500 mb-4 tracking-widest">CORE CONCEPTS</div>
-                <h1 className="text-5xl heading-pro text-slate-900 mb-6 tracking-tight">Jenkins Curriculum</h1>
+            <header className="mb-16">
+                <div className="label-small text-sky-500 mb-4 tracking-widest">CORE CONCEPTS</div>
+                <h1 className="text-5xl heading-pro text-slate-900 mb-6 tracking-tight">AWS Curriculum</h1>
                 <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
-                    From fundamentals to enterprise patterns — every Jenkins concept categorised by importance. Master the topics that matter most for production CI/CD.
+                    From fundamentals to cloud patterns — every AWS concept categorised by importance. Master the topics that matter most for production Cloud Architecture.
                 </p>
             </header>
 
             <div className="space-y-12">
-                {jenkinsModules.map((module) => (
+                {awsModules.map((module) => (
                     <section key={module.id} className="card overflow-hidden">
                         <div className="bg-slate-50 border-b border-slate-100 px-8 py-6 flex items-center">
-                            <div className="bg-white border border-orange-100 text-orange-600 h-10 w-10 min-w-10 rounded-xl flex items-center justify-center mr-4 text-sm font-bold shadow-sm">
-                                {module.title.split(" ")[1]}
+                            <div className="bg-white border border-sky-100 text-sky-600 h-10 w-10 min-w-10 rounded-xl flex items-center justify-center mr-4 text-sm font-bold shadow-sm">
+                                {module.title.split(".")[0]}
                             </div>
                             <h2 className="text-xl font-bold tracking-tight text-slate-900">
-                                {module.title.split(" — ")[1] || module.title}
+                                {module.title.split(". ")[1] || module.title}
                             </h2>
                         </div>
 
@@ -61,10 +60,10 @@ export default async function JenkinsCoreConceptsPage() {
                                             {categoryTopics.map((topic, index) => (
                                                 <Link
                                                     key={topic.id}
-                                                    href={`/courses/jenkins/modules/${topic.id}`}
+                                                    href={`/courses/aws/modules/${topic.id}`}
                                                     className={`group flex flex-row items-start p-4 -mx-4 rounded-xl transition-colors ${completedTopics.includes(topic.id)
-                                                            ? "bg-green-50 hover:bg-green-100"
-                                                            : "hover:bg-slate-50"
+                                                        ? "bg-green-50 hover:bg-green-100"
+                                                        : "hover:bg-slate-50"
                                                         }`}
                                                 >
                                                     {completedTopics.includes(topic.id) ? (
@@ -80,14 +79,14 @@ export default async function JenkinsCoreConceptsPage() {
                                                     )}
                                                     <div className="flex flex-col">
                                                         <span className={`text-[15px] font-semibold tracking-tight line-clamp-1 transition-colors ${completedTopics.includes(topic.id)
-                                                                ? "text-green-700 group-hover:text-green-800"
-                                                                : "text-slate-700 group-hover:text-orange-600"
+                                                            ? "text-green-700 group-hover:text-green-800"
+                                                            : "text-slate-700 group-hover:text-sky-600"
                                                             }`}>
                                                             {topic.title}
                                                         </span>
                                                         <span className={`text-xs mt-1 uppercase tracking-wider flex items-center transition-colors ${completedTopics.includes(topic.id)
-                                                                ? "text-green-500 group-hover:text-green-600"
-                                                                : "text-slate-400 group-hover:text-orange-400"
+                                                            ? "text-green-500 group-hover:text-green-600"
+                                                            : "text-slate-400 group-hover:text-sky-400"
                                                             }`}>
                                                             {completedTopics.includes(topic.id) ? "Completed" : "Read Topic"}
                                                             <span className="ml-1 leading-none">&rarr;</span>
