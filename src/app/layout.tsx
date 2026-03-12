@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { PLATFORM_NAME } from "@/config/platform.config";
 import { auth } from "@/auth";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
@@ -28,6 +29,7 @@ export default async function RootLayout({
           {children}
         </main>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
