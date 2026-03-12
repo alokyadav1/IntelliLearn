@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getAwsTopic } from "@/courses/aws/config/modules.config";
 import { getUserProgress } from "@/app/actions/progress";
 import ModuleTopicSidebar from "@/components/ModuleTopicSidebar";
+import MobileSidebarWrapper from "@/components/MobileSidebarWrapper";
 
 interface TopicLayoutProps {
     children: React.ReactNode;
@@ -30,16 +31,29 @@ export default async function AwsTopicLayout({ children, params }: TopicLayoutPr
 
     const moduleLabel = module.title.split(". ")[1] || module.title;
 
+    const sidebar = (
+        <ModuleTopicSidebar
+            moduleTitle={moduleLabel}
+            topics={topics}
+            completedTopics={completedTopics}
+            accentColor="sky"
+            backHref="/courses/aws"
+            backLabel="Course Overview"
+        />
+    );
+
     return (
         <div className="flex h-[calc(100vh-64px)] overflow-hidden">
-            <ModuleTopicSidebar
-                moduleTitle={moduleLabel}
-                topics={topics}
-                completedTopics={completedTopics}
-                accentColor="sky"
-                backHref="/courses/aws"
-                backLabel="Course Overview"
-            />
+            {/* Desktop sidebar */}
+            <div className="hidden lg:flex shrink-0">
+                {sidebar}
+            </div>
+
+            {/* Mobile sidebar drawer */}
+            <MobileSidebarWrapper triggerLabel="Topics">
+                {sidebar}
+            </MobileSidebarWrapper>
+
             <main className="flex-1 overflow-y-auto scroll-smooth">
                 {children}
             </main>

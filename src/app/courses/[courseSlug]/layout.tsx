@@ -1,5 +1,5 @@
 import CourseSidebar from "@/components/CourseSidebar";
-import AuthButton from "@/components/AuthButton";
+import MobileSidebarWrapper from "@/components/MobileSidebarWrapper";
 import { getCourseBySlug } from "@/config/platform.config";
 import { notFound } from "next/navigation";
 
@@ -16,7 +16,16 @@ export default async function CourseLayout({ children, params }: CourseLayoutPro
 
     return (
         <div className="flex h-[calc(100vh-64px)] overflow-hidden">
-            <CourseSidebar courseSlug={courseSlug} />
+            {/* Desktop sidebar — always visible on lg+ */}
+            <div className="hidden lg:flex shrink-0">
+                <CourseSidebar courseSlug={courseSlug} />
+            </div>
+
+            {/* Mobile sidebar — slide-in drawer */}
+            <MobileSidebarWrapper triggerLabel="Modules">
+                <CourseSidebar courseSlug={courseSlug} />
+            </MobileSidebarWrapper>
+
             <main className="flex-1 overflow-y-auto scroll-smooth">
                 {children}
             </main>

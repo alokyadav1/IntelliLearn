@@ -8,11 +8,11 @@ export default function ProgressBar({
   const percentage = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
   return (
-    <div className="w-full mt-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-      <div className="flex justify-between items-end mb-3">
+    <div className="w-full mt-6 bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-2 mb-4">
         <div>
           <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-1">Overall Progress</h3>
-          <p className="text-sm border text-slate-500 font-medium">
+          <p className="text-sm text-slate-500 font-medium">
             {completedCount} of {totalCount} topics completed
           </p>
         </div>

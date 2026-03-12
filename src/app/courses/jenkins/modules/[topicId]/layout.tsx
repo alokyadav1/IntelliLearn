@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getJenkinsTopic } from "@/courses/jenkins/config/modules.config";
 import { getUserProgress } from "@/app/actions/progress";
 import ModuleTopicSidebar from "@/components/ModuleTopicSidebar";
+import MobileSidebarWrapper from "@/components/MobileSidebarWrapper";
 
 interface TopicLayoutProps {
     children: React.ReactNode;
@@ -30,16 +31,25 @@ export default async function JenkinsTopicLayout({ children, params }: TopicLayo
 
     const moduleLabel = module.title.split(" — ")[1] || module.title;
 
+    const sidebar = (
+        <ModuleTopicSidebar
+            moduleTitle={moduleLabel}
+            topics={topics}
+            completedTopics={completedTopics}
+            accentColor="orange"
+            backHref="/courses/jenkins"
+            backLabel="Course Overview"
+        />
+    );
+
     return (
         <div className="flex h-[calc(100vh-64px)] overflow-hidden">
-            <ModuleTopicSidebar
-                moduleTitle={moduleLabel}
-                topics={topics}
-                completedTopics={completedTopics}
-                accentColor="orange"
-                backHref="/courses/jenkins"
-                backLabel="Course Overview"
-            />
+            <div className="hidden lg:flex shrink-0">
+                {sidebar}
+            </div>
+            <MobileSidebarWrapper triggerLabel="Topics">
+                {sidebar}
+            </MobileSidebarWrapper>
             <main className="flex-1 overflow-y-auto scroll-smooth">
                 {children}
             </main>

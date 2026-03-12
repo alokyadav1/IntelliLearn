@@ -75,21 +75,21 @@ export default async function Home() {
   const session = await auth();
 
   return (
-    <div className="max-w-5xl mx-auto px-8 py-16 animate-entry">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 animate-entry">
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <header className="mb-12">
         <div className="label-small text-indigo-600 mb-4">Engineering Learning Portal</div>
-        <h1 className="text-5xl heading-pro text-slate-900 mb-6 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl heading-pro text-slate-900 mb-6 tracking-tight">
           Master Modern <span className="text-indigo-600">Engineering</span>.
         </h1>
-        <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
+        <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl leading-relaxed">
           Production-grade courses on AI Agents, DevOps, CI/CD, and beyond — built for engineers who want to ship, not just learn.
         </p>
       </header>
 
       {/* ── Auth Banner ──────────────────────────────────────────── */}
       {!session ? (
-        <div className="bg-white border-2 border-indigo-100/50 rounded-2xl p-10 mb-16 shadow-xl shadow-indigo-900/5 relative overflow-hidden">
+        <div className="bg-white border-2 border-indigo-100/50 rounded-2xl p-6 sm:p-8 lg:p-10 mb-10 sm:mb-16 shadow-xl shadow-indigo-900/5 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60" />
           <div className="relative">
             <h2 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight">Track Your Progress</h2>
@@ -137,7 +137,7 @@ export default async function Home() {
               <div className="flex-1 h-px bg-slate-200" />
               <span className="text-xs text-slate-400 font-medium tracking-wider uppercase">{categoryCourses.length} Course{categoryCourses.length !== 1 ? "s" : ""}</span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
               {categoryCourses.map((course) => (
                 <CourseCard key={course.slug} course={course} />
               ))}
