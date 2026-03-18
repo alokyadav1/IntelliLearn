@@ -65,7 +65,6 @@ body {
 .code-block {
   background-color: #0f172a;
   color: #38bdf8;
-  border-radius: 0.75rem;
   padding: 1.25rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
