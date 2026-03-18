@@ -3,7 +3,9 @@
 // Import these in every topic content component for consistent styling.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 
 // ── Section / headings ──────────────────────────────────────────────────────
 
@@ -43,7 +45,7 @@ export function Bold({ children, className = "" }: { children: React.ReactNode; 
 export function BulletList({ items, className = "" }: { items: React.ReactNode[]; className?: string }) {
     return (
         <ul className={`space-y-2 mb-5 ${className}`}>
-            {items.map((item, i) => (
+            {React.Children.toArray(items).map((item, i) => (
                 <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-600">
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
                     <span className="leading-relaxed">{item}</span>
@@ -56,7 +58,7 @@ export function BulletList({ items, className = "" }: { items: React.ReactNode[]
 export function NumberedList({ items, className = "" }: { items: React.ReactNode[]; className?: string }) {
     return (
         <ol className={`space-y-2 mb-5 ${className}`}>
-            {items.map((item, i) => (
+            {React.Children.toArray(items).map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-[15px] text-slate-600">
                     <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">
                         {i + 1}
@@ -127,15 +129,52 @@ export function InlineCode({ children, className = "" }: { children: React.React
 }
 
 export function CodeBlock({ label, children, language, code, className = "" }: { label?: string; children?: React.ReactNode; language?: string; code?: string; className?: string }) {
+    const [copied, setCopied] = useState(false);
     const displayLabel = label || language;
+    const contentToCopy = code || (typeof children === 'string' ? children : '');
+
+    const handleCopy = async () => {
+        if (!contentToCopy) return;
+        try {
+            await navigator.clipboard.writeText(contentToCopy);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+    };
+
     return (
-        <div className={`mb-5 rounded-xl overflow-hidden border border-slate-200 shadow-sm ${className}`}>
-            {displayLabel && (
-                <div className="bg-slate-800 px-4 py-2 flex items-center gap-2">
+        <div className={`mb-5 rounded-xl overflow-hidden border border-slate-200 shadow-sm relative group ${className}`}>
+            <div className="bg-slate-800 px-4 py-2 flex items-center justify-between gap-2">
+                {displayLabel && (
                     <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{displayLabel}</span>
-                </div>
-            )}
-            <pre className="code-block m-0 rounded-none text-[13px] leading-relaxed overflow-x-auto p-5">{children || code}</pre>
+                )}
+                {!displayLabel && <div />}
+                
+                <button
+                    onClick={handleCopy}
+                    className="p-1 px-2 rounded-md transition-all flex items-center gap-1.5 hover:bg-slate-700/50"
+                    title="Copy code"
+                >
+                    {copied ? (
+                        <>
+                            <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-tight">Copied!</span>
+                        </>
+                    ) : (
+                        <>
+                            <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tight">Copy</span>
+                        </>
+                    )}
+                </button>
+            </div>
+            <pre className="code-block m-0 text-[13px] overflow-x-auto">{children || code}</pre>
         </div>
     );
 }
@@ -170,8 +209,8 @@ export function IOBlock({ input, output, inputLabel = "Input", outputLabel = "Ou
 
 export function DataTable({ headers, rows }: { headers: string[]; rows: (string | React.ReactNode)[][] }) {
     return (
-        <div className="mb-5 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-            <table className="w-full text-sm">
+        <div className="mb-5 rounded-xl overflow-x-auto border border-slate-200 shadow-sm">
+            <table className="w-full text-sm min-w-[600px]">
                 <thead>
                     <tr className="bg-slate-50 border-b border-slate-200">
                         {headers.map((h, i) => (
@@ -238,15 +277,53 @@ export function Diagram({ label, children, className = "" }: { label?: string; c
 }
 
 export function TerminalOutput({ label = "Terminal", children }: { label?: string; children: React.ReactNode }) {
+    const [copied, setCopied] = useState(false);
+    const contentToCopy = typeof children === 'string' ? children : '';
+
+    const handleCopy = async () => {
+        if (!contentToCopy) return;
+        try {
+            await navigator.clipboard.writeText(contentToCopy);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy terminal text: ', err);
+        }
+    };
+
     return (
-        <div className="mb-6 rounded-xl overflow-hidden bg-[#1e1e1e] border border-slate-700 shadow-xl">
-            <div className="bg-[#2d2d2d] px-4 py-2 flex items-center gap-2 border-b border-white/5">
-                <div className="flex gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+        <div className="mb-6 rounded-xl overflow-hidden bg-[#1e1e1e] border border-slate-700 shadow-xl group relative">
+            <div className="bg-[#2d2d2d] px-4 py-2 flex items-center justify-between border-b border-white/5">
+                <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5 mr-2">
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{label}</span>
                 </div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-2">{label}</span>
+
+                <button
+                    onClick={handleCopy}
+                    className="p-1 px-2 rounded-md transition-all flex items-center gap-1.5 hover:bg-white/5"
+                    title="Copy terminal commands"
+                >
+                    {copied ? (
+                        <>
+                            <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-tight">Copied!</span>
+                        </>
+                    ) : (
+                        <>
+                            <svg className="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            <span className="text-[10px] font-bold text-slate-500 group-hover:text-slate-400 uppercase tracking-tight transition-colors">Copy</span>
+                        </>
+                    )}
+                </button>
             </div>
             <pre className="p-5 font-mono text-[13px] text-zinc-300 leading-relaxed overflow-x-auto whitespace-pre-wrap">
                 {children}
@@ -353,7 +430,7 @@ export function SummaryCard({ title = "✅ Key Takeaways", items, className = ""
         <div className={`rounded-2xl bg-gradient-to-br from-indigo-50 to-slate-50 border border-indigo-100 p-6 mt-10 ${className}`}>
             <p className="text-sm font-bold text-indigo-700 uppercase tracking-widest mb-4">{title}</p>
             <ul className="space-y-2.5">
-                {items.map((item, i) => (
+                {React.Children.toArray(items).map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-700">
                         <svg className="w-4 h-4 text-indigo-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />

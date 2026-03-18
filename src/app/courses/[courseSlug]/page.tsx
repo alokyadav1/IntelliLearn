@@ -70,16 +70,16 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
     const hasProgress = totalTopics > 0;
 
     return (
-        <div className="max-w-5xl mx-auto px-8 py-16 animate-entry">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 animate-entry">
             {/* ── Hero ─────────────────────────────────────────────── */}
-            <div className={`rounded-3xl border bg-gradient-to-br ${heroBg[ac] ?? heroBg["indigo"]} p-12 mb-12 relative overflow-hidden`}>
+            <div className={`rounded-3xl border bg-gradient-to-br ${heroBg[ac] ?? heroBg["indigo"]} p-6 sm:p-8 lg:p-12 mb-8 sm:mb-12 relative overflow-hidden`}>
                 <div className="absolute top-0 right-0 w-72 h-72 bg-white/60 rounded-full blur-3xl -mr-24 -mt-24" />
                 <div className="relative">
                     <div className={`label-small ${badgeColor[ac] ?? badgeColor["indigo"]} mb-4 tracking-widest`}>
                         {course.category.toUpperCase()}
                     </div>
-                    <h1 className="text-5xl heading-pro text-slate-900 mb-6 tracking-tight">{course.title}</h1>
-                    <p className="text-xl text-slate-600 max-w-2xl leading-relaxed mb-8">{course.description}</p>
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl heading-pro text-slate-900 mb-4 sm:mb-6 tracking-tight">{course.title}</h1>
+                    <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl leading-relaxed mb-6 sm:mb-8">{course.description}</p>
                     <Link
                         href={course.navLinks[1]?.href ?? `#`}
                         className={`inline-flex items-center gap-2 ${linkColor[ac] ?? linkColor["indigo"]} text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-lg`}
@@ -94,13 +94,15 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
 
             {/* ── Course-level Progress ─────────────────────────────── */}
             {hasProgress && session?.user && (
-                <section className="card p-8 mb-10">
-                    <div className="flex items-center justify-between mb-4">
+                <section className="card p-6 sm:p-8 mb-10">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                         <div>
                             <h2 className="text-lg font-bold text-slate-900 tracking-tight">Your Progress</h2>
                             <p className="text-sm text-slate-500 mt-0.5">Across all modules in this course</p>
                         </div>
-                        <ResetAllProgressDialog courseId={courseSlug} />
+                        <div className="flex justify-start sm:justify-end">
+                            <ResetAllProgressDialog courseId={courseSlug} />
+                        </div>
                     </div>
                     <ProgressBar completedCount={completedCount} totalCount={totalTopics} />
                 </section>
