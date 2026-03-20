@@ -17,27 +17,27 @@ export function SectionTitle({ number, children }: { number?: string | number; c
     return (
         <div className="flex items-start gap-3 mb-5">
             {number !== undefined && (
-                <span className="shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-indigo-600 text-white text-sm font-bold flex items-center justify-center shadow-sm">
+                <span className="shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-bold flex items-center justify-center shadow-sm">
                     {number}
                 </span>
             )}
-            <h2 className="text-2xl font-bold text-slate-900 tracking-tight leading-snug">{children}</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-snug">{children}</h2>
         </div>
     );
 }
 
 export function SubTitle({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-    return <h3 className={`text-lg font-bold text-slate-800 mt-6 mb-3 ${className}`}>{children}</h3>;
+    return <h3 className={`text-lg font-bold text-slate-800 dark:text-slate-200 mt-6 mb-3 ${className}`}>{children}</h3>;
 }
 
 // ── Body text ────────────────────────────────────────────────────────────────
 
 export function P({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-    return <p className={`text-slate-600 leading-relaxed mb-4 text-[15px] ${className}`}>{children}</p>;
+    return <p className={`text-slate-600 dark:text-slate-300 leading-relaxed mb-4 text-[15px] ${className}`}>{children}</p>;
 }
 
 export function Bold({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-    return <strong className={`font-semibold text-slate-800 ${className}`}>{children}</strong>;
+    return <strong className={`font-semibold text-slate-800 dark:text-slate-200 ${className}`}>{children}</strong>;
 }
 
 // ── Lists ────────────────────────────────────────────────────────────────────
@@ -46,8 +46,8 @@ export function BulletList({ items, className = "" }: { items: React.ReactNode[]
     return (
         <ul className={`space-y-2 mb-5 ${className}`}>
             {React.Children.toArray(items).map((item, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-600">
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
+                <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-600 dark:text-slate-300">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 dark:bg-indigo-500 shrink-0" />
                     <span className="leading-relaxed">{item}</span>
                 </li>
             ))}
@@ -59,8 +59,8 @@ export function NumberedList({ items, className = "" }: { items: React.ReactNode
     return (
         <ol className={`space-y-2 mb-5 ${className}`}>
             {React.Children.toArray(items).map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-[15px] text-slate-600">
-                    <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">
+                <li key={i} className="flex items-start gap-3 text-[15px] text-slate-600 dark:text-slate-300">
+                    <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-400 text-xs font-bold flex items-center justify-center">
                         {i + 1}
                     </span>
                     <span className="leading-relaxed">{item}</span>
@@ -74,34 +74,38 @@ export function NumberedList({ items, className = "" }: { items: React.ReactNode
 
 type CalloutVariant = "info" | "tip" | "warning" | "definition";
 
-const calloutStyles: Record<CalloutVariant, { border: string; bg: string; icon: string; label: string; labelColor: string }> = {
+const calloutStyles: Record<CalloutVariant, { border: string; bg: string; icon: string; label: string; labelColor: string; textColor: string }> = {
     info: {
-        border: "border-indigo-200",
-        bg: "bg-indigo-50/60",
+        border: "border-indigo-200 dark:border-indigo-900/50",
+        bg: "bg-indigo-50/60 dark:bg-indigo-900/20",
         icon: "💡",
         label: "Key Insight",
-        labelColor: "text-indigo-600",
+        labelColor: "text-indigo-600 dark:text-indigo-400",
+        textColor: "text-slate-700 dark:text-slate-300",
     },
     tip: {
-        border: "border-emerald-200",
-        bg: "bg-emerald-50/60",
+        border: "border-emerald-200 dark:border-emerald-900/50",
+        bg: "bg-emerald-50/60 dark:bg-emerald-900/20",
         icon: "✅",
         label: "Tip",
-        labelColor: "text-emerald-600",
+        labelColor: "text-emerald-600 dark:text-emerald-400",
+        textColor: "text-slate-700 dark:text-slate-300",
     },
     warning: {
-        border: "border-amber-200",
-        bg: "bg-amber-50/60",
+        border: "border-amber-200 dark:border-amber-900/50",
+        bg: "bg-amber-50/60 dark:bg-amber-900/20",
         icon: "⚠️",
         label: "Note",
-        labelColor: "text-amber-600",
+        labelColor: "text-amber-600 dark:text-amber-400",
+        textColor: "text-slate-700 dark:text-slate-300",
     },
     definition: {
-        border: "border-slate-200",
-        bg: "bg-slate-50/80",
+        border: "border-slate-200 dark:border-slate-800",
+        bg: "bg-slate-50/80 dark:bg-slate-800/50",
         icon: "📖",
         label: "Definition",
-        labelColor: "text-slate-600",
+        labelColor: "text-slate-600 dark:text-slate-400",
+        textColor: "text-slate-700 dark:text-slate-300",
     },
 };
 
@@ -113,7 +117,7 @@ export function Callout({ variant = "info", title, children, className = "" }: {
                 <span>{s.icon}</span>
                 {title ?? s.label}
             </p>
-            <div className="text-[15px] text-slate-700 leading-relaxed">{children}</div>
+            <div className={`text-[15px] ${s.textColor} leading-relaxed`}>{children}</div>
         </div>
     );
 }
@@ -122,7 +126,7 @@ export function Callout({ variant = "info", title, children, className = "" }: {
 
 export function InlineCode({ children, className = "" }: { children: React.ReactNode; className?: string }) {
     return (
-        <code className={`bg-slate-100 text-indigo-700 text-[13px] font-mono px-1.5 py-0.5 rounded-md border border-slate-200 ${className}`}>
+        <code className={`bg-slate-100 dark:bg-slate-800 text-indigo-700 dark:text-indigo-400 text-[13px] font-mono px-1.5 py-0.5 rounded-md border border-slate-200 dark:border-slate-700 ${className}`}>
             {children}
         </code>
     );
@@ -145,8 +149,8 @@ export function CodeBlock({ label, children, language, code, className = "" }: {
     };
 
     return (
-        <div className={`mb-5 rounded-xl overflow-hidden border border-slate-200 shadow-sm relative group ${className}`}>
-            <div className="bg-slate-800 px-4 py-2 flex items-center justify-between gap-2">
+        <div className={`mb-5 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm relative group ${className}`}>
+            <div className="bg-slate-800 dark:bg-slate-900 px-4 py-2 flex items-center justify-between gap-2">
                 {displayLabel && (
                     <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{displayLabel}</span>
                 )}
@@ -189,17 +193,17 @@ export function IOBlock({ input, output, inputLabel = "Input", outputLabel = "Ou
 }) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
-            <div className="rounded-xl border border-slate-200 overflow-hidden">
-                <div className="bg-slate-100 px-4 py-2 border-b border-slate-200">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{inputLabel}</span>
+            <div className="rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <div className="bg-slate-100 dark:bg-slate-800 px-4 py-2 border-b border-slate-200 dark:border-slate-700">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">{inputLabel}</span>
                 </div>
-                <div className="p-4 text-[14px] text-slate-700 font-mono bg-white leading-relaxed">{input}</div>
+                <div className="p-4 text-[14px] text-slate-700 dark:text-slate-300 font-mono bg-white dark:bg-slate-900/50 leading-relaxed">{input}</div>
             </div>
-            <div className="rounded-xl border border-indigo-100 overflow-hidden">
-                <div className="bg-indigo-50 px-4 py-2 border-b border-indigo-100">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-500">{outputLabel}</span>
+            <div className="rounded-xl border border-indigo-100 dark:border-indigo-900/50 overflow-hidden">
+                <div className="bg-indigo-50 dark:bg-indigo-900/30 px-4 py-2 border-b border-indigo-100 dark:border-indigo-900/50">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400">{outputLabel}</span>
                 </div>
-                <div className="p-4 text-[14px] text-slate-700 font-mono bg-white leading-relaxed">{output}</div>
+                <div className="p-4 text-[14px] text-slate-700 dark:text-slate-300 font-mono bg-white dark:bg-slate-900/50 leading-relaxed">{output}</div>
             </div>
         </div>
     );
@@ -209,12 +213,12 @@ export function IOBlock({ input, output, inputLabel = "Input", outputLabel = "Ou
 
 export function DataTable({ headers, rows }: { headers: string[]; rows: (string | React.ReactNode)[][] }) {
     return (
-        <div className="mb-5 rounded-xl overflow-x-auto border border-slate-200 shadow-sm">
+        <div className="mb-5 rounded-xl overflow-x-auto border border-slate-200 dark:border-slate-800 shadow-sm">
             <table className="w-full text-sm min-w-[600px]">
                 <thead>
-                    <tr className="bg-slate-50 border-b border-slate-200">
+                    <tr className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700">
                         {headers.map((h, i) => (
-                            <th key={i} className="px-5 py-3 text-left text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                            <th key={i} className="px-5 py-3 text-left text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
                                 {h}
                             </th>
                         ))}
@@ -222,9 +226,9 @@ export function DataTable({ headers, rows }: { headers: string[]; rows: (string 
                 </thead>
                 <tbody>
                     {rows.map((row, ri) => (
-                        <tr key={ri} className="border-b border-slate-100 last:border-0 hover:bg-slate-50/60 transition-colors">
+                        <tr key={ri} className="border-b border-slate-100 dark:border-slate-800 last:border-0 hover:bg-slate-50/60 dark:hover:bg-slate-800/40 transition-colors">
                             {row.map((cell, ci) => (
-                                <td key={ci} className="px-5 py-3.5 text-[14px] text-slate-700 font-medium">
+                                <td key={ci} className="px-5 py-3.5 text-[14px] text-slate-700 dark:text-slate-300 font-medium">
                                     {cell}
                                 </td>
                             ))}
@@ -244,15 +248,15 @@ export function StepList({ steps }: { steps: { title: string; description?: Reac
             {steps.map((step, i) => (
                 <div key={i} className="flex gap-4">
                     <div className="shrink-0 flex flex-col items-center">
-                        <div className="w-8 h-8 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center shadow-sm">
+                        <div className="w-8 h-8 rounded-full bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-bold flex items-center justify-center shadow-sm">
                             {i + 1}
                         </div>
-                        {i < steps.length - 1 && <div className="w-px flex-1 bg-indigo-100 mt-1" />}
+                        {i < steps.length - 1 && <div className="w-px flex-1 bg-indigo-100 dark:bg-indigo-900 mt-1" />}
                     </div>
                     <div className="pb-4 min-w-0">
-                        <p className="font-bold text-slate-800 mb-1">{step.title}</p>
+                        <p className="font-bold text-slate-800 dark:text-slate-200 mb-1">{step.title}</p>
                         {step.description && (
-                            <div className="text-[14px] text-slate-600 leading-relaxed">{step.description}</div>
+                            <div className="text-[14px] text-slate-600 dark:text-slate-400 leading-relaxed">{step.description}</div>
                         )}
                     </div>
                 </div>
@@ -265,10 +269,10 @@ export function StepList({ steps }: { steps: { title: string; description?: Reac
 
 export function Diagram({ label, children, className = "" }: { label?: string; children: React.ReactNode; className?: string }) {
     return (
-        <div className={`mb-8 rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden ${className}`}>
+        <div className={`mb-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 shadow-sm overflow-hidden ${className}`}>
             {label && (
-                <div className="px-6 py-3.5 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
-                    <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{label}</span>
+                <div className="px-6 py-3.5 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900 flex items-center justify-between">
+                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">{label}</span>
                 </div>
             )}
             <div className="p-6">{children}</div>
@@ -420,19 +424,19 @@ export function ImageBlock({ src, alt, caption }: { src: string; alt: string; ca
 // ── Divider ──────────────────────────────────────────────────────────────────
 
 export function Divider({ className = "" }: { className?: string }) {
-    return <div className={`border-t border-slate-100 my-10 ${className}`} />;
+    return <div className={`border-t border-slate-100 dark:border-slate-800 my-10 ${className}`} />;
 }
 
 // ── Summary card ─────────────────────────────────────────────────────────────
 
 export function SummaryCard({ title = "✅ Key Takeaways", items, className = "" }: { title?: string; items: React.ReactNode[]; className?: string }) {
     return (
-        <div className={`rounded-2xl bg-gradient-to-br from-indigo-50 to-slate-50 border border-indigo-100 p-6 mt-10 ${className}`}>
-            <p className="text-sm font-bold text-indigo-700 uppercase tracking-widest mb-4">{title}</p>
+        <div className={`rounded-2xl bg-gradient-to-br from-indigo-50 to-slate-50 dark:from-indigo-950/40 dark:to-slate-900 border border-indigo-100 dark:border-indigo-900/50 p-6 mt-10 ${className}`}>
+            <p className="text-sm font-bold text-indigo-700 dark:text-indigo-400 uppercase tracking-widest mb-4">{title}</p>
             <ul className="space-y-2.5">
                 {React.Children.toArray(items).map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-700">
-                        <svg className="w-4 h-4 text-indigo-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-700 dark:text-slate-300">
+                        <svg className="w-4 h-4 text-indigo-500 dark:text-indigo-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                         <span>{item}</span>
@@ -449,11 +453,11 @@ export function Accordion({ items, className = "" }: { items: { question: string
     return (
         <div className={`space-y-3 mb-8 ${className}`}>
             {items.map((item, i) => (
-                <details key={i} className="group border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm open:border-indigo-200 open:shadow-md transition-all duration-300">
-                    <summary className="flex items-center justify-between p-4 cursor-pointer list-none hover:bg-slate-50 transition-colors">
-                        <span className="text-[15px] font-bold text-slate-800 pr-4">{item.question}</span>
+                <details key={i} className="group border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800/80 overflow-hidden shadow-sm open:border-indigo-200 dark:open:border-indigo-800 open:shadow-md transition-all duration-300">
+                    <summary className="flex items-center justify-between p-4 cursor-pointer list-none hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                        <span className="text-[15px] font-bold text-slate-800 dark:text-slate-200 pr-4">{item.question}</span>
                         <svg 
-                            className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform duration-300" 
+                            className="w-5 h-5 shrink-0 text-slate-400 dark:text-slate-500 group-open:rotate-180 transition-transform duration-300" 
                             fill="none" 
                             viewBox="0 0 24 24" 
                             stroke="currentColor"
@@ -461,8 +465,8 @@ export function Accordion({ items, className = "" }: { items: { question: string
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                     </summary>
-                    <div className="px-4 pb-4 border-t border-slate-50 bg-slate-50/20">
-                        <div className="text-[15px] text-slate-600 leading-relaxed pt-4">
+                    <div className="px-4 pb-4 border-t border-slate-50 dark:border-slate-800 bg-slate-50/20 dark:bg-slate-900/20">
+                        <div className="text-[15px] text-slate-600 dark:text-slate-400 leading-relaxed pt-4">
                             {item.answer}
                         </div>
                     </div>
