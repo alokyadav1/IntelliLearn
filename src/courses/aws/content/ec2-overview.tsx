@@ -68,15 +68,15 @@ export default function Ec2Overview() {
                 />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                    <div className="p-6 bg-emerald-50 rounded-xl border border-emerald-100">
-                        <Bold className="text-emerald-900 block mb-2 text-lg">Running 🟢</Bold>
-                        <P className="text-sm text-emerald-800 mb-0">
+                    <div className="p-6 bg-emerald-50 dark:bg-emerald-950/20 rounded-xl border border-emerald-100 dark:border-emerald-900/30 transition-colors">
+                        <Bold className="text-emerald-900 dark:text-emerald-400 block mb-2 text-lg">Running 🟢</Bold>
+                        <P className="text-sm text-emerald-800 dark:text-emerald-300 mb-0">
                             Billed per-second. Compute resources are active and you are fully operational.
                         </P>
                     </div>
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-200">
-                        <Bold className="text-slate-900 block mb-2 text-lg">Stopped 🛑</Bold>
-                        <P className="text-sm text-slate-800 mb-0">
+                    <div className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
+                        <Bold className="text-slate-900 dark:text-white block mb-2 text-lg">Stopped 🛑</Bold>
+                        <P className="text-sm text-slate-800 dark:text-slate-300 mb-0">
                             No compute charge. However, <Bold>EBS volumes</Bold> attached still accrue storage charges.
                         </P>
                     </div>
@@ -180,7 +180,7 @@ ssh -i my-key.pem ec2-user@<public-ip>
                             question: "Should you SSH into prod and edit files directly?",
                             answer: (
                                 <>
-                                    <Bold className="text-red-600">No.</Bold> Direct edits are untraceable and not reproducible. Treat instances as <Bold>immutable</Bold>. Changes should be made via version control and deployed through a CI/CD pipeline or new AMIs.
+                                    <Bold className="text-red-600 dark:text-red-400">No.</Bold> Direct edits are untraceable and not reproducible. Treat instances as <Bold>immutable</Bold>. Changes should be made via version control and deployed through a CI/CD pipeline or new AMIs.
                                 </>
                             )
                         }

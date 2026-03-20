@@ -91,7 +91,7 @@ export default function IaaSvsPaaSvsSaaS() {
                         ["Networking", "YOU", "AWS", "AWS", "AWS"],
                     ]}
                 />
-                <P className="text-sm italic text-slate-500 mt-2">*Your data, but their storage infrastructure.</P>
+                <P className="text-sm italic text-slate-500 dark:text-slate-400 mt-2 transition-colors">*Your data, but their storage infrastructure.</P>
             </Section>
 
             <Divider />

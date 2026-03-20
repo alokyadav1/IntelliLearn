@@ -348,30 +348,30 @@ export function StatBreakdown({ items, total, limit }: {
                 {items.map((item, i) => (
                     <div key={i} className="flex items-center justify-between group">
                         <div className="flex items-center gap-3">
-                            <div className={`w-1.5 h-6 rounded-full transition-all group-hover:scale-y-110 ${item.color || 'bg-slate-200'}`} />
-                            <span className="text-sm font-medium text-slate-700">{item.label}</span>
+                            <div className={`w-1.5 h-6 rounded-full transition-all group-hover:scale-y-110 ${item.color || 'bg-slate-200 dark:bg-slate-700'}`} />
+                            <span className="text-sm font-medium text-slate-700 dark:text-slate-200">{item.label}</span>
                         </div>
-                        <span className="text-sm font-mono text-slate-500 font-semibold">{item.value.toLocaleString()}</span>
+                        <span className="text-sm font-mono text-slate-500 dark:text-slate-400 font-semibold">{item.value.toLocaleString()}</span>
                     </div>
                 ))}
             </div>
 
             {total !== undefined && limit !== undefined && (
-                <div className="pt-6 border-t border-slate-100">
+                <div className="pt-6 border-t border-slate-100 dark:border-slate-800">
                     <div className="flex items-center justify-between mb-2.5">
-                        <span className="text-sm font-bold text-slate-800 uppercase tracking-tight">Total Resource Usage</span>
+                        <span className="text-sm font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight">Total Resource Usage</span>
                         <div className="flex items-baseline gap-1.5">
-                            <span className="text-lg font-bold text-indigo-600">{total.toLocaleString()}</span>
-                            <span className="text-xs text-slate-400 font-medium">/ {limit.toLocaleString()}</span>
+                            <span className="text-lg font-bold text-indigo-600 dark:text-indigo-400">{total.toLocaleString()}</span>
+                            <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">/ {limit.toLocaleString()}</span>
                         </div>
                     </div>
-                    <div className="relative w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="relative w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                         <div
                             className="absolute inset-y-0 left-0 bg-indigo-500 rounded-full transition-all duration-700 ease-out"
                             style={{ width: `${percent}%` }}
                         />
                     </div>
-                    <p className="mt-3 text-[11px] text-slate-400 font-medium flex items-center justify-between">
+                    <p className="mt-3 text-[11px] text-slate-400 dark:text-slate-500 font-medium flex items-center justify-between">
                         <span className="flex items-center gap-1.5">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                             {(limit - total).toLocaleString()} tokens remaining
@@ -390,16 +390,16 @@ export function LayerStack({ items }: { items: { label: string; desc?: string; c
             {items.map((item, i) => (
                 <div
                     key={i}
-                    className={`relative p-4 rounded-xl border-2 transition-all hover:-translate-y-0.5 hover:shadow-sm ${item.color || 'border-slate-100 bg-white'}`}
+                    className={`relative p-4 rounded-xl border-2 transition-all hover:-translate-y-0.5 hover:shadow-sm ${item.color || 'border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900/50'}`}
                 >
                     <div className="flex items-start justify-between gap-4">
                         <div className="min-w-0">
                             <span className="text-[9px] font-bold uppercase tracking-widest opacity-40 block mb-0.5">Layer {items.length - i}</span>
-                            <p className="font-bold text-slate-800 text-[14px] leading-tight">{item.label}</p>
+                            <p className="font-bold text-slate-800 dark:text-slate-100 text-[14px] leading-tight">{item.label}</p>
                             {item.desc && <p className="text-[11px] mt-1 text-slate-500 font-medium leading-relaxed">{item.desc}</p>}
                         </div>
                         {item.tokens && (
-                            <div className="bg-white/60 px-2 py-1 rounded-md border border-black/5 text-[10px] font-mono font-bold text-slate-600 shrink-0">
+                            <div className="bg-white/60 dark:bg-slate-800/60 px-2 py-1 rounded-md border border-black/5 dark:border-white/5 text-[10px] font-mono font-bold text-slate-600 dark:text-slate-400 shrink-0">
                                 {item.tokens}
                             </div>
                         )}
@@ -413,7 +413,7 @@ export function LayerStack({ items }: { items: { label: string; desc?: string; c
 export function ImageBlock({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
     return (
         <div className="mb-8 overflow-hidden">
-            <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm transition-all hover:shadow-md hover:border-indigo-100">
+            <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md hover:border-indigo-100 dark:hover:border-indigo-950">
                 <img src={src} alt={alt} className="w-full h-auto block" />
             </div>
             {caption && <p className="mt-3 text-center text-[13px] text-slate-400 font-medium italic tracking-tight">{caption}</p>}

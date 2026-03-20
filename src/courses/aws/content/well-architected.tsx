@@ -29,12 +29,12 @@ export default function WellArchitectedFramework() {
                 <DataTable
                     headers={["#", "Pillar", "One-line Summary"]}
                     rows={[
-                        ["1", <span className="text-indigo-600 font-bold italic">Operational Excellence</span>, "Run, monitor, and continuously improve systems."],
-                        ["2", <span className="text-red-600 font-bold italic">Security</span>, "Protect data, systems, and assets at every layer."],
-                        ["3", <span className="text-emerald-600 font-bold italic">Reliability</span>, "Recover quickly from failures, meet demand consistently."],
-                        ["4", <span className="text-blue-600 font-bold italic">Performance Efficiency</span>, "Use the right resources, right-sized, efficiently."],
-                        ["5", <span className="text-amber-600 font-bold italic">Cost Optimization</span>, "Deliver business value at the lowest possible cost."],
-                        ["6", <span className="text-green-600 font-bold italic">Sustainability</span>, "Minimize environmental impact of cloud workloads."],
+                        ["1", <span className="text-indigo-600 dark:text-indigo-400 font-bold italic">Operational Excellence</span>, "Run, monitor, and continuously improve systems."],
+                        ["2", <span className="text-red-600 dark:text-red-400 font-bold italic">Security</span>, "Protect data, systems, and assets at every layer."],
+                        ["3", <span className="text-emerald-600 dark:text-emerald-400 font-bold italic">Reliability</span>, "Recover quickly from failures, meet demand consistently."],
+                        ["4", <span className="text-blue-600 dark:text-blue-400 font-bold italic">Performance Efficiency</span>, "Use the right resources, right-sized, efficiently."],
+                        ["5", <span className="text-amber-600 dark:text-amber-400 font-bold italic">Cost Optimization</span>, "Deliver business value at the lowest possible cost."],
+                        ["6", <span className="text-green-600 dark:text-green-400 font-bold italic">Sustainability</span>, "Minimize environmental impact of cloud workloads."],
                     ]}
                 />
             </Section>

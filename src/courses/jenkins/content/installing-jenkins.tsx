@@ -56,7 +56,7 @@ sudo lsof -i :8080`}
                     {`docker run -p 8080:8080 -p 50000:50000 \\
   jenkins/jenkins:lts`}
                 </CodeBlock>
-                <P className="text-xs text-slate-500">
+                <P className="text-xs text-slate-500 dark:text-slate-400">
                     <InlineCode>8080</InlineCode> = web UI. <InlineCode>50000</InlineCode> = agent connections (JNLP).
                 </P>
 
@@ -153,8 +153,8 @@ volumes:
                 <P>The production standard. Managed by <Bold>systemd</Bold> for auto-start on reboot.</P>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-                        <h4 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 transition-colors">
+                        <h4 className="font-bold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
                             <span className="w-8 h-8 rounded bg-orange-600 text-white flex items-center justify-center text-[10px]">DEB</span>
                             Ubuntu / Debian
                         </h4>
@@ -166,8 +166,8 @@ sudo apt install jenkins
 sudo systemctl enable jenkins`}
                         </CodeBlock>
                     </div>
-                    <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-                        <h4 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 transition-colors">
+                        <h4 className="font-bold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
                             <span className="w-8 h-8 rounded bg-blue-600 text-white flex items-center justify-center text-[10px]">RPM</span>
                             RHEL / CentOS
                         </h4>
@@ -323,9 +323,9 @@ sudo systemctl enable jenkins`}
                 ]}
             />
 
-            <Section className="mt-12 bg-indigo-50 p-8 rounded-3xl border border-indigo-100 text-center">
-                <p className="text-indigo-600 font-bold text-sm uppercase tracking-widest mb-2">Next Topic</p>
-                <h3 className="text-2xl font-bold text-slate-800 mb-4">Jenkins UI & Dashboard Overview</h3>
+            <Section className="mt-12 bg-indigo-50 dark:bg-indigo-950/20 p-8 rounded-3xl border border-indigo-100 dark:border-indigo-900/30 text-center transition-colors">
+                <p className="text-indigo-600 dark:text-indigo-400 font-bold text-sm uppercase tracking-widest mb-2">Next Topic</p>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-4">Jenkins UI & Dashboard Overview</h3>
                 <P className="mb-0">Navigate builds, agents, plugins, and core system configurations.</P>
             </Section>
         </div>

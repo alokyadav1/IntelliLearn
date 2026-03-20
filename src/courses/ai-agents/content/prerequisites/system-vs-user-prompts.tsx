@@ -170,8 +170,8 @@ await chat("It's #8821");
                 <P>Putting behavioral rules in the user prompt instead of the system prompt:</P>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-                    <div className="p-4 rounded-xl border border-rose-100 bg-rose-50/30">
-                        <P className="text-xs font-bold text-rose-600 uppercase mb-2">❌ Bad — mixed instructions</P>
+                    <div className="p-4 rounded-xl border border-rose-100 dark:border-rose-900/50 bg-rose-50/30 dark:bg-rose-950/20">
+                        <P className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase mb-2">❌ Bad — mixed instructions</P>
                         <CodeBlock label="user message injection">
                             {`messages: [{
   role: "user",
@@ -179,8 +179,8 @@ await chat("It's #8821");
 }]`}
                         </CodeBlock>
                     </div>
-                    <div className="p-4 rounded-xl border border-emerald-100 bg-emerald-50/30">
-                        <P className="text-xs font-bold text-emerald-600 uppercase mb-2">✅ Good — clean separation</P>
+                    <div className="p-4 rounded-xl border border-emerald-100 dark:border-emerald-900/50 bg-emerald-50/30 dark:bg-emerald-950/20">
+                        <P className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase mb-2">✅ Good — clean separation</P>
                         <CodeBlock label="system + user">
                             {`system: "You are a support agent. Only discuss orders.",
 messages: [{

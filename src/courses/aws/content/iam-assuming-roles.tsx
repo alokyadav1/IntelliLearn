@@ -27,9 +27,9 @@ export default function IamAssumingRoles() {
                             "I am User-A, and I want to act as Role-B for the next hour."
                         </P>
                     </div>
-                    <div className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
-                        <Bold className="text-indigo-900 block mb-2">Key Card Swap</Bold>
-                        <ul className="text-xs space-y-2 text-indigo-800">
+                    <div className="p-6 bg-indigo-50 dark:bg-indigo-950/30 rounded-2xl border border-indigo-100 dark:border-indigo-900/30 transition-colors">
+                        <Bold className="text-indigo-900 dark:text-indigo-400 block mb-2">Key Card Swap</Bold>
+                        <ul className="text-xs space-y-2 text-indigo-800 dark:text-indigo-300">
                             <li>• Hand in your permanent badge</li>
                             <li>• Get a temp visitor pass</li>
                             <li>• Pass expires automatically</li>
@@ -45,20 +45,20 @@ export default function IamAssumingRoles() {
                 <SectionTitle>🔄 The Full AssumeRole Flow</SectionTitle>
                 <P>To assume a role, an identity calls the <Bold>AWS STS AssumeRole</Bold> API. STS acts as the secure gatekeeper that issues the credentials.</P>
                 
-                <div className="bg-slate-50 rounded-2xl border border-slate-200 p-8 my-8 overflow-hidden">
+                <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 my-8 overflow-hidden transition-colors">
                     <div className="relative flex flex-col items-center gap-12">
                         {/* Step 1 */}
                         <div className="flex items-center gap-6 w-full max-w-2xl">
-                            <div className="w-12 h-12 shrink-0 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-center font-bold text-slate-400">01</div>
-                            <div className="flex-1 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
-                                <Bold className="text-slate-800">Request:</Bold>
-                                <P className="text-xs text-slate-500 mb-0 mt-1">Calling <InlineCode>sts:AssumeRole</InlineCode> with Role ARN and Session Name.</P>
+                            <div className="w-12 h-12 shrink-0 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-center font-bold text-slate-400 dark:text-slate-500 transition-colors">01</div>
+                            <div className="flex-1 p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-xl transition-colors">
+                                <Bold className="text-slate-800 dark:text-slate-200">Request:</Bold>
+                                <P className="text-xs text-slate-500 dark:text-slate-400 mb-0 mt-1">Calling <InlineCode>sts:AssumeRole</InlineCode> with Role ARN and Session Name.</P>
                             </div>
                         </div>
                         
                         {/* Step 2 */}
                         <div className="flex items-center gap-6 w-full max-w-2xl">
-                            <div className="w-12 h-12 shrink-0 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-center font-bold text-slate-400">02</div>
+                            <div className="w-12 h-12 shrink-0 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-center font-bold text-slate-400 dark:text-slate-500 transition-colors">02</div>
                             <div className="flex-1 p-4 bg-indigo-600 rounded-xl text-white shadow-lg relative">
                                 <div className="absolute -top-3 -right-3 bg-amber-400 text-amber-900 text-[10px] font-black px-2 py-1 rounded-full uppercase tracking-tighter">Evaluation</div>
                                 <Bold className="text-white">The Double Lock Check:</Bold>
@@ -71,7 +71,7 @@ export default function IamAssumingRoles() {
 
                         {/* Step 3 */}
                         <div className="flex items-center gap-6 w-full max-w-2xl">
-                            <div className="w-12 h-12 shrink-0 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-center font-bold text-slate-400">03</div>
+                            <div className="w-12 h-12 shrink-0 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-center font-bold text-slate-400 dark:text-slate-500 transition-colors">03</div>
                             <div className="flex-1 p-4 bg-emerald-500 rounded-xl text-white shadow-lg">
                                 <Bold className="text-white">Credentials Issued:</Bold>
                                 <div className="flex gap-2 mt-2">
@@ -83,7 +83,7 @@ export default function IamAssumingRoles() {
                         </div>
 
                         {/* vertical line connecting */}
-                        <div className="absolute left-[30px] top-12 bottom-12 w-0.5 bg-slate-200 -z-10"></div>
+                        <div className="absolute left-[30px] top-12 bottom-12 w-0.5 bg-slate-200 dark:bg-slate-800 -z-10 transition-colors"></div>
                     </div>
                 </div>
             </Section>
@@ -150,7 +150,7 @@ s3.list_buckets()`}
             <Section>
                 <SectionTitle>🌍 Cross-Account Role Assumption</SectionTitle>
                 <P>This is the most common use case for roles. It allows a user in Account A to securely manage resources in Account B without creating a second set of long-term credentials.</P>
-                <P className="text-sm font-bold text-slate-500 uppercase tracking-widest mt-6">The Setup (Both Sides Required)</P>
+                <P className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mt-6 transition-colors">The Setup (Both Sides Required)</P>
                 <IOBlock 
                     inputLabel="Account A (Requester)"
                     outputLabel="Account B (Resource Owner)"
@@ -201,19 +201,19 @@ s3.list_buckets()`}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
                     <div className="space-y-4">
                         <SubTitle className="mt-0">Common Scenario</SubTitle>
-                        <P className="text-sm text-slate-500">A developer assumes a "Hub" role in Account-B, then from there assumes a "Database" role in Account-C to perform maintenance.</P>
+                        <P className="text-sm text-slate-500 dark:text-slate-400 transition-colors">A developer assumes a "Hub" role in Account-B, then from there assumes a "Database" role in Account-C to perform maintenance.</P>
                         <div className="flex items-center gap-2 font-mono text-xs">
-                            <span className="px-2 py-1 bg-slate-100 rounded">User-A</span>
-                            <span>→</span>
-                            <span className="px-2 py-1 bg-indigo-100 text-indigo-700 rounded">Role-B</span>
-                            <span>→</span>
-                            <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded">Role-C</span>
+                            <span className="px-2 py-1 bg-slate-100 dark:bg-slate-800 dark:text-slate-300 rounded transition-colors">User-A</span>
+                            <span className="dark:text-slate-600">→</span>
+                            <span className="px-2 py-1 bg-indigo-100 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 rounded transition-colors">Role-B</span>
+                            <span className="dark:text-slate-600">→</span>
+                            <span className="px-2 py-1 bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 rounded transition-colors">Role-C</span>
                         </div>
                     </div>
-                    <div className="p-6 bg-red-50 border border-red-100 rounded-2xl relative">
+                    <div className="p-6 bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30 rounded-2xl relative transition-colors">
                         <div className="absolute -top-3 left-6 px-3 py-1 bg-red-600 text-white font-black text-[10px] rounded-full uppercase tracking-widest">The Big Warning</div>
-                        <Bold className="text-red-900 block mb-2">The 1-Hour Wall</Bold>
-                        <P className="text-sm text-red-800 mb-0 leading-relaxed">
+                        <Bold className="text-red-900 dark:text-red-400 block mb-2">The 1-Hour Wall</Bold>
+                        <P className="text-sm text-red-800 dark:text-red-300/80 mb-0 leading-relaxed">
                             When you chain roles, the session is **hard-limited to 1 hour**. This applies even if the destination role has a 12-hour max session duration. There is no workaround.
                         </P>
                     </div>

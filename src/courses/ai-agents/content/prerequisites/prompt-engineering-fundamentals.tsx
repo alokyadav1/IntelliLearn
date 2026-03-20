@@ -50,12 +50,12 @@ export default function PromptEngineeringFundamentalsContent() {
                 <P>The vaguer your prompt, the more the model fills gaps with assumptions — which leads to hallucinations and off-topic responses.</P>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-                    <div className="p-4 rounded-xl border border-rose-100 bg-rose-50/30">
-                        <P className="text-xs font-bold text-rose-600 uppercase mb-2">❌ Vague</P>
+                    <div className="p-4 rounded-xl border border-rose-100 dark:border-rose-900/50 bg-rose-50/30 dark:bg-rose-950/20">
+                        <P className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase mb-2">❌ Vague</P>
                         <P>"Summarize the email."</P>
                     </div>
-                    <div className="p-4 rounded-xl border border-emerald-100 bg-emerald-50/30">
-                        <P className="text-xs font-bold text-emerald-600 uppercase mb-2">✅ Specific</P>
+                    <div className="p-4 rounded-xl border border-emerald-100 dark:border-emerald-900/50 bg-emerald-50/30 dark:bg-emerald-950/20">
+                        <P className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase mb-2">✅ Specific</P>
                         <P>"Summarize this customer email in 2 sentences. Focus on: what they want and their order number if mentioned."</P>
                     </div>
                 </div>

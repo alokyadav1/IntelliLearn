@@ -13,23 +13,23 @@ export default function Ec2InstanceTypes() {
                     Every EC2 instance name has three key parts: the series (family), the generation, and the size. Understanding this allows you to know exactly what you're renting before looking at the specs.
                 </P>
                 
-                <div className="flex flex-col md:flex-row items-center justify-center gap-4 py-8 bg-slate-50 rounded-2xl border border-slate-200 mt-6">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 py-8 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 mt-6 transition-colors">
                     <div className="text-center p-4">
-                        <div className="text-4xl font-bold text-indigo-600 mb-1 italic">m</div>
-                        <div className="text-xs uppercase tracking-wider text-slate-500 font-semibold">Instance Family</div>
-                        <div className="text-sm text-slate-600 mt-1">(General Purpose)</div>
+                        <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-1 italic">m</div>
+                        <div className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Instance Family</div>
+                        <div className="text-sm text-slate-600 dark:text-slate-300 mt-1">(General Purpose)</div>
                     </div>
-                    <div className="text-2xl font-light text-slate-300 hidden md:block">.</div>
+                    <div className="text-2xl font-light text-slate-300 dark:text-slate-700 hidden md:block">.</div>
                     <div className="text-center p-4">
-                        <div className="text-4xl font-bold text-emerald-600 mb-1 italic">5</div>
-                        <div className="text-xs uppercase tracking-wider text-slate-500 font-semibold">Generation</div>
-                        <div className="text-sm text-slate-600 mt-1">(5th Generation)</div>
+                        <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-1 italic">5</div>
+                        <div className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Generation</div>
+                        <div className="text-sm text-slate-600 dark:text-slate-300 mt-1">(5th Generation)</div>
                     </div>
-                    <div className="text-2xl font-light text-slate-300 hidden md:block">.</div>
+                    <div className="text-2xl font-light text-slate-300 dark:text-slate-700 hidden md:block">.</div>
                     <div className="text-center p-4">
-                        <div className="text-4xl font-bold text-orange-600 mb-1 italic">large</div>
-                        <div className="text-xs uppercase tracking-wider text-slate-500 font-semibold">Size</div>
-                        <div className="text-sm text-slate-600 mt-1">(Moderate Resources)</div>
+                        <div className="text-4xl font-bold text-orange-600 dark:text-orange-400 mb-1 italic">large</div>
+                        <div className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Size</div>
+                        <div className="text-sm text-slate-600 dark:text-slate-300 mt-1">(Moderate Resources)</div>
                     </div>
                 </div>
 
@@ -78,10 +78,10 @@ export default function Ec2InstanceTypes() {
                   <div className="flex items-center gap-2 min-w-max mb-6 mt-4">
                     {["nano", "micro", "small", "medium", "large", "xlarge", "2xlarge", "4xlarge", "8xlarge", "16xlarge", "32xlarge"].map((size, index) => (
                       <div key={size} className="flex items-center">
-                        <div className={`px-3 py-1 rounded-full text-xs font-medium border ${index < 3 ? 'bg-slate-50 border-slate-200 text-slate-500' : 'bg-indigo-50 border-indigo-100 text-indigo-700'}`}>
+                        <div className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${index < 3 ? 'bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400' : 'bg-indigo-50 dark:bg-indigo-950/30 border-indigo-100 dark:border-indigo-900/30 text-indigo-700 dark:text-indigo-400'}`}>
                           {size}
                         </div>
-                        {index !== 10 && <div className="w-4 h-px bg-slate-200 mx-1" />}
+                        {index !== 10 && <div className="w-4 h-px bg-slate-200 dark:bg-slate-800 mx-1" />}
                       </div>
                     ))}
                   </div>
@@ -135,8 +135,8 @@ export default function Ec2InstanceTypes() {
                 <P>Choosing an instance is a process of elimination based on your bottleneck.</P>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                    <div className="p-5 border border-slate-200 rounded-xl hover:border-indigo-300 transition-colors">
-                        <Bold className="text-indigo-600 block mb-2">1. Identify the Bottleneck</Bold>
+                    <div className="p-5 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-indigo-300 dark:hover:border-indigo-500/50 transition-colors">
+                        <Bold className="text-indigo-600 dark:text-indigo-400 block mb-2">1. Identify the Bottleneck</Bold>
                         <BulletList items={[
                             "Balanced CPU/RAM → General Purpose (m, t)",
                             "CPU Intensive → Compute Optimized (c)",
@@ -145,8 +145,8 @@ export default function Ec2InstanceTypes() {
                             "GPU / AI Training → Accelerated (p, g)"
                         ]} />
                     </div>
-                    <div className="p-5 border border-slate-200 rounded-xl hover:border-emerald-300 transition-colors">
-                        <Bold className="text-emerald-600 block mb-2">2. Refine Based on Traffic</Bold>
+                    <div className="p-5 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-emerald-300 dark:hover:border-emerald-500/50 transition-colors">
+                        <Bold className="text-emerald-600 dark:text-emerald-400 block mb-2">2. Refine Based on Traffic</Bold>
                         <BulletList items={[
                             "Spiky/Unpredictable → t family (burstable)",
                             "Steady/Predictable → m or c (fixed)",

@@ -13,13 +13,13 @@ export default function ResourceBasedPolicies() {
                     Resource-based policies are JSON policy documents attached directly to a resource — not to an identity. They define what actions a specified principal can perform on that resource and under what conditions.
                 </P>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div className="p-6 bg-indigo-50 rounded-xl border border-indigo-100">
-                        <Bold className="text-indigo-900 block mb-2">Identity-based</Bold>
-                        <P className="text-sm text-indigo-800 mb-0">Attached to <Bold>WHO</Bold> is acting (user, role, group)</P>
+                    <div className="p-6 bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-100 dark:border-indigo-900/30 transition-colors">
+                        <Bold className="text-indigo-900 dark:text-indigo-400 block mb-2">Identity-based</Bold>
+                        <P className="text-sm text-indigo-800 dark:text-indigo-300 mb-0">Attached to <Bold>WHO</Bold> is acting (user, role, group)</P>
                     </div>
-                    <div className="p-6 bg-emerald-50 rounded-xl border border-emerald-100">
-                        <Bold className="text-emerald-900 block mb-2">Resource-based</Bold>
-                        <P className="text-sm text-emerald-800 mb-0">Attached to <Bold>WHAT</Bold> is being accessed (S3, SNS, SQS...)</P>
+                    <div className="p-6 bg-emerald-50 dark:bg-emerald-950/20 rounded-xl border border-emerald-100 dark:border-emerald-900/30 transition-colors">
+                        <Bold className="text-emerald-900 dark:text-emerald-400 block mb-2">Resource-based</Bold>
+                        <P className="text-sm text-emerald-800 dark:text-emerald-300 mb-0">Attached to <Bold>WHAT</Bold> is being accessed (S3, SNS, SQS...)</P>
                     </div>
                 </div>
             </Section>

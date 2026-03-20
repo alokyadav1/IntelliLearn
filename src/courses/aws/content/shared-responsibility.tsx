@@ -20,7 +20,7 @@ export default function SharedResponsibilityModel() {
                             [<Bold>Tenant (You)</Bold>, "Locking your apartment door, protecting your valuables, not sharing your keys."],
                         ]}
                     />
-                    <P className="mb-0 italic text-sm">
+                    <P className="mb-0 italic text-sm text-slate-500 dark:text-slate-400">
                         "The landlord can't control what you do inside — and you can't control the building's structure. Both must do their part."
                     </P>
                 </Callout>
@@ -77,7 +77,7 @@ export default function SharedResponsibilityModel() {
                         ["Hardware", "AWS", "AWS", "AWS", "AWS"],
                     ]}
                 />
-                <P className="text-xs text-slate-400 mt-2">*Security groups still your responsibility.</P>
+                <P className="text-xs text-slate-400 dark:text-slate-500 mt-2">*Security groups still your responsibility.</P>
             </Section>
 
             <Divider />

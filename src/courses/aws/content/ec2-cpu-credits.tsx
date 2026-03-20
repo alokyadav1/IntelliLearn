@@ -14,20 +14,20 @@ export default function Ec2CpuCredits() {
                 </P>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-8">
-                    <div className="p-6 bg-emerald-50 rounded-2xl border border-emerald-100 text-center">
+                    <div className="p-6 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/30 text-center transition-colors">
                         <div className="text-3xl mb-2">🔋</div>
-                        <Bold className="text-emerald-900 block mb-1">Charging</Bold>
-                        <P className="text-xs text-emerald-700 mb-0">Idle / Low CPU usage builds up your credit balance.</P>
+                        <Bold className="text-emerald-900 dark:text-emerald-400 block mb-1">Charging</Bold>
+                        <P className="text-xs text-emerald-700 dark:text-emerald-400/80 mb-0">Idle / Low CPU usage builds up your credit balance.</P>
                     </div>
-                    <div className="p-6 bg-orange-50 rounded-2xl border border-orange-100 text-center">
+                    <div className="p-6 bg-orange-50 dark:bg-orange-950/20 rounded-2xl border border-orange-100 dark:border-orange-900/30 text-center transition-colors">
                         <div className="text-3xl mb-2">🪫</div>
-                        <Bold className="text-orange-900 block mb-1">Draining</Bold>
-                        <P className="text-xs text-orange-700 mb-0">High CPU spikes consume your earned credits.</P>
+                        <Bold className="text-orange-900 dark:text-orange-400 block mb-1">Draining</Bold>
+                        <P className="text-xs text-orange-700 dark:text-orange-400/80 mb-0">High CPU spikes consume your earned credits.</P>
                     </div>
-                    <div className="p-6 bg-red-50 rounded-2xl border border-red-100 text-center">
+                    <div className="p-6 bg-red-50 dark:bg-red-950/20 rounded-2xl border border-red-100 dark:border-red-900/30 text-center transition-colors">
                         <div className="text-3xl mb-2">⚠️</div>
-                        <Bold className="text-red-900 block mb-1">Empty</Bold>
-                        <P className="text-xs text-red-700 mb-0">Balance hits 0, and you're throttled to the baseline.</P>
+                        <Bold className="text-red-900 dark:text-red-400 block mb-1">Empty</Bold>
+                        <P className="text-xs text-red-700 dark:text-red-400/80 mb-0">Balance hits 0, and you're throttled to the baseline.</P>
                     </div>
                 </div>
 
@@ -92,16 +92,16 @@ export default function Ec2CpuCredits() {
                 />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-                    <div className="p-5 border border-slate-200 rounded-xl">
-                        <Bold className="text-slate-900 block mb-2 underline decoration-indigo-500 underline-offset-4">Standard Mode</Bold>
+                    <div className="p-5 border border-slate-200 dark:border-slate-800 rounded-xl transition-colors">
+                        <Bold className="text-slate-900 dark:text-white block mb-2 underline decoration-indigo-500 underline-offset-4">Standard Mode</Bold>
                         <BulletList items={[
                             "CPU is throttled to baseline when balance is 0.",
                             "No chance of extra billing.",
                             "Best for internal apps or non-critical tasks."
                         ]} />
                     </div>
-                    <div className="p-5 border border-indigo-100 bg-indigo-50/30 rounded-xl shadow-sm">
-                        <Bold className="text-indigo-700 block mb-2 underline decoration-indigo-500 underline-offset-4">Unlimited Mode</Bold>
+                    <div className="p-5 border border-indigo-100 dark:border-indigo-900/30 bg-indigo-50/30 dark:bg-indigo-950/30 rounded-xl shadow-sm transition-colors">
+                        <Bold className="text-indigo-700 dark:text-indigo-400 block mb-2 underline decoration-indigo-500 underline-offset-4">Unlimited Mode</Bold>
                         <BulletList items={[
                             "Instance can always burst beyond baseline.",
                             "Surplus credits are billed at a flat rate.",

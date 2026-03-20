@@ -70,7 +70,7 @@ export default function JenkinsUIOverview() {
                     </div>
                 </Diagram>
 
-                <P className="mt-8 italic text-sm text-slate-500 text-center">Map of the 5 standard UI zones.</P>
+                <P className="mt-8 italic text-sm text-slate-500 dark:text-slate-400 text-center transition-colors">Map of the 5 standard UI zones.</P>
 
                 <DataTable
                     headers={["Area", "What it does"]}
@@ -93,20 +93,20 @@ export default function JenkinsUIOverview() {
                 <SubTitle>New Item</SubTitle>
                 <P>This is where you define work. The most common types are:</P>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div className="p-4 rounded-xl border border-indigo-100 bg-indigo-50/30">
-                        <Bold className="text-indigo-800 block mb-1">Pipeline</Bold>
+                    <div className="p-4 rounded-xl border border-indigo-100 dark:border-indigo-900/30 bg-indigo-50/30 dark:bg-indigo-950/20 transition-colors">
+                        <Bold className="text-indigo-800 dark:text-indigo-400 block mb-1">Pipeline</Bold>
                         <P className="text-xs mb-0">The modern standard. Defined via a <InlineCode>Jenkinsfile</InlineCode> in your Git repo.</P>
                     </div>
-                    <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
-                        <Bold className="text-slate-800 block mb-1">Freestyle project</Bold>
+                    <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 transition-colors">
+                        <Bold className="text-slate-800 dark:text-slate-200 block mb-1">Freestyle project</Bold>
                         <P className="text-xs mb-0">Simple, GUI-based configuration. Good for quick scripts.</P>
                     </div>
-                    <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
-                        <Bold className="text-slate-800 block mb-1">Multibranch Pipeline</Bold>
+                    <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 transition-colors">
+                        <Bold className="text-slate-800 dark:text-slate-200 block mb-1">Multibranch Pipeline</Bold>
                         <P className="text-xs mb-0">Automatically discovers and builds all branches in a repo.</P>
                     </div>
-                    <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
-                        <Bold className="text-slate-800 block mb-1">Folder</Bold>
+                    <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 transition-colors">
+                        <Bold className="text-slate-800 dark:text-slate-200 block mb-1">Folder</Bold>
                         <P className="text-xs mb-0">Use this to group jobs by team, project, or environment.</P>
                     </div>
                 </div>
@@ -248,9 +248,9 @@ export default function JenkinsUIOverview() {
                 ]}
             />
 
-            <Section className="mt-12 bg-indigo-50 p-8 rounded-3xl border border-indigo-100 text-center">
-                <p className="text-indigo-600 font-bold text-sm uppercase tracking-widest mb-2">Next Topic</p>
-                <h3 className="text-2xl font-bold text-slate-800 mb-4">Jobs, Builds & Workspaces</h3>
+            <Section className="mt-12 bg-indigo-50 dark:bg-indigo-950/20 p-8 rounded-3xl border border-indigo-100 dark:border-indigo-900/30 text-center transition-colors">
+                <p className="text-indigo-600 dark:text-indigo-400 font-bold text-sm uppercase tracking-widest mb-2">Next Topic</p>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-4">Jobs, Builds & Workspaces</h3>
                 <P className="mb-0">Understand the core primitives that drive every CI/CD workflow.</P>
             </Section>
         </div>
