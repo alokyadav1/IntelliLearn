@@ -23,6 +23,24 @@ export function generateStaticParams() {
     return allParams;
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<import("next").Metadata> {
+    const { topicId } = await params;
+    const match = getJenkinsTopic(topicId);
+    
+    if (!match) return { title: "Topic Not Found" };
+
+    return {
+        title: `${match.topic.title} | Jenkins | IntelliLearn`,
+        description: `Learn about ${match.topic.title} in the ${match.module.title} module of our Jenkins course.`,
+        openGraph: {
+            title: match.topic.title,
+            description: `Learn about ${match.topic.title} in the ${match.module.title} module of our Jenkins course.`,
+            type: "article",
+            url: `https://intelli-learn-jet.vercel.app/courses/jenkins/modules/${topicId}`,
+        },
+    };
+}
+
 const categoryIcons: Record<string, string> = {
     "Mandatory": "🟥",
     "Good to Know": "🟨",
@@ -43,8 +61,25 @@ export default async function JenkinsTopicPage({ params }: PageProps) {
 
     const Content = contentRegistry[topicId as keyof typeof contentRegistry];
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        headline: topic.title,
+        about: module.title,
+        educationalLevel: "beginner",
+        author: {
+            "@type": "Organization",
+            name: "IntelliLearn",
+            sameAs: "https://intelli-learn-jet.vercel.app"
+        }
+    };
+
     return (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 animate-entry">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <Breadcrumb
                 items={[
                     { name: "Jenkins", href: "/courses/jenkins" },

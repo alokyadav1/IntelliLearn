@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://intellilearn.pro/sitemap.xml',
+    sitemap: 'https://intelli-learn-jet.vercel.app/sitemap.xml',
   };
 }

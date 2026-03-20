@@ -23,6 +23,24 @@ export function generateStaticParams() {
     return allParams;
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<import("next").Metadata> {
+    const { topicId } = await params;
+    const match = getAwsTopic(topicId);
+    
+    if (!match) return { title: "Topic Not Found" };
+
+    return {
+        title: `${match.topic.title} | AWS | IntelliLearn`,
+        description: `Learn about ${match.topic.title} in the ${match.module.title} module of our AWS course.`,
+        openGraph: {
+            title: match.topic.title,
+            description: `Learn about ${match.topic.title} in the ${match.module.title} module of our AWS course.`,
+            type: "article",
+            url: `https://intelli-learn-jet.vercel.app/courses/aws/modules/${topicId}`,
+        },
+    };
+}
+
 const categoryIcons: Record<string, string> = {
     "Mandatory": "🟥",
     "Good to Know": "🟨",
@@ -43,8 +61,25 @@ export default async function AwsTopicPage({ params }: PageProps) {
 
     const Content = contentRegistry[topicId as keyof typeof contentRegistry];
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        headline: topic.title,
+        about: module.title,
+        educationalLevel: "beginner",
+        author: {
+            "@type": "Organization",
+            name: "IntelliLearn",
+            sameAs: "https://intelli-learn-jet.vercel.app"
+        }
+    };
+
     return (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 animate-entry">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <Breadcrumb
                 items={[
                     { name: "AWS", href: "/courses/aws" },
@@ -77,7 +112,7 @@ export default async function AwsTopicPage({ params }: PageProps) {
                     <div className="absolute top-0 right-0 w-64 h-64 bg-sky-50 dark:bg-sky-900/10 rounded-full blur-3xl -mr-32 -mt-32 opacity-60"></div>
                     <div className="bg-white dark:bg-slate-800 w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100 dark:border-slate-700 relative z-10">
                         <svg className="w-8 h-8 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                         </svg>
                     </div>
                     <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Content Coming Soon</h2>

@@ -21,6 +21,24 @@ export function generateStaticParams() {
     return allParams;
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<import("next").Metadata> {
+    const { topicId } = await params;
+    const match = getBuildingAIAgentsTopic(topicId);
+    
+    if (!match) return { title: "Topic Not Found" };
+
+    return {
+        title: `${match.topic.title} | AI Agents | IntelliLearn`,
+        description: `Learn about ${match.topic.title} in the ${match.module.title} module of our AI Agents course.`,
+        openGraph: {
+            title: match.topic.title,
+            description: `Learn about ${match.topic.title} in the ${match.module.title} module of our AI Agents course.`,
+            type: "article",
+            url: `https://intelli-learn-jet.vercel.app/courses/ai-agents/building-ai-agents/${topicId}`,
+        },
+    };
+}
+
 export default async function BuildingAIAgentsTopicPage({ params }: PageProps) {
     const { topicId } = await params;
     const match = getBuildingAIAgentsTopic(topicId);
@@ -33,8 +51,25 @@ export default async function BuildingAIAgentsTopicPage({ params }: PageProps) {
     const progress = await getUserProgress(COURSE_ID);
     const isCompleted = progress.completedTopics.includes(topic.id);
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        headline: topic.title,
+        about: module.title,
+        educationalLevel: "beginner",
+        author: {
+            "@type": "Organization",
+            name: "IntelliLearn",
+            sameAs: "https://intelli-learn-jet.vercel.app"
+        }
+    };
+
     return (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 animate-entry">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <Breadcrumb
                 items={[
                     { name: "AI Agents", href: "/courses/ai-agents" },
