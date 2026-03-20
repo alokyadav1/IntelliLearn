@@ -30,11 +30,11 @@ export async function generateMetadata({ params }: PageProps): Promise<import("n
     if (!match) return { title: "Topic Not Found" };
 
     return {
-        title: `${match.topic.title} | Jenkins | IntelliLearn`,
-        description: `Learn about ${match.topic.title} in the ${match.module.title} module of our Jenkins course.`,
+        title: `${match.topic.title} - ${match.module.title} | Jenkins | IntelliLearn`,
+        description: `Master ${match.topic.title} in the ${match.module.title} module. This comprehensive curriculum in our Jenkins course equips you with real-world CI/CD skills and professional pipeline workflows.`,
         openGraph: {
-            title: match.topic.title,
-            description: `Learn about ${match.topic.title} in the ${match.module.title} module of our Jenkins course.`,
+            title: `${match.topic.title} - ${match.module.title} | Jenkins CI/CD Course`,
+            description: `Master ${match.topic.title} in the ${match.module.title} module. This comprehensive curriculum in our Jenkins course equips you with real-world CI/CD skills and professional pipeline workflows.`,
             type: "article",
             url: `https://intelli-learn-jet.vercel.app/courses/jenkins/modules/${topicId}`,
         },

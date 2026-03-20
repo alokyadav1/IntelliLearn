@@ -30,11 +30,11 @@ export async function generateMetadata({ params }: PageProps): Promise<import("n
     if (!match) return { title: "Topic Not Found" };
 
     return {
-        title: `${match.topic.title} | AWS | IntelliLearn`,
-        description: `Learn about ${match.topic.title} in the ${match.module.title} module of our AWS course.`,
+        title: `${match.topic.title} - ${match.module.title} | AWS | IntelliLearn`,
+        description: `Master ${match.topic.title} in the ${match.module.title} module. This comprehensive engineering curriculum in our AWS course equips you with real-world skills and professional workflows.`,
         openGraph: {
-            title: match.topic.title,
-            description: `Learn about ${match.topic.title} in the ${match.module.title} module of our AWS course.`,
+            title: `${match.topic.title} - ${match.module.title} | AWS Course`,
+            description: `Master ${match.topic.title} in the ${match.module.title} module. This comprehensive engineering curriculum in our AWS course equips you with real-world skills and professional workflows.`,
             type: "article",
             url: `https://intelli-learn-jet.vercel.app/courses/aws/modules/${topicId}`,
         },
