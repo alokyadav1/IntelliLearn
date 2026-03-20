@@ -54,34 +54,34 @@ export default async function JenkinsTopicPage({ params }: PageProps) {
             />
 
             <header className="mb-12">
-                <div className="flex items-center space-x-3 mb-6">
-                    <div className="flex items-center space-x-2 text-sm text-orange-700 tracking-tight font-medium bg-orange-50 px-3 py-1 rounded w-fit border border-orange-100">
+                <div className="flex flex-wrap items-center gap-3 mb-6">
+                    <div className="flex items-center space-x-2 text-sm text-orange-700 dark:text-orange-400 tracking-tight font-bold bg-orange-50 dark:bg-orange-950/30 px-3 py-1.5 rounded-lg w-fit border border-orange-100 dark:border-orange-900/30 transition-colors">
                         <span>{module.title}</span>
                     </div>
-                    <div className="flex items-center space-x-2 text-sm text-slate-700 tracking-tight font-medium bg-white px-3 py-1 rounded w-fit border border-slate-200 shadow-sm">
+                    <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300 tracking-tight font-bold bg-white dark:bg-slate-800 px-3 py-1.5 rounded-lg w-fit border border-slate-200 dark:border-slate-700 shadow-sm transition-colors">
                         <span>{categoryIcons[topic.category]}</span>
                         <span className="opacity-90">{topic.category}</span>
                     </div>
                 </div>
-                <h1 className="text-4xl heading-pro text-slate-900 tracking-tight leading-snug">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl heading-pro text-slate-900 dark:text-white tracking-tight leading-tight">
                     {topic.title}
                 </h1>
             </header>
 
             {Content ? (
-                <div className="mb-16">
+                <div className="mb-16 prose dark:prose-invert max-w-none">
                     <Content />
                 </div>
             ) : (
-                <section className="card p-12 flex flex-col items-center justify-center text-center border-dashed mb-10 bg-slate-50/50 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-orange-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60"></div>
-                    <div className="bg-white w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100 relative z-10">
-                        <svg className="w-8 h-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <section className="card p-12 flex flex-col items-center justify-center text-center border-dashed mb-10 bg-slate-50/50 dark:bg-slate-900/50 relative overflow-hidden transition-colors">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-orange-50 dark:bg-orange-900/10 rounded-full blur-3xl -mr-32 -mt-32 opacity-60"></div>
+                    <div className="bg-white dark:bg-slate-800 w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100 dark:border-slate-700 relative z-10">
+                        <svg className="w-8 h-8 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
                         </svg>
                     </div>
-                    <h2 className="text-xl font-bold text-slate-900 mb-2">Content Coming Soon</h2>
-                    <p className="text-slate-500 max-w-lg">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Content Coming Soon</h2>
+                    <p className="text-slate-600 dark:text-slate-400 max-w-lg">
                         The curriculum data for <strong>{topic.title}</strong> is currently being assembled. Check back soon for comprehensive materials on this subject.
                     </p>
                 </section>

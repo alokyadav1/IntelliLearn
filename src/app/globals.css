@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   --font-inter: "Inter", sans-serif;
   
@@ -31,6 +33,17 @@
   --foreground: #0f172a;
   --primary: #4f46e5;
   --secondary: #f43f5e;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+}
+
+.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --primary: #6366f1;
+  --secondary: #fb7185;
+  --card-bg: #0f172a;
+  --card-border: #1e293b;
 }
 
 body {
@@ -51,15 +64,25 @@ body {
   -webkit-backdrop-filter: blur(8px);
 }
 
+.dark .glass {
+  background: rgba(15, 23, 42, 0.7);
+}
+
 .card {
-  background: white;
-  border: 1px solid #e2e8f0;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 1rem;
-  transition: box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .card:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.dark .card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  border-color: #312e81;
 }
 
 .code-block {

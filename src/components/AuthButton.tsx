@@ -13,22 +13,22 @@ export default function AuthButton({ session }: AuthButtonProps) {
         return (
             // Always flex-row — avatar + name pill stays inline on all screen sizes
             <div className="flex flex-row items-center gap-2">
-                <div className="flex items-center gap-2 px-2 py-1.5 border border-slate-200/60 bg-white rounded-xl shadow-sm">
+                <div className="flex items-center gap-2 px-2 py-1.5 border border-slate-200/60 dark:border-slate-700/60 bg-white dark:bg-slate-800 rounded-xl shadow-sm transition-colors">
                     {session.user.image ? (
                         <Image
                             src={session.user.image}
                             alt={session.user.name || "User"}
                             width={24}
                             height={24}
-                            className="rounded-full border border-slate-200 shadow-sm shrink-0"
+                            className="rounded-full border border-slate-200 dark:border-slate-600 shadow-sm shrink-0 transition-colors"
                         />
                     ) : (
-                        <div className="w-6 h-6 shrink-0 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold border border-slate-200 shadow-sm text-[10px]">
+                        <div className="w-6 h-6 shrink-0 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 font-bold border border-slate-200 dark:border-slate-600 shadow-sm text-[10px] transition-colors">
                             {(session.user.name || "U").charAt(0).toUpperCase()}
                         </div>
                     )}
                     {/* Name: hidden on mobile (xs), visible on sm+ */}
-                    <span className="hidden sm:block text-xs font-bold text-slate-800 tracking-tight truncate max-w-[90px]">
+                    <span className="hidden sm:block text-xs font-bold text-slate-800 dark:text-slate-200 tracking-tight truncate max-w-[90px] transition-colors">
                         {session.user.name}
                     </span>
                 </div>
@@ -37,7 +37,7 @@ export default function AuthButton({ session }: AuthButtonProps) {
                 <form action={handleSignOut}>
                     <button
                         type="submit"
-                        className="hidden sm:block text-slate-500 hover:text-rose-600 font-medium text-xs transition-colors px-2 py-1 whitespace-nowrap"
+                        className="hidden sm:block text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 font-medium text-xs transition-colors px-2 py-1 whitespace-nowrap"
                     >
                         Sign Out
                     </button>
@@ -51,7 +51,7 @@ export default function AuthButton({ session }: AuthButtonProps) {
             {/* Full button on sm+, icon-only square on mobile */}
             <button
                 type="submit"
-                className="hidden sm:flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold py-2 px-4 rounded-lg transition-all text-sm shadow-sm border border-slate-800"
+                className="hidden sm:flex items-center gap-2 bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-white text-white dark:text-slate-900 font-semibold py-2 px-4 rounded-lg transition-all text-sm shadow-sm border border-slate-800 dark:border-slate-200"
             >
                 <GitHubIcon />
                 Sign in with GitHub
@@ -59,7 +59,7 @@ export default function AuthButton({ session }: AuthButtonProps) {
             <button
                 type="submit"
                 aria-label="Sign in with GitHub"
-                className="sm:hidden w-9 h-9 flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-white rounded-lg transition-all shadow-sm border border-slate-800"
+                className="sm:hidden w-9 h-9 flex items-center justify-center bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-white text-white dark:text-slate-900 rounded-lg transition-all shadow-sm border border-slate-800 dark:border-slate-200"
             >
                 <GitHubIcon />
             </button>

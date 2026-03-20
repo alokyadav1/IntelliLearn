@@ -54,34 +54,34 @@ export default async function TopicPage({ params }: PageProps) {
             />
 
             <header className="mb-12">
-                <div className="flex items-center space-x-3 mb-6">
-                    <div className="flex items-center space-x-2 text-sm text-indigo-700 tracking-tight font-medium bg-indigo-50 px-3 py-1 rounded w-fit border border-indigo-100">
+                <div className="flex flex-wrap items-center gap-3 mb-6">
+                    <div className="flex items-center space-x-2 text-sm text-indigo-700 dark:text-indigo-400 tracking-tight font-bold bg-indigo-50 dark:bg-indigo-950/30 px-3 py-1.5 rounded-lg w-fit border border-indigo-100 dark:border-indigo-900/30 transition-colors">
                         <span>{module.title}</span>
                     </div>
-                    <div className="flex items-center space-x-2 text-sm text-slate-700 tracking-tight font-medium bg-white px-3 py-1 rounded w-fit border border-slate-200 shadow-sm">
+                    <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300 tracking-tight font-bold bg-white dark:bg-slate-800 px-3 py-1.5 rounded-lg w-fit border border-slate-200 dark:border-slate-700 shadow-sm transition-colors">
                         <span>{categoryIcons[topic.category]}</span>
                         <span className="opacity-90">{topic.category}</span>
                     </div>
                 </div>
-                <h1 className="text-4xl heading-pro text-slate-900 tracking-tight leading-snug">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl heading-pro text-slate-900 dark:text-white tracking-tight leading-tight">
                     {topic.title}
                 </h1>
             </header>
 
             {ContentComponent ? (
-                <div className="mb-10">
+                <div className="mb-10 prose dark:prose-invert max-w-none">
                     <ContentComponent />
                 </div>
             ) : (
-                <section className="card p-12 flex flex-col items-center justify-center text-center border-dashed mb-10 bg-slate-50/50 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60"></div>
-                    <div className="bg-white w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100 relative z-10">
-                        <svg className="w-8 h-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <section className="card p-12 flex flex-col items-center justify-center text-center border-dashed mb-10 bg-slate-50/50 dark:bg-slate-900/50 relative overflow-hidden transition-colors">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 dark:bg-indigo-900/10 rounded-full blur-3xl -mr-32 -mt-32 opacity-60"></div>
+                    <div className="bg-white dark:bg-slate-800 w-24 h-24 rounded-full flex flex-col items-center justify-center mb-6 shadow-sm border border-slate-100 dark:border-slate-700 relative z-10">
+                        <svg className="w-8 h-8 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                         </svg>
                     </div>
-                    <h2 className="text-xl font-bold text-slate-900 mb-2">Content Coming Soon</h2>
-                    <p className="text-slate-500 max-w-lg">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Content Coming Soon</h2>
+                    <p className="text-slate-600 dark:text-slate-400 max-w-lg">
                         The curriculum data for <strong>{topic.title}</strong> is currently being assembled. Check back soon for comprehensive materials on this subject.
                     </p>
                 </section>
