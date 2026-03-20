@@ -8,36 +8,12 @@ import ResetAllProgressDialog from "@/components/ResetAllProgressDialog";
 import { totalCourseTopics as aiAgentsTotalTopics } from "@/courses/ai-agents/config/course.config";
 import { jenkinsModules } from "@/courses/jenkins/config/modules.config";
 import { awsModules } from "@/courses/aws/config/modules.config";
+import { DESIGN_TOKENS, DEFAULT_DESIGN, type AccentColor } from "@/config/design.config";
+import type { Metadata } from "next";
 
 interface CoursePageProps {
     params: Promise<{ courseSlug: string }>;
 }
-
-// ─── Accent color maps ───────────────────────────────────────────────────────
-const heroBg: Record<string, string> = {
-    indigo: "from-indigo-50 to-white border-indigo-100",
-    orange: "from-orange-50 to-white border-orange-100",
-    sky: "from-sky-50 to-white border-sky-100",
-    emerald: "from-emerald-50 to-white border-emerald-100",
-};
-const badgeColor: Record<string, string> = {
-    indigo: "text-indigo-600",
-    orange: "text-orange-600",
-    sky: "text-sky-600",
-    emerald: "text-emerald-600",
-};
-const linkColor: Record<string, string> = {
-    indigo: "bg-indigo-600 hover:bg-indigo-700 shadow-indigo-200",
-    orange: "bg-orange-600 hover:bg-orange-700 shadow-orange-200",
-    sky: "bg-sky-600 hover:bg-sky-700 shadow-sky-200",
-    emerald: "bg-emerald-600 hover:bg-emerald-700 shadow-emerald-200",
-};
-const borderAccent: Record<string, string> = {
-    indigo: "border-l-indigo-500",
-    orange: "border-l-orange-500",
-    sky: "border-l-sky-500",
-    emerald: "border-l-emerald-500",
-};
 
 /** Map course slugs to their total topic count */
 const courseTotalTopics: Record<string, number> = {
@@ -50,12 +26,30 @@ export async function generateStaticParams() {
     return courses.filter((c) => c.published).map((c) => ({ courseSlug: c.slug }));
 }
 
+export async function generateMetadata({ params }: CoursePageProps): Promise<Metadata> {
+    const { courseSlug } = await params;
+    const course = getCourseBySlug(courseSlug);
+    
+    if (!course) return { title: "Course Not Found" };
+
+    return {
+        title: `${course.title} | IntelliLearn`,
+        description: course.description,
+        openGraph: {
+            title: course.title,
+            description: course.description,
+            type: "website",
+        },
+    };
+}
+
 export default async function CourseOverviewPage({ params }: CoursePageProps) {
     const { courseSlug } = await params;
     const course = getCourseBySlug(courseSlug);
     if (!course) notFound();
 
-    const ac = course.accentColor;
+    const ac = (course.accentColor as AccentColor) || "indigo";
+    const tokens = DESIGN_TOKENS[ac] || DEFAULT_DESIGN;
 
     // ── Progress (only for courses that have a topic config) ────────────────
     const session = await auth();
@@ -72,17 +66,17 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
     return (
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 animate-entry">
             {/* ── Hero ─────────────────────────────────────────────── */}
-            <div className={`rounded-3xl border bg-gradient-to-br ${heroBg[ac] ?? heroBg["indigo"]} p-6 sm:p-8 lg:p-12 mb-8 sm:mb-12 relative overflow-hidden`}>
-                <div className="absolute top-0 right-0 w-72 h-72 bg-white/60 rounded-full blur-3xl -mr-24 -mt-24" />
+            <div className={`rounded-3xl border dark:border-slate-800 bg-gradient-to-br ${tokens.heroBg} p-6 sm:p-8 lg:p-12 mb-8 sm:mb-12 relative overflow-hidden group transition-colors duration-300`}>
+                <div className="absolute top-0 right-0 w-72 h-72 bg-white/20 dark:bg-white/5 rounded-full blur-3xl -mr-24 -mt-24 transition-transform group-hover:scale-110 duration-700" />
                 <div className="relative">
-                    <div className={`label-small ${badgeColor[ac] ?? badgeColor["indigo"]} mb-4 tracking-widest`}>
+                    <div className={`label-small ${tokens.badgeText} mb-4 tracking-widest animate-in fade-in slide-in-from-left-4 duration-500`}>
                         {course.category.toUpperCase()}
                     </div>
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl heading-pro text-slate-900 mb-4 sm:mb-6 tracking-tight">{course.title}</h1>
-                    <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl leading-relaxed mb-6 sm:mb-8">{course.description}</p>
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl heading-pro text-slate-900 dark:text-white mb-4 sm:mb-6 tracking-tight animate-in fade-in slide-in-from-left-6 duration-700">{course.title}</h1>
+                    <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mb-6 sm:mb-8 animate-in fade-in slide-in-from-left-8 duration-1000">{course.description}</p>
                     <Link
                         href={course.navLinks[1]?.href ?? `#`}
-                        className={`inline-flex items-center gap-2 ${linkColor[ac] ?? linkColor["indigo"]} text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-lg`}
+                        className={`inline-flex items-center gap-2 ${tokens.linkBg} text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-lg hover:scale-105 active:scale-95`}
                     >
                         Start Learning
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -94,11 +88,11 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
 
             {/* ── Course-level Progress ─────────────────────────────── */}
             {hasProgress && session?.user && (
-                <section className="card p-6 sm:p-8 mb-10">
+                <section className="card p-6 sm:p-8 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                         <div>
-                            <h2 className="text-lg font-bold text-slate-900 tracking-tight">Your Progress</h2>
-                            <p className="text-sm text-slate-500 mt-0.5">Across all modules in this course</p>
+                            <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight">Your Progress</h2>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Across all modules in this course</p>
                         </div>
                         <div className="flex justify-start sm:justify-end">
                             <ResetAllProgressDialog courseId={courseSlug} />
@@ -109,24 +103,27 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
             )}
 
             {/* ── Course Modules ────────────────────────────────────── */}
-            <section>
-                <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 mb-8">Course Curriculum</h2>
-                <div className="space-y-4">
+            <section className="animate-in fade-in slide-in-from-bottom-6 duration-700">
+                <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 mb-8">Course Curriculum</h2>
+                <div className="grid gap-4 lg:grid-cols-1">
                     {course.navLinks.slice(1).map((link, idx) => (
                         <Link
                             key={link.href}
                             href={link.href}
-                            className={`card p-6 group flex items-center gap-6 border-l-4 ${borderAccent[ac] ?? borderAccent["indigo"]} hover:shadow-md transition-all`}
+                            className={`card p-6 group flex items-center gap-6 border-l-4 ${tokens.borderAccent} hover:shadow-md transition-all hover:scale-[1.01] active:scale-[0.99]`}
                         >
-                            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center shrink-0 font-bold text-slate-500 text-sm group-hover:bg-white transition-colors border border-slate-200">
+                            <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 font-bold text-slate-500 dark:text-slate-400 text-sm group-hover:bg-white dark:group-hover:bg-slate-700 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors border border-slate-200 dark:border-slate-700">
                                 {String(idx + 1).padStart(2, "0")}
                             </div>
-                            <div className="flex-1">
-                                <div className="font-bold text-slate-900 tracking-tight group-hover:text-indigo-700 transition-colors">{link.name}</div>
+                            <div className="flex-1 min-w-0">
+                                <div className="font-bold text-slate-900 dark:text-slate-100 tracking-tight group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors truncate">{link.name}</div>
                             </div>
-                            <svg className="w-5 h-5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
+                            <div className="flex items-center gap-2">
+                                <span className={`text-xs font-bold uppercase tracking-widest text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline`}>View Module</span>
+                                <svg className="w-5 h-5 text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
                         </Link>
                     ))}
                 </div>

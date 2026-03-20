@@ -6,12 +6,27 @@ import { PLATFORM_NAME } from "@/config/platform.config";
 import { auth } from "@/auth";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
+import { ThemeProvider } from "@/components/ThemeProvider"
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
 export const metadata: Metadata = {
   title: `${PLATFORM_NAME} | Engineering Courses`,
   description: "Master modern engineering — AI Agents, DevOps, Cloud, and more.",
+  metadataBase: new URL('https://intellilearn.pro'),
+  openGraph: {
+    title: PLATFORM_NAME,
+    description: "Master modern engineering — AI Agents, DevOps, Cloud, and more.",
+    url: 'https://intellilearn.pro',
+    siteName: PLATFORM_NAME,
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: PLATFORM_NAME,
+    description: "Master modern engineering.",
+  },
 };
 
 export default async function RootLayout({
@@ -23,13 +38,20 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${inter.className} antialiased selection:bg-indigo-100 selection:text-indigo-900 min-h-screen bg-slate-50 flex flex-col`}>
-        <Header session={session} />
-        <main className="flex-1 relative w-full">
-          {children}
-        </main>
-        <SpeedInsights />
-        <Analytics />
+      <body className={`${inter.className} antialiased selection:bg-indigo-100 selection:text-indigo-900 min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col transition-colors duration-300`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header session={session} />
+          <main className="flex-1 relative w-full">
+            {children}
+          </main>
+          <SpeedInsights />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );
