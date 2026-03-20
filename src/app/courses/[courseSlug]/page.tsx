@@ -29,7 +29,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: CoursePageProps): Promise<Metadata> {
     const { courseSlug } = await params;
     const course = getCourseBySlug(courseSlug);
-    
+
     if (!course) return { title: "Course Not Found" };
 
     return {
@@ -63,8 +63,28 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
 
     const hasProgress = totalTopics > 0;
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        name: course.title,
+        description: course.description,
+        provider: {
+            "@type": "Organization",
+            name: "IntelliLearn",
+            sameAs: "https://intelli-learn-jet.vercel.app"
+        },
+        hasCourseInstance: {
+            "@type": "CourseInstance",
+            courseMode: "online"
+        }
+    };
+
     return (
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 animate-entry">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             {/* ── Hero ─────────────────────────────────────────────── */}
             <div className={`rounded-3xl border dark:border-slate-800 bg-gradient-to-br ${tokens.heroBg} p-6 sm:p-8 lg:p-12 mb-8 sm:mb-12 relative overflow-hidden group transition-colors duration-300`}>
                 <div className="absolute top-0 right-0 w-72 h-72 bg-white/20 dark:bg-white/5 rounded-full blur-3xl -mr-24 -mt-24 transition-transform group-hover:scale-110 duration-700" />

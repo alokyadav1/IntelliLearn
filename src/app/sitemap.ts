@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { courses } from "@/config/platform.config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://intellilearn.pro';
+  const baseUrl = 'https://intelli-learn-jet.vercel.app';
   
   // Root and Category pages
   const staticPages = [

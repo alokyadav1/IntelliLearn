@@ -13,11 +13,11 @@ const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "
 export const metadata: Metadata = {
   title: `${PLATFORM_NAME} | Engineering Courses`,
   description: "Master modern engineering — AI Agents, DevOps, Cloud, and more.",
-  metadataBase: new URL('https://intellilearn.pro'),
+  metadataBase: new URL('https://intelli-learn-jet.vercel.app'),
   openGraph: {
     title: PLATFORM_NAME,
     description: "Master modern engineering — AI Agents, DevOps, Cloud, and more.",
-    url: 'https://intellilearn.pro',
+    url: 'https://intelli-learn-jet.vercel.app',
     siteName: PLATFORM_NAME,
     locale: 'en_US',
     type: 'website',
