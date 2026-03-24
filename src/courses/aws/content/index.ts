@@ -17,6 +17,8 @@ import Ec2Overview from "./ec2-overview";
 import Ec2InstanceTypes from "./ec2-instance-types";
 import Ec2CpuCredits from "./ec2-cpu-credits";
 import Ec2StorageVolumes from "./ec2-storage-volumes";
+import Ec2KeyPairs from "./ec2-keypairs";
+import Ec2ElasticIp from "./ec2-elastic-ip";
 
 const contentRegistry: Record<string, React.ComponentType> = {
   "what-is-cloud-computing": WhatIsCloudComputing,
@@ -37,6 +39,8 @@ const contentRegistry: Record<string, React.ComponentType> = {
   "ec2-instance-types": Ec2InstanceTypes,
   "ec2-cpu-credits": Ec2CpuCredits,
   "ec2-storage-volumes": Ec2StorageVolumes,
+  "ec2-keypairs": Ec2KeyPairs,
+  "ec2-elastic-ip": Ec2ElasticIp,
 };
 
 export default contentRegistry;

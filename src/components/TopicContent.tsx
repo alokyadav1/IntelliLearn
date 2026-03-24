@@ -45,7 +45,7 @@ export function Bold({ children, className = "" }: { children: React.ReactNode; 
 export function BulletList({ items, className = "" }: { items: React.ReactNode[]; className?: string }) {
     return (
         <ul className={`space-y-2 mb-5 ${className}`}>
-            {React.Children.toArray(items).map((item, i) => (
+            {items.map((item, i) => (
                 <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-600 dark:text-slate-300">
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 dark:bg-indigo-500 shrink-0" />
                     <span className="leading-relaxed">{item}</span>
@@ -58,7 +58,7 @@ export function BulletList({ items, className = "" }: { items: React.ReactNode[]
 export function NumberedList({ items, className = "" }: { items: React.ReactNode[]; className?: string }) {
     return (
         <ol className={`space-y-2 mb-5 ${className}`}>
-            {React.Children.toArray(items).map((item, i) => (
+            {items.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-[15px] text-slate-600 dark:text-slate-300">
                     <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-400 text-xs font-bold flex items-center justify-center">
                         {i + 1}
@@ -434,7 +434,7 @@ export function SummaryCard({ title = "✅ Key Takeaways", items, className = ""
         <div className={`rounded-2xl bg-gradient-to-br from-indigo-50 to-slate-50 dark:from-indigo-950/40 dark:to-slate-900 border border-indigo-100 dark:border-indigo-900/50 p-6 mt-10 ${className}`}>
             <p className="text-sm font-bold text-indigo-700 dark:text-indigo-400 uppercase tracking-widest mb-4">{title}</p>
             <ul className="space-y-2.5">
-                {React.Children.toArray(items).map((item, i) => (
+                {items.map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-[15px] text-slate-700 dark:text-slate-300">
                         <svg className="w-4 h-4 text-indigo-500 dark:text-indigo-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
