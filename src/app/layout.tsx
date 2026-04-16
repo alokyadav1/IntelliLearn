@@ -38,7 +38,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased selection:bg-indigo-100 selection:text-indigo-900 min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col transition-colors duration-300`}>
+      <body className={`${inter.className} antialiased selection:bg-indigo-100 selection:text-indigo-900 min-h-screen bg-background text-foreground flex flex-col transition-colors duration-300`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -49,14 +49,14 @@ export default function MobileSidebarWrapper({ children, triggerLabel = "Menu" }
 
             {/* Drawer */}
             <div
-                className={`lg:hidden fixed inset-y-0 left-0 z-50 w-[85vw] max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${
+                className={`lg:hidden fixed inset-y-0 left-0 z-50 w-[85vw] max-w-sm bg-card shadow-2xl transform transition-transform duration-300 ease-in-out ${
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >
                 {/* Close button inside drawer */}
                 <button
                     onClick={() => setIsOpen(false)}
-                    className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors"
+                    className="absolute top-4 right-4 w-8 h-8 rounded-full bg-muted hover:bg-muted/80 flex items-center justify-center text-muted-foreground transition-colors"
                     aria-label="Close sidebar"
                 >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
