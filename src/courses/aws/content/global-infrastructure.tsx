@@ -16,20 +16,20 @@ export default function AwsGlobalInfrastructure() {
                     <div className="flex flex-col md:flex-row gap-6 justify-around items-center">
                         <div className="text-center group cursor-default">
                             <div className="text-4xl mb-2 transition-transform group-hover:scale-110">🌎</div>
-                            <div className="font-bold text-slate-900">Region</div>
-                            <div className="text-xs text-slate-500 uppercase tracking-widest mt-1">A City (Mumbai)</div>
+                            <div className="font-bold text-slate-900 dark:text-white transition-colors">Region</div>
+                            <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest mt-1 transition-colors">A City (Mumbai)</div>
                         </div>
-                        <div className="text-slate-300 text-2xl hidden md:block">→</div>
+                        <div className="text-slate-300 dark:text-slate-700 text-2xl hidden md:block transition-colors">→</div>
                         <div className="text-center group cursor-default">
                             <div className="text-4xl mb-2 transition-transform group-hover:scale-110">🏢</div>
-                            <div className="font-bold text-slate-900">Availability Zone</div>
-                            <div className="text-xs text-slate-500 uppercase tracking-widest mt-1">A Neighborhood</div>
+                            <div className="font-bold text-slate-900 dark:text-white transition-colors">Availability Zone</div>
+                            <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest mt-1 transition-colors">A Neighborhood</div>
                         </div>
-                        <div className="text-slate-300 text-2xl hidden md:block">→</div>
+                        <div className="text-slate-300 dark:text-slate-700 text-2xl hidden md:block transition-colors">→</div>
                         <div className="text-center group cursor-default">
                             <div className="text-4xl mb-2 transition-transform group-hover:scale-110">📡</div>
-                            <div className="font-bold text-slate-900">Edge Location</div>
-                            <div className="text-xs text-slate-500 uppercase tracking-widest mt-1">A Post Office</div>
+                            <div className="font-bold text-slate-900 dark:text-white transition-colors">Edge Location</div>
+                            <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest mt-1 transition-colors">A Post Office</div>
                         </div>
                     </div>
                 </Diagram>
@@ -88,16 +88,16 @@ export default function AwsGlobalInfrastructure() {
                     Edge Locations are cache points deployed in major cities. They are not used to deploy servers like EC2, but are used by <Bold>CloudFront</Bold> and <Bold>Route 53</Bold> to serve data closer to users.
                 </P>
                 <Diagram label="Real-World Data Flow">
-                    <div className="space-y-4 font-mono text-sm text-slate-700">
+                    <div className="space-y-4 font-mono text-sm text-slate-700 dark:text-slate-300 transition-colors">
                         <div className="flex items-center gap-4">
-                            <span className="w-24 px-2 py-1 bg-indigo-50 border border-indigo-100 rounded text-center">S3 Bucket</span>
+                            <span className="w-24 px-2 py-1 bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/30 rounded text-center transition-colors">S3 Bucket</span>
                             <span>→ Mumbai Region (Origin)</span>
                         </div>
                         <div className="flex items-center gap-4">
-                            <span className="w-24 px-2 py-1 bg-emerald-50 border border-emerald-100 rounded text-center">User</span>
+                            <span className="w-24 px-2 py-1 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/30 rounded text-center transition-colors">User</span>
                             <span>→ Hits Nearest Edge (Delhi PoP)</span>
                         </div>
-                        <div className="flex items-center gap-4 pl-8 border-l-2 border-slate-100 ml-12 py-2 text-indigo-600 font-bold">
+                        <div className="flex items-center gap-4 pl-8 border-l-2 border-slate-100 dark:border-slate-800 ml-12 py-2 text-indigo-600 dark:text-indigo-400 font-bold transition-colors">
                             <span>Response in ~5ms (instead of ~50ms)</span>
                         </div>
                     </div>

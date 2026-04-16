@@ -14,21 +14,21 @@ export default function IamRoles() {
                 </P>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                    <div className="p-6 bg-blue-50 rounded-xl border border-blue-100">
+                    <div className="p-6 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-100 dark:border-blue-900/30 transition-colors">
                         <div className="flex items-center gap-3 mb-3">
                             <span className="text-2xl">👤</span>
-                            <Bold className="text-blue-900 text-lg">IAM User</Bold>
+                            <Bold className="text-blue-900 dark:text-blue-400 text-lg transition-colors">IAM User</Bold>
                         </div>
-                        <P className="text-sm text-blue-800 mb-0">
+                        <P className="text-sm text-blue-800 dark:text-blue-300 mb-0 transition-colors">
                             <Bold>Employee badge</Bold> — Permanent, belongs to one specific person or application.
                         </P>
                     </div>
-                    <div className="p-6 bg-purple-50 rounded-xl border border-purple-100">
+                    <div className="p-6 bg-purple-50 dark:bg-purple-950/20 rounded-xl border border-purple-100 dark:border-purple-900/30 transition-colors">
                         <div className="flex items-center gap-3 mb-3">
                             <span className="text-2xl">🎫</span>
-                            <Bold className="text-purple-900 text-lg">IAM Role</Bold>
+                            <Bold className="text-purple-900 dark:text-purple-400 text-lg transition-colors">IAM Role</Bold>
                         </div>
-                        <P className="text-sm text-purple-800 mb-0">
+                        <P className="text-sm text-purple-800 dark:text-purple-300 mb-0 transition-colors">
                             <Bold>Visitor pass</Bold> — Temporary, anyone eligible can "wear it" for a specific duration.
                         </P>
                     </div>
@@ -41,18 +41,18 @@ export default function IamRoles() {
                 <SectionTitle>🔑 A Role Has Exactly 2 Policies</SectionTitle>
                 <P>Every IAM role is built on two distinct types of policies that work together to secure access:</P>
                 
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 font-mono text-sm space-y-3 mt-6">
-                    <div className="text-slate-900 font-bold text-base">IAM Role Structure</div>
+                <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-sm space-y-3 mt-6 transition-colors">
+                    <div className="text-slate-900 dark:text-slate-100 font-bold text-base transition-colors">IAM Role Structure</div>
                     <div className="pl-4 flex items-start gap-2">
-                        <span className="text-indigo-600 font-bold">├── Trust Policy</span>
-                        <span className="text-slate-500">→ <Bold>WHO</Bold> can wear this hat? (The "Front Door")</span>
+                        <span className="text-indigo-600 dark:text-indigo-400 font-bold transition-colors">├── Trust Policy</span>
+                        <span className="text-slate-500 dark:text-slate-400 transition-colors">→ <Bold>WHO</Bold> can wear this hat? (The "Front Door")</span>
                     </div>
                     <div className="pl-4 flex items-start gap-2">
-                        <span className="text-emerald-600 font-bold">└── Permissions Policy</span>
-                        <span className="text-slate-500">→ <Bold>WHAT</Bold> can they do while wearing it?</span>
+                        <span className="text-emerald-600 dark:text-emerald-400 font-bold transition-colors">└── Permissions Policy</span>
+                        <span className="text-slate-500 dark:text-slate-400 transition-colors">→ <Bold>WHAT</Bold> can they do while wearing it?</span>
                     </div>
                 </div>
-                <P className="mt-4 italic text-slate-500 text-sm">Think of it as a two-door system — you must pass both doors to get in.</P>
+                <P className="mt-4 italic text-slate-500 dark:text-slate-400 text-sm transition-colors">Think of it as a two-door system — you must pass both doors to get in.</P>
             </Section>
 
             <Divider />
@@ -149,21 +149,21 @@ export default function IamRoles() {
             <Section>
                 <SectionTitle>📦 4 Common Role Types</SectionTitle>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                        <Bold className="text-slate-900 block mb-1">1. Service Role</Bold>
-                        <P className="text-sm text-slate-600 mb-0">Used by EC2, Lambda, or ECS to interact with other AWS services automatically.</P>
+                    <div className="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-800 transition-colors">
+                        <Bold className="text-slate-900 dark:text-slate-100 block mb-1">1. Service Role</Bold>
+                        <P className="text-sm text-slate-600 dark:text-slate-400 mb-0">Used by EC2, Lambda, or ECS to interact with other AWS services automatically.</P>
                     </div>
-                    <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                        <Bold className="text-slate-900 block mb-1">2. Cross-Account Role</Bold>
-                        <P className="text-sm text-slate-600 mb-0">Allows users from Account A to securely manage resources in Account B without creating local users.</P>
+                    <div className="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-800 transition-colors">
+                        <Bold className="text-slate-900 dark:text-slate-100 block mb-1">2. Cross-Account Role</Bold>
+                        <P className="text-sm text-slate-600 dark:text-slate-400 mb-0">Allows users from Account A to securely manage resources in Account B without creating local users.</P>
                     </div>
-                    <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                        <Bold className="text-slate-900 block mb-1">3. EC2 Instance Profile</Bold>
-                        <P className="text-sm text-slate-600 mb-0">A container for an IAM role that you can use to pass role information to an EC2 instance at launch.</P>
+                    <div className="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-800 transition-colors">
+                        <Bold className="text-slate-900 dark:text-slate-100 block mb-1">3. EC2 Instance Profile</Bold>
+                        <P className="text-sm text-slate-600 dark:text-slate-400 mb-0">A container for an IAM role that you can use to pass role information to an EC2 instance at launch.</P>
                     </div>
-                    <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                        <Bold className="text-slate-900 block mb-1">4. CI/CD Pipeline Role</Bold>
-                        <P className="text-sm text-slate-600 mb-0">Allows GitHub Actions or Jenkins to deploy code to AWS using temporary, secure credentials.</P>
+                    <div className="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-800 transition-colors">
+                        <Bold className="text-slate-900 dark:text-slate-100 block mb-1">4. CI/CD Pipeline Role</Bold>
+                        <P className="text-sm text-slate-600 dark:text-slate-400 mb-0">Allows GitHub Actions or Jenkins to deploy code to AWS using temporary, secure credentials.</P>
                     </div>
                 </div>
             </Section>

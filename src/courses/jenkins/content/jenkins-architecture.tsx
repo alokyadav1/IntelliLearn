@@ -120,37 +120,37 @@ export default function JenkinsArchitecture() {
                 </P>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    <div className="p-5 rounded-2xl border border-slate-200 bg-white">
-                        <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                            <span className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-sm">🔑</span>
+                    <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 transition-colors">
+                        <h4 className="font-bold text-slate-900 dark:text-slate-200 mb-3 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-sm">🔑</span>
                             SSH Agent
                         </h4>
                         <P className="text-xs mb-4">Controller initiates connection to agent. Best for Linux.</P>
-                        <Diagram className="!p-4 bg-slate-50 border-0 mb-0">
+                        <Diagram className="!p-4 bg-slate-50 dark:bg-slate-950/30 border-0 mb-0">
                             <p className="text-[10px] font-mono leading-tight whitespace-pre">
                                 {`Controller ──SSH──▶ Agent`}
                             </p>
                         </Diagram>
                     </div>
-                    <div className="p-5 rounded-2xl border border-slate-200 bg-white">
-                        <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                            <span className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-sm">📡</span>
+                    <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 transition-colors">
+                        <h4 className="font-bold text-slate-900 dark:text-slate-200 mb-3 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-sm">📡</span>
                             Inbound Agent
                         </h4>
                         <P className="text-xs mb-4">Agent connects to Controller. Best for firewalled nodes.</P>
-                        <Diagram className="!p-4 bg-slate-50 border-0 mb-0">
+                        <Diagram className="!p-4 bg-slate-50 dark:bg-slate-950/30 border-0 mb-0">
                             <p className="text-[10px] font-mono leading-tight whitespace-pre">
                                 {`Agent ──TCP/WS──▶ Controller`}
                             </p>
                         </Diagram>
                     </div>
-                    <div className="p-5 rounded-2xl border border-slate-200 bg-white">
-                        <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                            <span className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-sm">🐳</span>
+                    <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 transition-colors">
+                        <h4 className="font-bold text-slate-900 dark:text-slate-200 mb-3 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-sm">🐳</span>
                             Docker Agent
                         </h4>
                         <P className="text-xs mb-4">Ephemeral containers created per-build. Cleanest approach.</P>
-                        <Diagram className="!p-4 bg-slate-50 border-0 mb-0">
+                        <Diagram className="!p-4 bg-slate-50 dark:bg-slate-950/30 border-0 mb-0">
                             <p className="text-[10px] font-mono leading-tight whitespace-pre">
                                 {`Controller ──API──▶ Docker`}
                             </p>
@@ -178,32 +178,32 @@ export default function JenkinsArchitecture() {
                     Labels are tags you assign to agents. Your pipeline then requests a specific label to find the right environment.
                 </P>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 transition-colors">
                         <P className="font-bold mb-4 opacity-50 uppercase tracking-tighter text-xs">Environment Definition</P>
                         <ul className="space-y-3">
                             <li className="flex gap-2 text-sm">
-                                <Bold className="shrink-0 text-indigo-600 font-mono">SRV-01:</Bold>
-                                <span className="text-slate-600 font-medium">labels: <InlineCode>linux</InlineCode>, <InlineCode>docker</InlineCode>, <InlineCode>java</InlineCode></span>
+                                <Bold className="shrink-0 text-indigo-600 dark:text-indigo-400 font-mono">SRV-01:</Bold>
+                                <span className="text-slate-600 dark:text-slate-400 font-medium">labels: <InlineCode>linux</InlineCode>, <InlineCode>docker</InlineCode>, <InlineCode>java</InlineCode></span>
                             </li>
                             <li className="flex gap-2 text-sm">
-                                <Bold className="shrink-0 text-indigo-600 font-mono">SRV-02:</Bold>
-                                <span className="text-slate-600 font-medium">labels: <InlineCode>linux</InlineCode>, <InlineCode>docker</InlineCode>, <InlineCode>node</InlineCode></span>
+                                <Bold className="shrink-0 text-indigo-600 dark:text-indigo-400 font-mono">SRV-02:</Bold>
+                                <span className="text-slate-600 dark:text-slate-400 font-medium">labels: <InlineCode>linux</InlineCode>, <InlineCode>docker</InlineCode>, <InlineCode>node</InlineCode></span>
                             </li>
                             <li className="flex gap-2 text-sm">
-                                <Bold className="shrink-0 text-indigo-600 font-mono">MAC-01:</Bold>
-                                <span className="text-slate-600 font-medium">labels: <InlineCode>macos</InlineCode>, <InlineCode>xcode</InlineCode></span>
+                                <Bold className="shrink-0 text-indigo-600 dark:text-indigo-400 font-mono">MAC-01:</Bold>
+                                <span className="text-slate-600 dark:text-slate-400 font-medium">labels: <InlineCode>macos</InlineCode>, <InlineCode>xcode</InlineCode></span>
                             </li>
                         </ul>
                     </div>
-                    <div className="p-6 rounded-2xl bg-indigo-50/50 border border-indigo-100">
+                    <div className="p-6 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/30 transition-colors">
                         <P className="font-bold mb-4 opacity-50 uppercase tracking-tighter text-xs">Pipeline Requests</P>
                         <ul className="space-y-4">
                             <li className="text-sm">
-                                <div className="text-slate-500 mb-1">Targeting Linux + Java:</div>
+                                <div className="text-slate-500 dark:text-slate-400 mb-1">Targeting Linux + Java:</div>
                                 <InlineCode className="block w-full">agent {'{'} label 'docker && java' {'}'}</InlineCode>
                             </li>
                             <li className="text-sm">
-                                <div className="text-slate-500 mb-1">Targeting iOS builds:</div>
+                                <div className="text-slate-500 dark:text-slate-400 mb-1">Targeting iOS builds:</div>
                                 <InlineCode className="block w-full">agent {'{'} label 'macos' {'}'}</InlineCode>
                             </li>
                         </ul>
@@ -257,13 +257,13 @@ cat /var/jenkins_home/config.xml | head -30`}
                 </Callout>
 
                 <P className="font-bold text-sm text-indigo-600 mb-2">Step 1 — Install Docker plugin</P>
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6 text-sm">
+                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 mb-6 text-sm transition-colors">
                     Manage Jenkins → Plugins → Available plugins → search "Docker" → Install
                 </div>
 
                 <P className="font-bold text-sm text-indigo-600 mb-2">Step 2 — Configure a Docker cloud agent</P>
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6 text-[13px] space-y-2">
-                    <P className="mb-1">Manage Jenkins → Clouds → New cloud → Docker</P>
+                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 mb-6 text-[13px] space-y-2 transition-colors">
+                    <P className="mb-1 text-slate-800 dark:text-slate-200">Manage Jenkins → Clouds → New cloud → Docker</P>
                     <BulletList className="!mb-0" items={[
                         <span>Docker Host URI: <InlineCode>unix:///var/run/docker.sock</InlineCode> (Test Connection)</span>,
                         <span>Labels: <InlineCode>docker-agent</InlineCode></span>,
@@ -315,7 +315,7 @@ cat /var/jenkins_home/config.xml | head -30`}
   }
 }`}
                 </CodeBlock>
-                <P className="mt-4 italic text-sm text-slate-500">
+                <P className="mt-4 italic text-sm text-slate-500 dark:text-slate-400">
                     Run it twice — compare the hostnames if you have multiple agents. The build runs <Bold>on the agent</Bold>, not the Controller.
                 </P>
             </Section>

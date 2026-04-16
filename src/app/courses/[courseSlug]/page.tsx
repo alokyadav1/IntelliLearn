@@ -86,14 +86,14 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
             {/* ── Hero ─────────────────────────────────────────────── */}
-            <div className={`rounded-3xl border dark:border-slate-800 bg-gradient-to-br ${tokens.heroBg} p-6 sm:p-8 lg:p-12 mb-8 sm:mb-12 relative overflow-hidden group transition-colors duration-300`}>
+            <div className={`rounded-3xl border border-border bg-gradient-to-br ${tokens.heroBg} p-6 sm:p-8 lg:p-12 mb-8 sm:mb-12 relative overflow-hidden group transition-colors duration-300`}>
                 <div className="absolute top-0 right-0 w-72 h-72 bg-white/20 dark:bg-white/5 rounded-full blur-3xl -mr-24 -mt-24 transition-transform group-hover:scale-110 duration-700" />
                 <div className="relative">
                     <div className={`label-small ${tokens.badgeText} mb-4 tracking-widest animate-in fade-in slide-in-from-left-4 duration-500`}>
                         {course.category.toUpperCase()}
                     </div>
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl heading-pro text-slate-900 dark:text-white mb-4 sm:mb-6 tracking-tight animate-in fade-in slide-in-from-left-6 duration-700">{course.title}</h1>
-                    <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mb-6 sm:mb-8 animate-in fade-in slide-in-from-left-8 duration-1000">{course.description}</p>
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl heading-pro text-foreground mb-4 sm:mb-6 tracking-tight animate-in fade-in slide-in-from-left-6 duration-700">{course.title}</h1>
+                    <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-6 sm:mb-8 animate-in fade-in slide-in-from-left-8 duration-1000">{course.description}</p>
                     <Link
                         href={course.navLinks[1]?.href ?? `#`}
                         className={`inline-flex items-center gap-2 ${tokens.linkBg} text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-lg hover:scale-105 active:scale-95`}
@@ -111,8 +111,8 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
                 <section className="card p-6 sm:p-8 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                         <div>
-                            <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight">Your Progress</h2>
-                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Across all modules in this course</p>
+                            <h2 className="text-lg font-bold text-foreground tracking-tight">Your Progress</h2>
+                            <p className="text-sm text-muted-foreground mt-0.5">Across all modules in this course</p>
                         </div>
                         <div className="flex justify-start sm:justify-end">
                             <ResetAllProgressDialog courseId={courseSlug} />
@@ -124,7 +124,7 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
 
             {/* ── Course Modules ────────────────────────────────────── */}
             <section className="animate-in fade-in slide-in-from-bottom-6 duration-700">
-                <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 mb-8">Course Curriculum</h2>
+                <h2 className="text-2xl font-extrabold tracking-tight text-foreground mb-8">Course Curriculum</h2>
                 <div className="grid gap-4 lg:grid-cols-1">
                     {course.navLinks.slice(1).map((link, idx) => (
                         <Link
@@ -132,15 +132,15 @@ export default async function CourseOverviewPage({ params }: CoursePageProps) {
                             href={link.href}
                             className={`card p-6 group flex items-center gap-6 border-l-4 ${tokens.borderAccent} hover:shadow-md transition-all hover:scale-[1.01] active:scale-[0.99]`}
                         >
-                            <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 font-bold text-slate-500 dark:text-slate-400 text-sm group-hover:bg-white dark:group-hover:bg-slate-700 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors border border-slate-200 dark:border-slate-700">
+                            <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center shrink-0 font-bold text-muted-foreground text-sm group-hover:bg-card group-hover:text-primary transition-colors border border-border">
                                 {String(idx + 1).padStart(2, "0")}
                             </div>
                             <div className="flex-1 min-w-0">
-                                <div className="font-bold text-slate-900 dark:text-slate-100 tracking-tight group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors truncate">{link.name}</div>
+                                <div className="font-bold text-foreground tracking-tight group-hover:text-primary transition-colors truncate">{link.name}</div>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className={`text-xs font-bold uppercase tracking-widest text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline`}>View Module</span>
-                                <svg className="w-5 h-5 text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <span className={`text-xs font-bold uppercase tracking-widest text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline`}>View Module</span>
+                                <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
                             </div>

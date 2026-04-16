@@ -14,12 +14,12 @@ export default function IamInstanceProfiles() {
                 </P>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-200">
-                        <Bold className="text-indigo-600 border-b border-indigo-100 pb-1 mb-3 block">IAM Role</Bold>
+                    <div className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
+                        <Bold className="text-indigo-600 dark:text-indigo-400 border-b border-indigo-100 dark:border-indigo-900/30 pb-1 mb-3 block">IAM Role</Bold>
                         <P className="text-sm mb-0">The <Bold>Identity</Bold>. Defines the permissions (what can be done) and trust policy (who can assume it).</P>
                     </div>
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-200">
-                        <Bold className="text-emerald-600 border-b border-emerald-100 pb-1 mb-3 block">Instance Profile</Bold>
+                    <div className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
+                        <Bold className="text-emerald-600 dark:text-emerald-400 border-b border-emerald-100 dark:border-emerald-900/30 pb-1 mb-3 block">Instance Profile</Bold>
                         <P className="text-sm mb-0">The <Bold>Delivery Mechanism</Bold>. Attaches the role to the EC2 instance so the code inside can use it.</P>
                     </div>
                 </div>
@@ -54,20 +54,20 @@ export default function IamInstanceProfiles() {
                 <Diagram label="Credential Retrieval Flow">
                     <div className="flex flex-col items-center gap-4 py-4">
                         <div className="flex items-center gap-4 w-full justify-between">
-                            <div className="w-1/3 p-4 bg-slate-100 border border-slate-200 rounded text-center font-bold text-slate-800">Your App / SDK</div>
-                            <div className="flex-1 border-t-2 border-dashed border-slate-300 relative">
-                                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-2 text-[10px] text-slate-400 font-bold uppercase">Requests Creds</span>
+                            <div className="w-1/3 p-4 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded text-center font-bold text-slate-800 dark:text-slate-200 transition-colors">Your App / SDK</div>
+                            <div className="flex-1 border-t-2 border-dashed border-slate-300 dark:border-slate-700 relative transition-colors">
+                                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-950 px-2 text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase transition-colors">Requests Creds</span>
                             </div>
-                            <div className="w-1/3 p-4 bg-amber-100 border border-amber-200 rounded text-center font-bold text-amber-900 underline decoration-amber-300 underline-offset-4">IMDS (169.254.169.254)</div>
+                            <div className="w-1/3 p-4 bg-amber-100 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/30 rounded text-center font-bold text-amber-900 dark:text-amber-400 underline decoration-amber-300 dark:decoration-amber-700 underline-offset-4 transition-colors">IMDS (169.254.169.254)</div>
                         </div>
-                        <div className="h-8 border-l-2 border-dashed border-slate-300"></div>
+                        <div className="h-8 border-l-2 border-dashed border-slate-300 dark:border-slate-700 transition-colors"></div>
                         <div className="w-full flex justify-center">
-                            <div className="w-2/3 p-6 bg-emerald-50 border border-emerald-100 rounded-xl">
-                                <Bold className="text-emerald-800 block mb-2">Result: Rotating Credentials</Bold>
-                                <div className="font-mono text-xs text-emerald-700 bg-white/50 p-3 rounded">
+                            <div className="w-2/3 p-6 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/30 rounded-xl transition-colors">
+                                <Bold className="text-emerald-800 dark:text-emerald-400 block mb-2 transition-colors">Result: Rotating Credentials</Bold>
+                                <div className="font-mono text-xs text-emerald-700 dark:text-emerald-300 bg-white/50 dark:bg-black/20 p-3 rounded transition-colors">
                                     &#123; "AccessKeyId": "ASIA...", "SecretKey": "...", "Token": "..." &#125;
                                 </div>
-                                <P className="text-[10px] text-emerald-600 mt-2 mb-0 italic">AWS auto-refreshes these before they expire.</P>
+                                <P className="text-[10px] text-emerald-600 dark:text-emerald-400/80 mt-2 mb-0 italic transition-colors">AWS auto-refreshes these before they expire.</P>
                             </div>
                         </div>
                     </div>
@@ -83,20 +83,20 @@ export default function IamInstanceProfiles() {
                 </P>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="p-5 border border-slate-200 rounded-xl">
+                    <div className="p-5 border border-slate-200 dark:border-slate-800 rounded-xl transition-colors">
                         <div className="flex items-center gap-2 mb-3">
                             <span className="text-red-500 font-bold">IMDSv1</span>
-                            <span className="text-[10px] bg-red-50 text-red-600 px-1.5 py-0.5 rounded uppercase font-bold">Legacy</span>
+                            <span className="text-[10px] bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400 px-1.5 py-0.5 rounded uppercase font-bold transition-colors">Legacy</span>
                         </div>
-                        <P className="text-sm text-slate-500">Uses simple GET requests. Easier to exploit if your web app has an SSRF bug.</P>
+                        <P className="text-sm text-slate-500 dark:text-slate-400 transition-colors">Uses simple GET requests. Easier to exploit if your web app has an SSRF bug.</P>
                         <InlineCode className="block mt-2">curl http://169.../meta-data/iam/security-credentials/</InlineCode>
                     </div>
-                    <div className="p-5 border border-emerald-200 bg-emerald-50/30 rounded-xl shadow-sm">
-                        <div className="flex items-center gap-2 mb-3">
-                            <span className="text-emerald-600 font-bold font-lg">IMDSv2</span>
-                            <span className="text-[10px] bg-emerald-500 text-white px-1.5 py-0.5 rounded uppercase font-bold">Recommended</span>
+                    <div className="p-5 border border-emerald-200 dark:border-emerald-800 bg-emerald-50/30 dark:bg-emerald-950/20 rounded-xl shadow-sm transition-colors">
+                        <div className="flex items-center gap-2 mb-3 transition-colors">
+                            <span className="text-emerald-600 dark:text-emerald-400 font-bold font-lg">IMDSv2</span>
+                            <span className="text-[10px] bg-emerald-500 text-white px-1.5 py-0.5 rounded uppercase font-bold transition-colors">Recommended</span>
                         </div>
-                        <P className="text-sm text-slate-700">Session-oriented. Requires a <Bold>PUT</Bold> request to get a token first. SSRF attacks usually can't perform PUTs.</P>
+                        <P className="text-sm text-slate-700 dark:text-slate-300 transition-colors">Session-oriented. Requires a <Bold>PUT</Bold> request to get a token first. SSRF attacks usually can't perform PUTs.</P>
                         <InlineCode className="block mt-2">PUT → Get Token → Use Token in GET</InlineCode>
                     </div>
                 </div>

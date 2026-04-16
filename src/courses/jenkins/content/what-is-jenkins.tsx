@@ -88,9 +88,9 @@ export default function WhatIsJenkins() {
 
                 <SubTitle>The CI/CD Lifecycle</SubTitle>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div className="p-6 rounded-2xl bg-indigo-50/30 border border-indigo-100/50">
-                        <P className="font-bold text-indigo-700 mb-6 flex items-center gap-2">
-                            <span className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-xs tracking-tighter">CI</span>
+                    <div className="p-6 rounded-2xl bg-indigo-50/30 dark:bg-indigo-950/20 border border-indigo-100/50 dark:border-indigo-900/30 transition-colors">
+                        <P className="font-bold text-indigo-700 dark:text-indigo-400 mb-6 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-lg bg-indigo-600 dark:bg-indigo-500 text-white flex items-center justify-center text-xs tracking-tighter">CI</span>
                             Continuous Integration
                         </P>
                         <StepList
@@ -102,9 +102,9 @@ export default function WhatIsJenkins() {
                             ]}
                         />
                     </div>
-                    <div className="p-6 rounded-2xl bg-emerald-50/30 border border-emerald-100/50">
-                        <P className="font-bold text-emerald-700 mb-6 flex items-center gap-2">
-                            <span className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs tracking-tighter">CD</span>
+                    <div className="p-6 rounded-2xl bg-emerald-50/30 dark:bg-emerald-950/20 border border-emerald-100/50 dark:border-emerald-900/30 transition-colors">
+                        <P className="font-bold text-emerald-700 dark:text-emerald-400 mb-6 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-lg bg-emerald-600 dark:bg-emerald-500 text-white flex items-center justify-center text-xs tracking-tighter">CD</span>
                             Continuous Delivery
                         </P>
                         <StepList

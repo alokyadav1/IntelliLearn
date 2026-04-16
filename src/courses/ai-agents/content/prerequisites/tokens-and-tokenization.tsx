@@ -16,15 +16,15 @@ export default function TokensAndTokenizationContent() {
                 <Callout variant="definition" title="A token is roughly">
                     <ul className="space-y-1.5 mt-1">
                         <li className="flex items-center gap-2 text-[14px]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0 mt-0.5" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 dark:bg-indigo-500 shrink-0 mt-0.5" />
                             <span><Bold>~4 characters</Bold> of English text, or</span>
                         </li>
                         <li className="flex items-center gap-2 text-[14px]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0 mt-0.5" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 dark:bg-indigo-500 shrink-0 mt-0.5" />
                             <span><Bold>~¾ of a word</Bold></span>
                         </li>
                     </ul>
-                    <p className="mt-3 text-[14px] font-semibold text-indigo-700">1,000 tokens ≈ 750 words</p>
+                    <p className="mt-3 text-[14px] font-semibold text-indigo-700 dark:text-indigo-400">1,000 tokens ≈ 750 words</p>
                 </Callout>
             </Section>
 
@@ -59,7 +59,7 @@ export default function TokensAndTokenizationContent() {
                 <P>
                     Imagine you&apos;re building an AI agent that handles customer emails. A customer writes:
                 </P>
-                <div className="rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 mb-5 italic text-slate-600 text-[15px] leading-relaxed">
+                <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-5 py-4 mb-5 italic text-slate-600 dark:text-slate-400 text-[15px] leading-relaxed">
                     &ldquo;Hi, I ordered a blue wireless headphone last Tuesday and it hasn&apos;t arrived yet.
                     My order number is #ORD-8821. Can you help?&rdquo;
                 </div>

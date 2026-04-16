@@ -42,7 +42,7 @@ export const awsModules: CourseModule[] = [
       { id: "ec2-instance-types", title: "Instance Types", category: "Mandatory" },
       { id: "ec2-cpu-credits", title: "CPU Credits", category: "Good to Know" },
       { id: "ec2-storage-volumes", title: "Storage / Volumes (EBS/Instance Store)", category: "Mandatory" },
-      { id: "ec2-keypairs", title: "Keypairs", category: "Mandatory" },
+      { id: "ec2-keypairs", title: "Key Pairs", category: "Mandatory" },
       { id: "ec2-elastic-ip", title: "Elastic IP", category: "Mandatory" },
       { id: "ec2-user-data", title: "User Data Scripts", category: "Mandatory" },
       { id: "ec2-purchasing-options", title: "Purchasing Options", category: "Good to Know" },

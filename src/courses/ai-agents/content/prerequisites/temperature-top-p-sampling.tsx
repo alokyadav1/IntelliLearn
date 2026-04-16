@@ -29,12 +29,12 @@ export default function TemperatureTopPSamplingContent() {
                 <Diagram label='Next token probabilities after "The weather today is..."'>
                     <StatBreakdown
                         items={[
-                            { label: '"sunny"', value: "35%", color: "bg-amber-400" },
-                            { label: '"cloudy"', value: "28%", color: "bg-slate-400" },
-                            { label: '"rainy"', value: "20%", color: "bg-blue-400" },
-                            { label: '"perfect"', value: "10%", color: "bg-emerald-400" },
-                            { label: '"terrible"', value: "4%", color: "bg-rose-400" },
-                            { label: '"purple"', value: "0.1%", color: "bg-indigo-400" },
+                            { label: '"sunny"', value: "35%", color: "bg-amber-400 dark:bg-amber-500" },
+                            { label: '"cloudy"', value: "28%", color: "bg-slate-400 dark:bg-slate-500" },
+                            { label: '"rainy"', value: "20%", color: "bg-blue-400 dark:bg-blue-500" },
+                            { label: '"perfect"', value: "10%", color: "bg-emerald-400 dark:bg-emerald-500" },
+                            { label: '"terrible"', value: "4%", color: "bg-rose-400 dark:bg-rose-500" },
+                            { label: '"purple"', value: "0.1%", color: "bg-indigo-400 dark:bg-indigo-500" },
                         ]}
                     />
                 </Diagram>
@@ -55,10 +55,10 @@ export default function TemperatureTopPSamplingContent() {
                 <Diagram label="Temperature = 0.1">
                     <StatBreakdown
                         items={[
-                            { label: '"sunny"', value: "92%", color: "bg-amber-500" },
-                            { label: '"cloudy"', value: "7%", color: "bg-slate-300" },
-                            { label: '"rainy"', value: "1%", color: "bg-blue-200" },
-                            { label: '"perfect"', value: "0%", color: "bg-slate-100" },
+                            { label: '"sunny"', value: "92%", color: "bg-amber-500 dark:bg-amber-400" },
+                            { label: '"cloudy"', value: "7%", color: "bg-slate-300 dark:bg-slate-600" },
+                            { label: '"rainy"', value: "1%", color: "bg-blue-200 dark:bg-blue-800" },
+                            { label: '"perfect"', value: "0%", color: "bg-slate-100 dark:bg-slate-900" },
                         ]}
                     />
                 </Diagram>
@@ -68,12 +68,12 @@ export default function TemperatureTopPSamplingContent() {
                 <Diagram label="Temperature = 1.2">
                     <StatBreakdown
                         items={[
-                            { label: '"sunny"', value: "28%", color: "bg-amber-400" },
-                            { label: '"cloudy"', value: "25%", color: "bg-slate-400" },
-                            { label: '"rainy"', value: "22%", color: "bg-blue-400" },
-                            { label: '"perfect"', value: "15%", color: "bg-emerald-400" },
-                            { label: '"terrible"', value: "8%", color: "bg-rose-400" },
-                            { label: '"purple"', value: "2%", color: "bg-indigo-400" },
+                            { label: '"sunny"', value: "28%", color: "bg-amber-400 dark:bg-amber-500" },
+                            { label: '"cloudy"', value: "25%", color: "bg-slate-400 dark:bg-slate-500" },
+                            { label: '"rainy"', value: "22%", color: "bg-blue-400 dark:bg-blue-500" },
+                            { label: '"perfect"', value: "15%", color: "bg-emerald-400 dark:bg-emerald-500" },
+                            { label: '"terrible"', value: "8%", color: "bg-rose-400 dark:bg-rose-500" },
+                            { label: '"purple"', value: "2%", color: "bg-indigo-400 dark:bg-indigo-500" },
                         ]}
                     />
                 </Diagram>

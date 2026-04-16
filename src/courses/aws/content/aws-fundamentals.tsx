@@ -47,7 +47,7 @@ export default function AwsFundamentalsOverview() {
                 </P>
 
                 <Diagram label="Standard AWS Production Architecture">
-                    <pre className="text-[13px] leading-relaxed font-mono text-slate-700 bg-slate-50 p-6 rounded-xl border border-slate-100 overflow-x-auto">
+                    <pre className="text-[13px] leading-relaxed font-mono text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/30 p-6 rounded-xl border border-slate-100 dark:border-slate-800 overflow-x-auto transition-colors">
                         {`      User
        │
        ▼

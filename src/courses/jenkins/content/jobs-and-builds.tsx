@@ -62,25 +62,25 @@ export default function JobsAndBuilds() {
 
                 <SubTitle>Build States</SubTitle>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-                    <div className="p-3 border rounded-xl border-green-200 bg-green-50 flex items-center gap-2">
+                    <div className="p-3 border rounded-xl border-green-200 dark:border-green-900/50 bg-green-50 dark:bg-green-900/20 flex items-center gap-2 transition-colors">
                         <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                        <span className="text-xs font-bold text-green-700">Success</span>
+                        <span className="text-xs font-bold text-green-700 dark:text-green-400">Success</span>
                     </div>
-                    <div className="p-3 border rounded-xl border-red-200 bg-red-50 flex items-center gap-2">
+                    <div className="p-3 border rounded-xl border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-900/20 flex items-center gap-2 transition-colors">
                         <div className="w-3 h-3 rounded-full bg-red-500" />
-                        <span className="text-xs font-bold text-red-700">Failure</span>
+                        <span className="text-xs font-bold text-red-700 dark:text-red-400">Failure</span>
                     </div>
-                    <div className="p-3 border rounded-xl border-yellow-200 bg-yellow-50 flex items-center gap-2">
+                    <div className="p-3 border rounded-xl border-yellow-200 dark:border-yellow-900/50 bg-yellow-50 dark:bg-yellow-900/20 flex items-center gap-2 transition-colors">
                         <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                        <span className="text-xs font-bold text-yellow-700">Unstable</span>
+                        <span className="text-xs font-bold text-yellow-700 dark:text-yellow-400">Unstable</span>
                     </div>
-                    <div className="p-3 border rounded-xl border-slate-200 bg-slate-50 flex items-center gap-2">
+                    <div className="p-3 border rounded-xl border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex items-center gap-2 transition-colors">
                         <div className="w-3 h-3 rounded-full bg-slate-500" />
-                        <span className="text-xs font-bold text-slate-700">Aborted</span>
+                        <span className="text-xs font-bold text-slate-700 dark:text-slate-400">Aborted</span>
                     </div>
-                    <div className="p-3 border rounded-xl border-blue-200 bg-blue-50 flex items-center gap-2">
+                    <div className="p-3 border rounded-xl border-blue-200 dark:border-blue-900/50 bg-blue-50 dark:bg-blue-900/20 flex items-center gap-2 transition-colors">
                         <div className="w-3 h-3 rounded-full bg-blue-500 animate-spin" />
-                        <span className="text-xs font-bold text-blue-700">In Progress</span>
+                        <span className="text-xs font-bold text-blue-700 dark:text-blue-400">In Progress</span>
                     </div>
                 </div>
 
@@ -215,9 +215,9 @@ export default function JobsAndBuilds() {
                 ]}
             />
 
-            <Section className="mt-12 bg-indigo-50 p-8 rounded-3xl border border-indigo-100 text-center">
-                <p className="text-indigo-600 font-bold text-sm uppercase tracking-widest mb-2">Next Topic</p>
-                <h3 className="text-2xl font-bold text-slate-800 mb-4">Freestyle Projects</h3>
+            <Section className="mt-12 bg-indigo-50 dark:bg-indigo-950/20 p-8 rounded-3xl border border-indigo-100 dark:border-indigo-900/30 text-center transition-colors">
+                <p className="text-indigo-600 dark:text-indigo-400 font-bold text-sm uppercase tracking-widest mb-2">Next Topic</p>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-4">Freestyle Projects</h3>
                 <P className="mb-0">Getting hands-on with the UI to build your first simple automation.</P>
             </Section>
         </div>

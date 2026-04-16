@@ -11,7 +11,7 @@ export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
             <ol role="list" className="flex items-center space-x-2">
                 <li>
                     <div>
-                        <Link href="/" className="text-slate-400 dark:text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                        <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
                             <span className="sr-only">Home</span>
                             <svg className="h-4 w-4 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
@@ -21,18 +21,18 @@ export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
                 </li>
                 {items.map((item, index) => (
                     <li key={item.name} className="flex items-center">
-                        <svg className="h-4 w-4 shrink-0 text-slate-300 dark:text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="h-4 w-4 shrink-0 text-muted-foreground/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                         {item.href ? (
                             <Link
                                 href={item.href}
-                                className="ml-2 py-1 text-sm font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                                className="ml-2 py-1 text-sm font-medium tracking-tight text-muted-foreground hover:text-primary transition-colors"
                             >
                                 {item.name}
                             </Link>
                         ) : (
-                            <span className="ml-2 py-1 text-sm font-bold tracking-tight text-slate-900 dark:text-slate-100" aria-current="page">
+                            <span className="ml-2 py-1 text-sm font-bold tracking-tight text-foreground" aria-current="page">
                                 {item.name}
                             </span>
                         )}

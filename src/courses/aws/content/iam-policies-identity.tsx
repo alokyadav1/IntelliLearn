@@ -13,11 +13,11 @@ export default function IdentityBasedPolicies() {
                     Identity-based policies are attached directly to an IAM identity — a <Bold>user, group, or role</Bold>. They define what that identity is allowed or denied to do across AWS resources.
                 </P>
                 <P>There are 3 main types to understand:</P>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-100 font-mono text-sm space-y-2">
-                    <div className="text-slate-900 font-bold">Identity-based Policies</div>
-                    <div className="pl-4 text-slate-600">├── <Bold className="text-indigo-600">AWS Managed Policies</Bold> (AWS writes & maintains)</div>
-                    <div className="pl-4 text-slate-600">├── <Bold className="text-emerald-600">Customer Managed Policies</Bold> (You write & maintain)</div>
-                    <div className="pl-4 text-slate-600">└── <Bold className="text-amber-600">Inline Policies</Bold> (Embedded directly in one identity)</div>
+                <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-100 dark:border-slate-800 font-mono text-sm space-y-2 transition-colors">
+                    <div className="text-slate-900 dark:text-slate-100 font-bold transition-colors">Identity-based Policies</div>
+                    <div className="pl-4 text-slate-600 dark:text-slate-400 transition-colors">├── <Bold className="text-indigo-600 dark:text-indigo-400">AWS Managed Policies</Bold> (AWS writes & maintains)</div>
+                    <div className="pl-4 text-slate-600 dark:text-slate-400 transition-colors">├── <Bold className="text-emerald-600 dark:text-emerald-400">Customer Managed Policies</Bold> (You write & maintain)</div>
+                    <div className="pl-4 text-slate-600 dark:text-slate-400 transition-colors">└── <Bold className="text-amber-600 dark:text-amber-400">Inline Policies</Bold> (Embedded directly in one identity)</div>
                 </div>
             </Section>
 
@@ -38,12 +38,12 @@ export default function IdentityBasedPolicies() {
                     ]}
                 />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-100">
-                        <Bold className="text-emerald-800">When to use:</Bold>
+                    <div className="p-4 bg-emerald-50 dark:bg-emerald-950/20 rounded-lg border border-emerald-100 dark:border-emerald-900/30 transition-colors">
+                        <Bold className="text-emerald-800 dark:text-emerald-400 transition-colors">When to use:</Bold>
                         <P className="text-sm mt-1 mb-0">Getting started, dev environments, or when a pre-built policy matches exactly.</P>
                     </div>
-                    <div className="p-4 bg-amber-50 rounded-lg border border-amber-100">
-                        <Bold className="text-amber-800">Trade-off:</Bold>
+                    <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-100 dark:border-amber-900/30 transition-colors">
+                        <Bold className="text-amber-800 dark:text-amber-400 transition-colors">Trade-off:</Bold>
                         <P className="text-sm mt-1 mb-0">They don't grant least privilege — they're intentionally broad. Use them to start, then specialize.</P>
                     </div>
                 </div>
@@ -82,8 +82,8 @@ export default function IdentityBasedPolicies() {
                     />
                 </div>
 
-                <div className="mt-6 p-6 bg-slate-50 border border-slate-100 rounded-xl">
-                    <Bold>Key feature — versioning:</Bold>
+                <div className="mt-6 p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 rounded-xl transition-colors">
+                    <Bold className="dark:text-white">Key feature — versioning:</Bold>
                     <P className="text-sm mt-2 mb-0">
                         IAM stores up to <Bold>5 versions</Bold> of customer managed policies. If you update a policy and break production, you can instantly roll back to a previous version.
                     </P>

@@ -28,11 +28,11 @@ export async function generateMetadata({ params }: PageProps): Promise<import("n
     if (!match) return { title: "Topic Not Found" };
 
     return {
-        title: `${match.topic.title} | AI Agents | IntelliLearn`,
-        description: `Learn about ${match.topic.title} in the ${match.module.title} module of our AI Agents course.`,
+        title: `${match.topic.title} - ${match.module.title} | AI Agents | IntelliLearn`,
+        description: `Master ${match.topic.title} in the ${match.module.title} module. This comprehensive curriculum equips you with real-world skills to conceptualize, design, and build AI agents.`,
         openGraph: {
-            title: match.topic.title,
-            description: `Learn about ${match.topic.title} in the ${match.module.title} module of our AI Agents course.`,
+            title: `${match.topic.title} - ${match.module.title} | AI Agents Course`,
+            description: `Master ${match.topic.title} in the ${match.module.title} module. This comprehensive curriculum equips you with real-world skills to conceptualize, design, and build AI agents.`,
             type: "article",
             url: `https://intelli-learn-jet.vercel.app/courses/ai-agents/building-ai-agents/${topicId}`,
         },

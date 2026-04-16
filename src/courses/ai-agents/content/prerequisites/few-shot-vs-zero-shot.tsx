@@ -11,12 +11,12 @@ export default function FewShotVsZeroShotLearningContent() {
             <Section>
                 <SectionTitle>The Simple Version</SectionTitle>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="p-5 rounded-2xl border border-blue-100 bg-blue-50/30">
-                        <SubTitle className="text-blue-700 mt-0">Zero-shot</SubTitle>
+                    <div className="p-5 rounded-2xl border border-blue-100 dark:border-blue-900/50 bg-blue-50/30 dark:bg-blue-950/20">
+                        <SubTitle className="text-blue-700 dark:text-blue-400 mt-0">Zero-shot</SubTitle>
                         <P>You give the model a task with <Bold>no examples</Bold>. Just instructions.</P>
                     </div>
-                    <div className="p-5 rounded-2xl border border-indigo-100 bg-indigo-50/30">
-                        <SubTitle className="text-indigo-700 mt-0">Few-shot</SubTitle>
+                    <div className="p-5 rounded-2xl border border-indigo-100 dark:border-indigo-900/50 bg-indigo-50/30 dark:bg-indigo-950/20">
+                        <SubTitle className="text-indigo-700 dark:text-indigo-400 mt-0">Few-shot</SubTitle>
                         <P>You give the model a task <Bold>plus a few examples</Bold> of the input/output pattern you want.</P>
                     </div>
                 </div>
@@ -78,7 +78,7 @@ Category:`}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
                     <div>
-                        <P className="text-xs font-bold text-rose-600 uppercase mb-2">❌ Zero-shot (Unpredictable)</P>
+                        <P className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase mb-2">❌ Zero-shot (Unpredictable)</P>
                         <CodeBlock className="min-h-[150px]">
                             {`Extract the order number:
 "Order #ORD-8821"
@@ -90,7 +90,7 @@ Category:`}
                         </CodeBlock>
                     </div>
                     <div>
-                        <P className="text-xs font-bold text-emerald-600 uppercase mb-2">✅ Few-shot (Locked In)</P>
+                        <P className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase mb-2">✅ Few-shot (Locked In)</P>
                         <CodeBlock className="min-h-[150px]">
                             {`Msg: "order 123" -> Num: 123
 Msg: "ORD-456" -> Num: ORD-456

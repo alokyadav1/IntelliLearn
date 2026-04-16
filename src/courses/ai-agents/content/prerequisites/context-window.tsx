@@ -19,10 +19,10 @@ export default function ContextWindowContent() {
                 <Diagram label="Context Window Usage">
                     <StatBreakdown
                         items={[
-                            { label: "System Prompt", value: 500, color: "bg-indigo-400" },
-                            { label: "Conversation History", value: 3000, color: "bg-emerald-400" },
-                            { label: "Retrieved Docs", value: 2000, color: "bg-amber-400" },
-                            { label: "Current User Msg", value: 100, color: "bg-sky-400" },
+                            { label: "System Prompt", value: 500, color: "bg-indigo-400 dark:bg-indigo-500" },
+                            { label: "Conversation History", value: 3000, color: "bg-emerald-400 dark:bg-emerald-500" },
+                            { label: "Retrieved Docs", value: 2000, color: "bg-amber-400 dark:bg-amber-500" },
+                            { label: "Current User Msg", value: 100, color: "bg-sky-400 dark:bg-sky-500" },
                         ]}
                         total={5600}
                         limit={128000}
@@ -71,11 +71,11 @@ export default function ContextWindowContent() {
                 <Diagram label="Token Distribution — Active Session">
                     <StatBreakdown
                         items={[
-                            { label: "System Prompt", value: 300, color: "bg-indigo-500" },
-                            { label: "Conversation History (10 msgs)", value: 2400, color: "bg-indigo-300" },
-                            { label: "Order Status (Tool result)", value: 400, color: "bg-indigo-200" },
-                            { label: "Return FAQ (RAG Doc)", value: 800, color: "bg-indigo-100" },
-                            { label: "Latest User Input", value: 18, color: "bg-emerald-400" },
+                            { label: "System Prompt", value: 300, color: "bg-indigo-500 dark:bg-indigo-400" },
+                            { label: "Conversation History (10 msgs)", value: 2400, color: "bg-indigo-300 dark:bg-indigo-600" },
+                            { label: "Order Status (Tool result)", value: 400, color: "bg-indigo-200 dark:bg-indigo-700" },
+                            { label: "Return FAQ (RAG Doc)", value: 800, color: "bg-indigo-100 dark:bg-indigo-800" },
+                            { label: "Latest User Input", value: 18, color: "bg-emerald-400 dark:bg-emerald-500" },
                         ]}
                         total={3918}
                         limit={128000}

@@ -28,26 +28,26 @@ export default function IamOverview() {
                 <SectionTitle>👤 The 4 Core IAM Concepts</SectionTitle>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                        <SubTitle className="mt-0">1. Users</SubTitle>
+                    <div className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-800 transition-colors">
+                        <SubTitle className="mt-0 dark:text-white">1. Users</SubTitle>
                         <P className="text-sm">
                             Represents a person or application with long-term credentials. Never use the root account for daily tasks — create an IAM user instead.
                         </P>
                     </div>
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                        <SubTitle className="mt-0">2. Groups</SubTitle>
+                    <div className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-800 transition-colors">
+                        <SubTitle className="mt-0 dark:text-white">2. Groups</SubTitle>
                         <P className="text-sm">
                             A collection of users. Attach a policy to a group, and all users in it inherit those permissions (e.g., "Developers" group).
                         </P>
                     </div>
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                        <SubTitle className="mt-0">3. Roles</SubTitle>
+                    <div className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-800 transition-colors">
+                        <SubTitle className="mt-0 dark:text-white">3. Roles</SubTitle>
                         <P className="text-sm">
                             A temporary identity assumed by entities (EC2, Lambda, or cross-account users). No long-term passwords; uses temporary security tokens.
                         </P>
                     </div>
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                        <SubTitle className="mt-0">4. Policies</SubTitle>
+                    <div className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-800 transition-colors">
+                        <SubTitle className="mt-0 dark:text-white">4. Policies</SubTitle>
                         <P className="text-sm">
                             JSON documents that define permissions. They specify who (Principal), what (Action), which (Resource), and when (Condition).
                         </P>
@@ -88,7 +88,7 @@ export default function IamOverview() {
                     By default, all requests are <Bold>denied</Bold>. An explicit Allow overrides this. However, an explicit <Bold>Deny always wins</Bold> — even if another policy allows it.
                 </P>
                 <Diagram label="Policy Evaluation Logic">
-                    <pre className="text-[13px] leading-relaxed font-mono text-slate-700 bg-slate-50 p-6 rounded-xl border border-slate-100 overflow-x-auto">
+                    <pre className="text-[13px] leading-relaxed font-mono text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/30 p-6 rounded-xl border border-slate-100 dark:border-slate-800 overflow-x-auto transition-colors">
                         {`Request comes in
       │
       ▼

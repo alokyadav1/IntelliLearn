@@ -136,7 +136,7 @@ export default function LargeLanguageModelsContent() {
                             <>
                                 <p className="mb-2">The model calculates probabilities for the next token:</p>
                                 <CodeBlock>{`Input: "I like to drink"\n\ncoffee → 0.35\ntea    → 0.30\nwater  → 0.20\nmilk   → 0.15`}</CodeBlock>
-                                <p className="text-[14px] text-slate-600">It picks the most likely token.</p>
+                                <p className="text-[14px] text-slate-600 dark:text-slate-400">It picks the most likely token.</p>
                             </>
                         ),
                     },
@@ -245,10 +245,10 @@ export default function LargeLanguageModelsContent() {
                         { emoji: "✍️", title: "Content Creation", desc: "Blog writing, marketing content, ad copy." },
                         { emoji: "📊", title: "Data Analysis", desc: "Analyze customer reviews and generate insights." },
                     ].map((app) => (
-                        <div key={app.title} className="rounded-xl border border-slate-200 bg-white p-4 hover:shadow-sm transition-shadow">
+                        <div key={app.title} className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-4 hover:shadow-sm transition-shadow">
                             <p className="text-2xl mb-2">{app.emoji}</p>
-                            <p className="font-bold text-slate-800 text-[15px] mb-1">{app.title}</p>
-                            <p className="text-[13px] text-slate-500 leading-relaxed">{app.desc}</p>
+                            <p className="font-bold text-slate-800 dark:text-slate-200 text-[15px] mb-1">{app.title}</p>
+                            <p className="text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed">{app.desc}</p>
                         </div>
                     ))}
                 </div>
@@ -264,31 +264,31 @@ export default function LargeLanguageModelsContent() {
                         {
                             label: "Hallucinations",
                             desc: "LLMs can generate incorrect information confidently — invented facts, fake citations.",
-                            color: "border-red-200 bg-red-50/60",
-                            badge: "text-red-600 bg-red-100",
+                            color: "border-red-200 dark:border-red-900/50 bg-red-50/60 dark:bg-red-900/20",
+                            badge: "text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/50",
                         },
                         {
                             label: "Bias",
                             desc: "Training data may contain gender, cultural, or political bias that the model inherits.",
-                            color: "border-amber-200 bg-amber-50/60",
-                            badge: "text-amber-700 bg-amber-100",
+                            color: "border-amber-200 dark:border-amber-900/50 bg-amber-50/60 dark:bg-amber-900/20",
+                            badge: "text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/50",
                         },
                         {
                             label: "High Cost",
                             desc: "Training large models requires thousands of GPUs and millions of dollars.",
-                            color: "border-orange-200 bg-orange-50/60",
-                            badge: "text-orange-700 bg-orange-100",
+                            color: "border-orange-200 dark:border-orange-900/50 bg-orange-50/60 dark:bg-orange-900/20",
+                            badge: "text-orange-700 dark:text-orange-400 bg-orange-100 dark:bg-orange-900/50",
                         },
                         {
                             label: "Lack of Real Understanding",
                             desc: "LLMs predict patterns in text but do not truly understand concepts.",
-                            color: "border-slate-200 bg-slate-50/60",
-                            badge: "text-slate-600 bg-slate-100",
+                            color: "border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/20",
+                            badge: "text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800",
                         },
                     ].map((item) => (
                         <div key={item.label} className={`rounded-xl border p-4 ${item.color}`}>
                             <span className={`text-xs font-bold uppercase tracking-widest px-2 py-0.5 rounded ${item.badge}`}>{item.label}</span>
-                            <p className="mt-2 text-[14px] text-slate-700 leading-relaxed">{item.desc}</p>
+                            <p className="mt-2 text-[14px] text-slate-700 dark:text-slate-300 leading-relaxed">{item.desc}</p>
                         </div>
                     ))}
                 </div>
@@ -306,9 +306,9 @@ export default function LargeLanguageModelsContent() {
                         { term: "Context Window", def: "The amount of text the model can read at once.", example: "GPT-4: 128K tokens" },
                         { term: "Inference", def: "Running the trained model to generate output.", example: "You asking ChatGPT → inference." },
                     ].map((item) => (
-                        <div key={item.term} className="rounded-xl border border-slate-200 bg-white px-5 py-4">
-                            <p className="font-bold text-indigo-700 mb-1">{item.term}</p>
-                            <p className="text-[14px] text-slate-600 mb-1.5">{item.def}</p>
+                        <div key={item.term} className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 px-5 py-4">
+                            <p className="font-bold text-indigo-700 dark:text-indigo-400 mb-1">{item.term}</p>
+                            <p className="text-[14px] text-slate-600 dark:text-slate-400 mb-1.5">{item.def}</p>
                             <InlineCode>{item.example}</InlineCode>
                         </div>
                     ))}
@@ -374,15 +374,15 @@ export default function LargeLanguageModelsContent() {
                     <Bold>Autocorrect on steroids.</Bold>
                     <div className="mt-3 space-y-2">
                         <div className="flex items-start gap-3 text-[14px]">
-                            <span className="shrink-0 font-bold text-slate-500 w-24">Your phone:</span>
+                            <span className="shrink-0 font-bold text-slate-500 dark:text-slate-400 w-24">Your phone:</span>
                             <span><InlineCode>I love →</InlineCode> you</span>
                         </div>
                         <div className="flex items-start gap-3 text-[14px]">
-                            <span className="shrink-0 font-bold text-slate-500 w-24">An LLM:</span>
+                            <span className="shrink-0 font-bold text-slate-500 dark:text-slate-400 w-24">An LLM:</span>
                             <span><InlineCode>I love →</InlineCode> programming because it allows developers to build scalable systems that solve real-world problems at scale.</span>
                         </div>
                     </div>
-                    <p className="mt-3 text-[13px] text-slate-500">Same idea — predicting next words — but with massive scale and intelligence.</p>
+                    <p className="mt-3 text-[13px] text-slate-500 dark:text-slate-400">Same idea — predicting next words — but with massive scale and intelligence.</p>
                 </Callout>
             </Section>
 
