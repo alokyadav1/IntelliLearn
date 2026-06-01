@@ -13,12 +13,16 @@ import Embeddings from "./embeddings";
 import VectorSimilaritySearch from "./vector-similarity-search";
 import RetrievalAugmentedGeneration from "./retrieval-augmented-generation";
 import WhatIsAI from "./what-is-ai";
+import WhatIsAnAIAgent from "./what-is-an-ai-agent";
 import MachineLearningVsDeepLearning from "./ml-vs-dl";
 import NeuralNetworksBasics from "./neural-networks-basics";
 import TransformersArchitecture from "./transformers-architecture";
 import FineTuningVsPrompting from "./fine-tuning-vs-prompting";
 import ModelEvaluationMetrics from "./model-evaluation-metrics";
 import OpenSourceVsClosedSource from "./open-source-vs-closed-source";
+import AgentComponents from "./agent-components";
+import ReActPattern from "./react-pattern";
+import PlannerExecutorPattern from "./planner-executor-pattern";
 
 const contentRegistry: Record<string, ComponentType> = {
     "large-language-models": LargeLanguageModels,
@@ -35,12 +39,16 @@ const contentRegistry: Record<string, ComponentType> = {
     "vector-similarity-search": VectorSimilaritySearch,
     "retrieval-augmented-generation": RetrievalAugmentedGeneration,
     "what-is-ai": WhatIsAI,
+    "what-is-an-ai-agent": WhatIsAnAIAgent,
     "ml-vs-dl": MachineLearningVsDeepLearning,
     "neural-networks-basics": NeuralNetworksBasics,
     "transformers-architecture": TransformersArchitecture,
     "fine-tuning-vs-prompting": FineTuningVsPrompting,
     "model-evaluation-metrics": ModelEvaluationMetrics,
     "open-source-vs-closed-source": OpenSourceVsClosedSource,
+    "agent-components": AgentComponents,
+    "react-pattern": ReActPattern,
+    "planner-executor-pattern": PlannerExecutorPattern,
 };
 
 export default contentRegistry;
